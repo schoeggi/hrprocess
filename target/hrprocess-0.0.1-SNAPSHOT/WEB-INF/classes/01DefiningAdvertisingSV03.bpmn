@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.7.1">
   <bpmn:collaboration id="hrprocess01">
-    <bpmn:participant id="Advertising-Jobs" name="Company" processRef="Process_1" />
+    <bpmn:participant id="Advertising-Jobs" name="Company" processRef="Advertising-Jobs-1" />
     <bpmn:textAnnotation id="TextAnnotation_06c7op9">    <bpmn:text><![CDATA[Defining and advertising of jobs. 
 
 ]]></bpmn:text>
 </bpmn:textAnnotation>
     <bpmn:association id="Association_087kbmr" sourceRef="Advertising-Jobs" targetRef="TextAnnotation_06c7op9" />
   </bpmn:collaboration>
-  <bpmn:process id="Process_1" name="Advertising-Jobs" isExecutable="true">
+  <bpmn:process id="Advertising-Jobs-1" name="Advertising-Jobs" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_0ecfxed" name="HR">
         <bpmn:flowNodeRef>Task_17m5st4</bpmn:flowNodeRef>
