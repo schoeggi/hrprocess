@@ -1,49 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.7.1">
   <bpmn:process id="Process_Overall" isExecutable="true">
-    <bpmn:startEvent id="StartEvent_1">
+    <bpmn:startEvent id="StartEvent_1" name="Process started">
       <bpmn:outgoing>SequenceFlow_0obufv5</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:endEvent id="EndEvent_0a8zam0">
-      <bpmn:incoming>SequenceFlow_1pupjj9</bpmn:incoming>
+    <bpmn:endEvent id="EndEvent_0a8zam0" name="Process ended">
+      <bpmn:incoming>SequenceFlow_1xmhani</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:callActivity id="OverallProcessManagment" calledElement="Advertising-Jobs-1">
+    <bpmn:callActivity id="OverallProcessManagment" name="Defining and Advertising Job" calledElement="Advertising-Jobs-1">
       <bpmn:incoming>SequenceFlow_0obufv5</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1pupjj9</bpmn:outgoing>
     </bpmn:callActivity>
     <bpmn:sequenceFlow id="SequenceFlow_0obufv5" sourceRef="StartEvent_1" targetRef="OverallProcessManagment" />
-    <bpmn:sequenceFlow id="SequenceFlow_1pupjj9" sourceRef="OverallProcessManagment" targetRef="EndEvent_0a8zam0" />
+    <bpmn:sequenceFlow id="SequenceFlow_1pupjj9" sourceRef="OverallProcessManagment" targetRef="Step-2" />
+    <bpmn:sequenceFlow id="SequenceFlow_0q8wein" sourceRef="Step-2" targetRef="Task_0x8ts16" />
+    <bpmn:callActivity id="Step-2" name="Identify and select applicants" calledElement="Identify-select-applicants-1">
+      <bpmn:incoming>SequenceFlow_1pupjj9</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0q8wein</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="SequenceFlow_1xmhani" sourceRef="Task_0x8ts16" targetRef="EndEvent_0a8zam0" />
+    <bpmn:callActivity id="Task_0x8ts16" name="Interview" calledElement="Interview-1">
+      <bpmn:incoming>SequenceFlow_0q8wein</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1xmhani</bpmn:outgoing>
+    </bpmn:callActivity>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_Overall">
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
-        <dc:Bounds x="173" y="102" width="36" height="36" />
+        <dc:Bounds x="202" y="114" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="182" y="150" width="77" height="12" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_0a8zam0_di" bpmnElement="EndEvent_0a8zam0">
-        <dc:Bounds x="630" y="114" width="36" height="36" />
+        <dc:Bounds x="742" y="114" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="648" y="154" width="0" height="12" />
+          <dc:Bounds x="724" y="154" width="74" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="CallActivity_0wbggjs_di" bpmnElement="OverallProcessManagment">
-        <dc:Bounds x="377" y="92" width="100" height="80" />
+        <dc:Bounds x="302" y="92" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0obufv5_di" bpmnElement="SequenceFlow_0obufv5">
-        <di:waypoint xsi:type="dc:Point" x="209" y="120" />
-        <di:waypoint xsi:type="dc:Point" x="283" y="120" />
-        <di:waypoint xsi:type="dc:Point" x="283" y="132" />
-        <di:waypoint xsi:type="dc:Point" x="377" y="132" />
+        <di:waypoint xsi:type="dc:Point" x="238" y="132" />
+        <di:waypoint xsi:type="dc:Point" x="302" y="132" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="253" y="120" width="90" height="12" />
+          <dc:Bounds x="225" y="111" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1pupjj9_di" bpmnElement="SequenceFlow_1pupjj9">
-        <di:waypoint xsi:type="dc:Point" x="477" y="132" />
-        <di:waypoint xsi:type="dc:Point" x="630" y="132" />
+        <di:waypoint xsi:type="dc:Point" x="402" y="132" />
+        <di:waypoint xsi:type="dc:Point" x="440" y="132" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="508.5" y="111" width="90" height="12" />
+          <dc:Bounds x="376" y="111" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0q8wein_di" bpmnElement="SequenceFlow_0q8wein">
+        <di:waypoint xsi:type="dc:Point" x="540" y="132" />
+        <di:waypoint xsi:type="dc:Point" x="567" y="132" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="553.5" y="110.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="CallActivity_1jyqgrk_di" bpmnElement="Step-2">
+        <dc:Bounds x="440" y="92" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1xmhani_di" bpmnElement="SequenceFlow_1xmhani">
+        <di:waypoint xsi:type="dc:Point" x="667" y="132" />
+        <di:waypoint xsi:type="dc:Point" x="742" y="132" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="704.5" y="110.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="CallActivity_0qxo4xb_di" bpmnElement="Task_0x8ts16">
+        <dc:Bounds x="567" y="92" width="100" height="80" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
