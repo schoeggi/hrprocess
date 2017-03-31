@@ -1,6 +1,6 @@
 /classes/
 /test-classes/
-hrprocess-0.0.1-SNAPSHOT
-hrprocess-0.0.1-SNAPSHOT.war
-maven-status
-maven-archiver
+/hrprocess-0.0.1-SNAPSHOT
+/hrprocess-0.0.1-SNAPSHOT.war
+/maven-status
+/maven-archiver
