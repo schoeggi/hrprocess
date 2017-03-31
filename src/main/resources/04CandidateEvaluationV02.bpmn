@@ -63,7 +63,6 @@
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_02stby5</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_11bpzv8</bpmn:outgoing>
-      <bpmn:dataOutputAssociation />
       <bpmn:dataOutputAssociation id="DataOutputAssociation_0a0lrpp">
         <bpmn:targetRef>DataStoreReference_1rjsfxo</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
@@ -107,7 +106,6 @@
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1c40sdm</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_056r9bp</bpmn:outgoing>
-      <bpmn:dataOutputAssociation />
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1h46e6c">
         <bpmn:targetRef>DataStoreReference_1rjsfxo</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
@@ -121,7 +119,6 @@
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1e3i3yj</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1v5z5dw</bpmn:outgoing>
-      <bpmn:dataOutputAssociation />
       <bpmn:dataOutputAssociation id="DataOutputAssociation_0y9keqt">
         <bpmn:targetRef>DataStoreReference_1rjsfxo</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
