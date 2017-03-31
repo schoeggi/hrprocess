@@ -2,11 +2,6 @@
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.7.1">
   <bpmn:collaboration id="hrprocess01">
     <bpmn:participant id="Advertising-Jobs" name="Company" processRef="Advertising-Jobs-1" />
-    <bpmn:textAnnotation id="TextAnnotation_06c7op9">    <bpmn:text><![CDATA[Defining and advertising of jobs. 
-
-]]></bpmn:text>
-</bpmn:textAnnotation>
-    <bpmn:association id="Association_087kbmr" sourceRef="Advertising-Jobs" targetRef="TextAnnotation_06c7op9" />
   </bpmn:collaboration>
   <bpmn:process id="Advertising-Jobs-1" name="Advertising-Jobs" isExecutable="true">
     <bpmn:laneSet>
@@ -153,13 +148,6 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="152" y="172.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="TextAnnotation_06c7op9_di" bpmnElement="TextAnnotation_06c7op9">
-        <dc:Bounds x="11" y="-102" width="270" height="30" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Association_087kbmr_di" bpmnElement="Association_087kbmr">
-        <di:waypoint xsi:type="dc:Point" x="187" y="-36" />
-        <di:waypoint xsi:type="dc:Point" x="157" y="-72" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="EndEvent_0n6ilrt_di" bpmnElement="EndEvent_1hfjbxw">
         <dc:Bounds x="633" y="368" width="36" height="36" />
