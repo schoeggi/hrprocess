@@ -3,3 +3,5 @@
 /target/
 hrprocess-0.0.1-SNAPSHOT.war
 hrprocess-0.0.1-SNAPSHOT
+maven-status
+maven-archiver
