@@ -4,7 +4,6 @@
   <groupId>org.camunda.bpm.powerteam</groupId>
   <artifactId>hrprocess</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
 
   <dependencyManagement>
     <dependencies>
