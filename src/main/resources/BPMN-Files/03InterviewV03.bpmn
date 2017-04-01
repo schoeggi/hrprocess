@@ -81,18 +81,18 @@
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_00c4we2" sourceRef="Task_0ncef7u" targetRef="ExclusiveGateway_1ttn5nx" />
     <bpmn:sequenceFlow id="SequenceFlow_1pxkwe2" name="No" sourceRef="ExclusiveGateway_1ttn5nx" targetRef="Task_0h6gsez">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{!FormField_applicable-1}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{!FormField_applicable1}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1geltmx" name="Yes" sourceRef="ExclusiveGateway_1ttn5nx" targetRef="Task_0vad94x">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{FormField_applicable-1}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{FormField_applicable1}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0fro0zr" sourceRef="Task_0vad94x" targetRef="Task_1xc3bos" />
     <bpmn:sequenceFlow id="SequenceFlow_16k8js0" sourceRef="Task_1xc3bos" targetRef="ExclusiveGateway_1eh5fib" />
     <bpmn:sequenceFlow id="SequenceFlow_0myiuqk" name="Yes" sourceRef="ExclusiveGateway_1eh5fib" targetRef="Task_10yy2px">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{FormField_applicable-2}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{FormField_applicable2}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_14yvjwg" name="No" sourceRef="ExclusiveGateway_1eh5fib" targetRef="Task_0h6gsez">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{!FormField_applicable-2}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{!FormField_applicable2}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1ddlokx" sourceRef="Task_0h6gsez" targetRef="EndEvent_11hyx0k" />
     <bpmn:sequenceFlow id="SequenceFlow_0drgw66" sourceRef="Task_10yy2px" targetRef="Task_1809izq" />
