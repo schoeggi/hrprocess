@@ -27,7 +27,7 @@
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_Name" label="Applicant Name" type="string" />
-          <camunda:formField id="FormField_Reaseon" label="Reason for choice" type="string" />
+          <camunda:formField id="FormField_Reaseon" label="ReasonForChoice" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0v6376x</bpmn:incoming>
@@ -37,9 +37,9 @@
     <bpmn:userTask id="Task_CheckSelection" name="Check selection and choose preferences" camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="FormField_Preference-1" label="Names of preferred applicant" type="string" />
-          <camunda:formField id="FormField_Preference-2" label="Names of preferred applicant" type="string" />
-          <camunda:formField id="FormField_Preference-3" label="Names of preferred applicant" type="string" />
+          <camunda:formField id="FormField_Pref1" label="PreferredChoice1" type="string" />
+          <camunda:formField id="FormField_Pref2" label="PreferredChoice2" type="string" />
+          <camunda:formField id="FormField_Pref3" label="PreferredChoice3" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0ruq2v1</bpmn:incoming>
@@ -64,7 +64,7 @@
     <bpmn:userTask id="Task_InviteInterview" name="Invite for Interview" camunda:assignee="andrea">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="FormField_Invitation" label="Invitation text" type="string" />
+          <camunda:formField id="FormField_Invitation" label="InvitationText" type="string" />
           <camunda:formField id="FormField_Name" label="Name" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
