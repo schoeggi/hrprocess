@@ -47,7 +47,7 @@
     <bpmn:userTask id="Task_0ncef7u" name="Conduct telephone interview &#38; record notes" camunda:assignee="andrea">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="FormField_applicable-1" label="Applicable 1" type="boolean" />
+          <camunda:formField id="FormField_applicable1" label="Applicable 1" type="boolean" />
           <camunda:formField id="FormField_Impression" label="Impression" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
@@ -111,7 +111,7 @@
     <bpmn:userTask id="Task_1xc3bos" name="Conduct 1. Interview &#38; record impression" camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="FormField_applicable-2" label="Applicable 2" type="boolean" />
+          <camunda:formField id="FormField_applicable2" label="Applicable 2" type="boolean" />
           <camunda:formField id="FormField_Impression" label="Impression" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
