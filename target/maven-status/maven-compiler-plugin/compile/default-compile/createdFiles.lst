@@ -1,1 +1,3 @@
-org\camunda\bpm\getstarted\powerteam\HrprocessApplication.class
+ch\fhnw\recruiting\delegate\SayHelloDelegate.class
+ch\fhnw\recruiting\CamundaInitialDataGenerator.class
+ch\fhnw\recruiting\HRprocessApplication.class

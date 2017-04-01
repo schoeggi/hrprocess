@@ -1,1 +1,3 @@
-C:\Users\joell_000\git\hrprocess\src\main\java\org\camunda\bpm\getstarted\powerteam\HrprocessApplication.java
+C:\Users\joell_000\git\hrprocess\src\main\java\ch\fhnw\recruiting\HRprocessApplication.java
+C:\Users\joell_000\git\hrprocess\src\main\java\ch\fhnw\recruiting\CamundaInitialDataGenerator.java
+C:\Users\joell_000\git\hrprocess\src\main\java\ch\fhnw\recruiting\delegate\SayHelloDelegate.java
