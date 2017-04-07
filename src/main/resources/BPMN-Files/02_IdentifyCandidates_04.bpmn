@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.7.1">
   <bpmn:collaboration id="hrprocess02">
-    <bpmn:participant id="Identify_Candidate_Invite" name="Company" processRef="Identify-select-applicants-1" />
+    <bpmn:participant id="Identify_and_select_applicants" name="Company" processRef="Identify-select-applicants-1" />
   </bpmn:collaboration>
   <bpmn:process id="Identify-select-applicants-1" name="Identify and select applicants" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_0oe64x2" name="HR">
-        <bpmn:flowNodeRef>IntermediateThrowEvent_1fz7p88</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IntermediateThrowEvent_StartHR02</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_PreSelection</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_CheckFeedback</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_InviteInterview</bpmn:flowNodeRef>
@@ -20,7 +20,7 @@
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_0dq805k" sourceRef="Task_CheckFeedback" targetRef="ExclusiveGateway_13d4ecn" />
-    <bpmn:startEvent id="IntermediateThrowEvent_1fz7p88" name="Start">
+    <bpmn:startEvent id="IntermediateThrowEvent_StartHR02" name="Start">
       <bpmn:outgoing>SequenceFlow_0v6376x</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:userTask id="Task_PreSelection" name="Create Pre-Selection and forward to line" camunda:assignee="andrea">
@@ -33,7 +33,7 @@
       <bpmn:incoming>SequenceFlow_0v6376x</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0ruq2v1</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="SequenceFlow_0v6376x" sourceRef="IntermediateThrowEvent_1fz7p88" targetRef="Task_PreSelection" />
+    <bpmn:sequenceFlow id="SequenceFlow_0v6376x" sourceRef="IntermediateThrowEvent_StartHR02" targetRef="Task_PreSelection" />
     <bpmn:userTask id="Task_CheckSelection" name="Check selection and choose preferences" camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
@@ -94,7 +94,7 @@
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="hrprocess02">
-      <bpmndi:BPMNShape id="Participant_1lo1wni_di" bpmnElement="Identify_Candidate_Invite">
+      <bpmndi:BPMNShape id="Participant_1lo1wni_di" bpmnElement="Identify_and_select_applicants">
         <dc:Bounds x="6" y="11" width="1106" height="371" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ExclusiveGateway_13d4ecn_di" bpmnElement="ExclusiveGateway_13d4ecn" isMarkerVisible="true">
@@ -161,7 +161,7 @@
       <bpmndi:BPMNShape id="UserTask_0ypac3q_di" bpmnElement="Task_PreSelection">
         <dc:Bounds x="263" y="210" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="StartEvent_0l9rufw_di" bpmnElement="IntermediateThrowEvent_1fz7p88">
+      <bpmndi:BPMNShape id="StartEvent_0l9rufw_di" bpmnElement="IntermediateThrowEvent_StartHR02">
         <dc:Bounds x="92" y="232" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="99" y="271" width="24" height="12" />

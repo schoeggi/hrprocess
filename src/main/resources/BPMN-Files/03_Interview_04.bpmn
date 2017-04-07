@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.7.1">
-  <bpmn:collaboration id="InterviewProcess">
+  <bpmn:collaboration id="hrprocess03">
     <bpmn:participant id="Candidate-Evaluation" name="Company" processRef="Process-4" />
-    <bpmn:participant id="Participant_119jxwv" name="Company" processRef="Interview-1" />
+    <bpmn:participant id="Participant_Interview_1" name="Company" processRef="Interview-1" />
     <bpmn:textAnnotation id="TextAnnotation_1qrpcyk">    <bpmn:text><![CDATA[Interview process 
 
 ]]></bpmn:text>
@@ -26,28 +26,28 @@
   </bpmn:process>
   <bpmn:process id="Interview-1" name="Interview" isExecutable="true">
     <bpmn:laneSet>
-      <bpmn:lane id="Lane_0m7krhd" name="HR">
-        <bpmn:flowNodeRef>Task_0ncef7u</bpmn:flowNodeRef>
+      <bpmn:lane id="Lane_HR" name="HR">
+        <bpmn:flowNodeRef>Task_TelInterview</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_1ttn5nx</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_1eh5fib</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_11hyx0k</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_PrepareInterview</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_0vad94x</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_0h6gsez</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_10yy2px</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>StartEvent_0jyill5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_InviteInterview1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RejectCandidate</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_InviteInterview2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_HR3</bpmn:flowNodeRef>
       </bpmn:lane>
-      <bpmn:lane id="Lane_04xhroa" name="Line">
-        <bpmn:flowNodeRef>Task_1809izq</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_1xc3bos</bpmn:flowNodeRef>
+      <bpmn:lane id="Lane_Line" name="Line">
+        <bpmn:flowNodeRef>Task_Interview2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Interview1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_0swmmxp</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:sequenceFlow id="SequenceFlow_08rwuxx" sourceRef="StartEvent_0jyill5" targetRef="Task_PrepareInterview" />
-    <bpmn:userTask id="Task_0ncef7u" name="Conduct telephone interview &#38; record notes" camunda:assignee="andrea">
+    <bpmn:sequenceFlow id="SequenceFlow_08rwuxx" sourceRef="StartEvent_HR3" targetRef="Task_PrepareInterview" />
+    <bpmn:userTask id="Task_TelInterview" name="Conduct telephone interview &#38; record notes" camunda:assignee="andrea">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="FormField_applicable1" label="Applicable 1" type="boolean" />
+          <camunda:formField id="FormField_Applicable1" label="Applicable 1" type="boolean" />
           <camunda:formField id="FormField_Impression" label="Impression" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
@@ -68,7 +68,7 @@
       <bpmn:incoming>SequenceFlow_1ddlokx</bpmn:incoming>
       <bpmn:messageEventDefinition />
     </bpmn:endEvent>
-    <bpmn:userTask id="Task_1809izq" name="Conduct 2nd Interview &#38; record " camunda:assignee="anna">
+    <bpmn:userTask id="Task_Interview2" name="Conduct 2nd Interview &#38; record " camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_Impression" label="Impression" type="string" />
@@ -79,24 +79,24 @@
       <bpmn:incoming>SequenceFlow_0drgw66</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_18hq03h</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="SequenceFlow_00c4we2" sourceRef="Task_0ncef7u" targetRef="ExclusiveGateway_1ttn5nx" />
-    <bpmn:sequenceFlow id="SequenceFlow_1pxkwe2" name="No" sourceRef="ExclusiveGateway_1ttn5nx" targetRef="Task_0h6gsez">
+    <bpmn:sequenceFlow id="SequenceFlow_00c4we2" sourceRef="Task_TelInterview" targetRef="ExclusiveGateway_1ttn5nx" />
+    <bpmn:sequenceFlow id="SequenceFlow_1pxkwe2" name="No" sourceRef="ExclusiveGateway_1ttn5nx" targetRef="Task_RejectCandidate">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{!FormField_applicable1}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_1geltmx" name="Yes" sourceRef="ExclusiveGateway_1ttn5nx" targetRef="Task_0vad94x">
+    <bpmn:sequenceFlow id="SequenceFlow_1geltmx" name="Yes" sourceRef="ExclusiveGateway_1ttn5nx" targetRef="Task_InviteInterview1">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{FormField_applicable1}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_0fro0zr" sourceRef="Task_0vad94x" targetRef="Task_1xc3bos" />
-    <bpmn:sequenceFlow id="SequenceFlow_16k8js0" sourceRef="Task_1xc3bos" targetRef="ExclusiveGateway_1eh5fib" />
-    <bpmn:sequenceFlow id="SequenceFlow_0myiuqk" name="Yes" sourceRef="ExclusiveGateway_1eh5fib" targetRef="Task_10yy2px">
+    <bpmn:sequenceFlow id="SequenceFlow_0fro0zr" sourceRef="Task_InviteInterview1" targetRef="Task_Interview1" />
+    <bpmn:sequenceFlow id="SequenceFlow_16k8js0" sourceRef="Task_Interview1" targetRef="ExclusiveGateway_1eh5fib" />
+    <bpmn:sequenceFlow id="SequenceFlow_0myiuqk" name="Yes" sourceRef="ExclusiveGateway_1eh5fib" targetRef="Task_InviteInterview2">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{FormField_applicable2}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_14yvjwg" name="No" sourceRef="ExclusiveGateway_1eh5fib" targetRef="Task_0h6gsez">
+    <bpmn:sequenceFlow id="SequenceFlow_14yvjwg" name="No" sourceRef="ExclusiveGateway_1eh5fib" targetRef="Task_RejectCandidate">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{!FormField_applicable2}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_1ddlokx" sourceRef="Task_0h6gsez" targetRef="EndEvent_11hyx0k" />
-    <bpmn:sequenceFlow id="SequenceFlow_0drgw66" sourceRef="Task_10yy2px" targetRef="Task_1809izq" />
-    <bpmn:sequenceFlow id="SequenceFlow_13j0cgt" sourceRef="Task_PrepareInterview" targetRef="Task_0ncef7u" />
+    <bpmn:sequenceFlow id="SequenceFlow_1ddlokx" sourceRef="Task_RejectCandidate" targetRef="EndEvent_11hyx0k" />
+    <bpmn:sequenceFlow id="SequenceFlow_0drgw66" sourceRef="Task_InviteInterview2" targetRef="Task_Interview2" />
+    <bpmn:sequenceFlow id="SequenceFlow_13j0cgt" sourceRef="Task_PrepareInterview" targetRef="Task_TelInterview" />
     <bpmn:userTask id="Task_PrepareInterview" name="Prepare telephone interview" camunda:assignee="andrea">
       <bpmn:extensionElements>
         <camunda:formData>
@@ -108,22 +108,22 @@
       <bpmn:outgoing>SequenceFlow_13j0cgt</bpmn:outgoing>
       <bpmn:property name="__targetRef_placeholder" />
     </bpmn:userTask>
-    <bpmn:userTask id="Task_1xc3bos" name="Conduct 1. Interview &#38; record impression" camunda:assignee="anna">
+    <bpmn:userTask id="Task_Interview1" name="Conduct 1. Interview &#38; record impression" camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="FormField_applicable2" label="Applicable 2" type="boolean" />
+          <camunda:formField id="FormField_Applicable2" label="Applicable 2" type="boolean" />
           <camunda:formField id="FormField_Impression" label="Impression" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0fro0zr</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_16k8js0</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="SequenceFlow_18hq03h" sourceRef="Task_1809izq" targetRef="EndEvent_0swmmxp" />
+    <bpmn:sequenceFlow id="SequenceFlow_18hq03h" sourceRef="Task_Interview2" targetRef="EndEvent_0swmmxp" />
     <bpmn:endEvent id="EndEvent_0swmmxp" name="Interviews finished">
       <bpmn:incoming>SequenceFlow_18hq03h</bpmn:incoming>
       <bpmn:terminateEventDefinition />
     </bpmn:endEvent>
-    <bpmn:userTask id="Task_0vad94x" name="Invite for 1. personal Interview" camunda:assignee="andrea">
+    <bpmn:userTask id="Task_InviteInterview1" name="Invite for 1. personal Interview" camunda:assignee="andrea">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_Name" label="Name" type="string" />
@@ -134,21 +134,27 @@
       <bpmn:outgoing>SequenceFlow_0fro0zr</bpmn:outgoing>
       <bpmn:property name="__targetRef_placeholder" />
     </bpmn:userTask>
-    <bpmn:userTask id="Task_0h6gsez" name="Reject Candidate" camunda:assignee="andrea">
+    <bpmn:userTask id="Task_RejectCandidate" name="Reject Candidate" camunda:assignee="andrea">
       <bpmn:incoming>SequenceFlow_1pxkwe2</bpmn:incoming>
       <bpmn:incoming>SequenceFlow_14yvjwg</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1ddlokx</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Task_10yy2px" name="Invite for 2nd Interview" camunda:assignee="andrea">
+    <bpmn:userTask id="Task_InviteInterview2" name="Invite for 2nd Interview" camunda:assignee="andrea">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="FormField_Name" label="Name" type="string" />
+          <camunda:formField id="FormField_Notes_Interview_1" label="Notes from first Interview" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0myiuqk</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0drgw66</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:startEvent id="StartEvent_0jyill5" name="Date of interview arrived">
+    <bpmn:startEvent id="StartEvent_HR3" name="Date of interview arrived">
       <bpmn:outgoing>SequenceFlow_08rwuxx</bpmn:outgoing>
     </bpmn:startEvent>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="InterviewProcess">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="hrprocess03">
       <bpmndi:BPMNShape id="TextAnnotation_1qrpcyk_di" bpmnElement="TextAnnotation_1qrpcyk">
         <dc:Bounds x="5" y="-48" width="248" height="31" />
       </bpmndi:BPMNShape>
@@ -177,16 +183,16 @@
       <bpmndi:BPMNShape id="Task_18h6mx3_di" bpmnElement="Task_18h6mx3">
         <dc:Bounds x="282.13412816691505" y="1521" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Participant_119jxwv_di" bpmnElement="Participant_119jxwv">
+      <bpmndi:BPMNShape id="Participant_119jxwv_di" bpmnElement="Participant_Interview_1">
         <dc:Bounds x="9" y="214" width="1585" height="568" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_0m7krhd_di" bpmnElement="Lane_0m7krhd">
+      <bpmndi:BPMNShape id="Lane_0m7krhd_di" bpmnElement="Lane_HR">
         <dc:Bounds x="39" y="214" width="1555" height="313" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_04xhroa_di" bpmnElement="Lane_04xhroa">
+      <bpmndi:BPMNShape id="Lane_04xhroa_di" bpmnElement="Lane_Line">
         <dc:Bounds x="39" y="527" width="1555" height="255" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_0bgxzj4_di" bpmnElement="Task_0ncef7u">
+      <bpmndi:BPMNShape id="UserTask_0bgxzj4_di" bpmnElement="Task_TelInterview">
         <dc:Bounds x="380" y="351" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_08rwuxx_di" bpmnElement="SequenceFlow_08rwuxx">
@@ -286,7 +292,7 @@
           <dc:Bounds x="1102" y="562" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="UserTask_1ftwu9w_di" bpmnElement="Task_1809izq">
+      <bpmndi:BPMNShape id="UserTask_1ftwu9w_di" bpmnElement="Task_Interview2">
         <dc:Bounds x="1270" y="606" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_13j0cgt_di" bpmnElement="SequenceFlow_13j0cgt">
@@ -299,7 +305,7 @@
       <bpmndi:BPMNShape id="UserTask_1q5rela_di" bpmnElement="Task_PrepareInterview">
         <dc:Bounds x="221" y="351" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_0ybhag5_di" bpmnElement="Task_1xc3bos">
+      <bpmndi:BPMNShape id="UserTask_0ybhag5_di" bpmnElement="Task_Interview1">
         <dc:Bounds x="885" y="606" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_18hq03h_di" bpmnElement="SequenceFlow_18hq03h">
@@ -315,16 +321,16 @@
           <dc:Bounds x="1427" y="667" width="50" height="24" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_0rrkk9p_di" bpmnElement="Task_0vad94x">
+      <bpmndi:BPMNShape id="UserTask_0rrkk9p_di" bpmnElement="Task_InviteInterview1">
         <dc:Bounds x="667" y="419" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_0rpli6m_di" bpmnElement="Task_0h6gsez">
+      <bpmndi:BPMNShape id="UserTask_0rpli6m_di" bpmnElement="Task_RejectCandidate">
         <dc:Bounds x="1082" y="258" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_09wokvs_di" bpmnElement="Task_10yy2px">
+      <bpmndi:BPMNShape id="UserTask_09wokvs_di" bpmnElement="Task_InviteInterview2">
         <dc:Bounds x="1082" y="411" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="StartEvent_0k7ngh6_di" bpmnElement="StartEvent_0jyill5">
+      <bpmndi:BPMNShape id="StartEvent_0k7ngh6_di" bpmnElement="StartEvent_HR3">
         <dc:Bounds x="110" y="373" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="87" y="412" width="82" height="24" />
