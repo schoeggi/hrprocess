@@ -121,7 +121,7 @@
     <bpmn:startEvent id="StartEvent_HR01" name="Need for new position appeared">
       <bpmn:outgoing>SequenceFlow_1l81lgb</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:serviceTask id="Task_1kbb11h" name="Initialize Request" camunda:delegateExpression="#{InitializeHRprocess}">
+    <bpmn:serviceTask id="Task_1kbb11h" name="Initialize Request" camunda:delegateExpression="#{initializeHRprocess}">
       <bpmn:incoming>SequenceFlow_1l81lgb</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_00pwyhf</bpmn:outgoing>
     </bpmn:serviceTask>
