@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.7.1">
+  <bpmn:collaboration id="hrprocess06">
+    <bpmn:participant id="Participant_ApplyUser" name="Company" processRef="Applying-1" />
+  </bpmn:collaboration>
+  <bpmn:process id="Applying-1" isExecutable="true">
+    <bpmn:laneSet>
+      <bpmn:lane id="Lane_1kzvty7" name="HR">
+        <bpmn:flowNodeRef>Task_ReviewApplication</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_1uprvaw</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_0dpgxc7" name="Candidate">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ReadApply</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_1" name="Job published">
+      <bpmn:outgoing>SequenceFlow_0mw1dbv</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Task_ReadApply" name="Read application and apply" camunda:assignee="candi">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="FormField_ApplicationID" label="Application ID" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0mw1dbv</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_17375nb</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Task_ReviewApplication" name="Review application and comment" camunda:assignee="andrea">
+      <bpmn:incoming>SequenceFlow_17375nb</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0g6eyoz</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="EndEvent_1uprvaw">
+      <bpmn:incoming>SequenceFlow_0g6eyoz</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0mw1dbv" sourceRef="StartEvent_1" targetRef="Task_ReadApply" />
+    <bpmn:sequenceFlow id="SequenceFlow_17375nb" sourceRef="Task_ReadApply" targetRef="Task_ReviewApplication" />
+    <bpmn:sequenceFlow id="SequenceFlow_0g6eyoz" sourceRef="Task_ReviewApplication" targetRef="EndEvent_1uprvaw" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="hrprocess06">
+      <bpmndi:BPMNShape id="Participant_1i3qd0j_di" bpmnElement="Participant_ApplyUser">
+        <dc:Bounds x="123" y="-38" width="600" height="370" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="277" y="2" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="261" y="38" width="68" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1kzvty7_di" bpmnElement="Lane_1kzvty7">
+        <dc:Bounds x="153" y="82" width="570" height="250" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0dpgxc7_di" bpmnElement="Lane_0dpgxc7">
+        <dc:Bounds x="153" y="-38" width="570" height="120" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0mw1dbv_di" bpmnElement="SequenceFlow_0mw1dbv">
+        <di:waypoint xsi:type="dc:Point" x="313" y="20" />
+        <di:waypoint xsi:type="dc:Point" x="380" y="20" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="302" y="-1" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_17375nb_di" bpmnElement="SequenceFlow_17375nb">
+        <di:waypoint xsi:type="dc:Point" x="429" y="60" />
+        <di:waypoint xsi:type="dc:Point" x="429" y="163" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="399" y="105" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1uprvaw_di" bpmnElement="EndEvent_1uprvaw">
+        <dc:Bounds x="539" y="185" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="512" y="224" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0g6eyoz_di" bpmnElement="SequenceFlow_0g6eyoz">
+        <di:waypoint xsi:type="dc:Point" x="479" y="203" />
+        <di:waypoint xsi:type="dc:Point" x="539" y="203" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="464" y="182" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0i7wtgf_di" bpmnElement="Task_ReadApply">
+        <dc:Bounds x="380" y="-20" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_196b3y0_di" bpmnElement="Task_ReviewApplication">
+        <dc:Bounds x="379" y="163" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

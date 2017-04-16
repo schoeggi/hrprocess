@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <title>Pure CSS demo</title>
+      <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">    
+      <link rel = "stylesheet"
+            type = "text/css"
+            href = "myStyle.css" />
+	</head>   
+    <body>
+		<form class="pure-form pure-form-aligned">
+		    <fieldset>
+		    	<div class="pure-control-group">
+		        	<label for="candidateJob">Job we are offering</label>
+		        	<select cam-variable-name="JobName" cam-variable-type="String" name="JobName">
+		            	<option>Business Analyst</option>
+		            	<option>Senior Software Engineer</option>
+		            	<option>Lead Software Engineer</option>    
+		        	</select>
+		    	</div>
+		
+		    	<div class="pure-control-group">
+		        	<label for="candidateLastName">Job ID</label>
+		        	<input class="form-control" cam-variable-type="String" type="text" cam-variable-name="JobID" name="JobId" placeholder="Job ID"/>
+		    	</div>
+		    	
+		    	<div class="pure-control-group">
+		        	<label for="candidateFirstName">Comment</label>
+		        	<textarea class="form-control" cam-variable-type="String" cam-variable-name="Comment" name="Comment" placeholder="Type your comment here..."></textarea>
+		    	</div>
+		    </fieldset>
+		</form>
+	</body>
+</html>
+
