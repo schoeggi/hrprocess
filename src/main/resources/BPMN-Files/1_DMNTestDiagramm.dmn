@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="definitions_048i1kn" name="Decision" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="TestDecision" name="TestDecision">
+    <extensionElements>
+      <biodi:bounds x="200" y="200" width="180" height="80" />
+      <biodi:edge source="InputData_0tfxzlu">
+        <biodi:waypoints x="442" y="236" />
+        <biodi:waypoints x="380" y="237" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#InputData_0tfxzlu" />
+    </informationRequirement>
+    <decisionTable>
+      <input id="InputClause_0gh23ul" label="Category" camunda:inputVariable="">
+        <inputExpression id="LiteralExpression_1wqo988" typeRef="boolean">        <text>FormFieldTestCategory1</text>
+</inputExpression>
+      </input>
+      <input id="InputClause_1j3ypce" label="Amount" camunda:inputVariable="">
+        <inputExpression id="LiteralExpression_1xzo826" typeRef="integer">        <text>FormFieldTestAmount1</text>
+</inputExpression>
+      </input>
+      <output id="output_1" label="Decision" name="decisionTest" typeRef="string" />
+      <rule id="row-817073163-1">
+        <inputEntry id="UnaryTests_1s0xr7j">        <text>true</text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0wv7uuy">        <text><![CDATA[>= 50]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0xap4ns">        <text><![CDATA["A"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-817073163-2">
+        <inputEntry id="UnaryTests_0an8l8w">        <text>true</text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0y7z6mt">        <text><![CDATA[< 50]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_1um4ifr">        <text><![CDATA["B"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-817073163-3">
+        <inputEntry id="UnaryTests_1t605mz">        <text>false</text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0hrp4sh">        <text></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_1c21ehd">        <text><![CDATA["C"]]></text>
+</outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_0tfxzlu" name="Initial Inputs">
+    <extensionElements>
+      <biodi:bounds x="442" y="211" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+</definitions>
