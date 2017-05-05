@@ -80,7 +80,7 @@
     </bpmn:callActivity>
     <bpmn:endEvent id="EndEvent_Request_Declined01" name="Request declined">
       <bpmn:extensionElements>
-        <camunda:executionListener expression="${EndEvent_Request_Declined01 == true}" event="end" />
+        <camunda:executionListener expression="${EndEvent_Request_Declined01 = true}" event="end" />
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1ocvrux</bpmn:incoming>
     </bpmn:endEvent>
