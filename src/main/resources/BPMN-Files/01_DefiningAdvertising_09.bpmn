@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.7.1">
+  <bpmn:collaboration id="hrprocess01">
+    <bpmn:participant id="AdvertisingJobs" name="Company" processRef="AdvertisingJobs1" />
+  </bpmn:collaboration>
+  <bpmn:process id="AdvertisingJobs1" name="AdvertisingJobs" isExecutable="true">
+    <bpmn:laneSet>
+      <bpmn:lane id="Lane_0ecfxed" name="HR">
+        <bpmn:flowNodeRef>Task_Refine_Publish</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_JobPublished</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_0m74jh8" name="Line">
+        <bpmn:flowNodeRef>TaskInitializeRequest</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Delete_Request</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_HR01</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExclusiveGateway_154fq8x</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Request_Declined01</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>CallActivity_PrepareRequest</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_0hhjkux" name="COO">
+        <bpmn:flowNodeRef>Task_Check-Budget</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:sequenceFlow id="SequenceFlow_00pwyhf" sourceRef="TaskInitializeRequest" targetRef="CallActivity_PrepareRequest" />
+    <bpmn:sequenceFlow id="SequenceFlow_04y4ng0" sourceRef="Task_Check-Budget" targetRef="ExclusiveGateway_154fq8x" />
+    <bpmn:sequenceFlow id="SequenceFlow_01zf9tw" name="Yes" sourceRef="ExclusiveGateway_154fq8x" targetRef="Task_Refine_Publish">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{FormField_BudgetApprovedX}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_14ntckn" name="No" sourceRef="ExclusiveGateway_154fq8x" targetRef="Task_Delete_Request">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{!FormField_BudgetApprovedX}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_1ocvrux" sourceRef="Task_Delete_Request" targetRef="EndEvent_Request_Declined01" />
+    <bpmn:sequenceFlow id="SequenceFlow_19skycd" sourceRef="Task_Refine_Publish" targetRef="EndEvent_JobPublished" />
+    <bpmn:sequenceFlow id="SequenceFlow_1l81lgb" sourceRef="StartEvent_HR01" targetRef="TaskInitializeRequest" />
+    <bpmn:sequenceFlow id="SequenceFlow_1fblppn" sourceRef="CallActivity_PrepareRequest" targetRef="Task_Check-Budget" />
+    <bpmn:startEvent id="StartEvent_HR01" name="Need for new position appeared">
+      <bpmn:outgoing>SequenceFlow_1l81lgb</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="TaskInitializeRequest" name="Initialize Request" camunda:delegateExpression="#{initializeHRprocess}">
+      <bpmn:incoming>SequenceFlow_1l81lgb</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_00pwyhf</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Task_Check-Budget" name="Check_Budget" camunda:assignee="hans">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="FormField_BudgetApprovedX" label="BudgetAvailable" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1fblppn</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_04y4ng0</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_154fq8x" name="Approved?">
+      <bpmn:incoming>SequenceFlow_04y4ng0</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_01zf9tw</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_14ntckn</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Task_Delete_Request" name="Delete_Request" camunda:assignee="anna">
+      <bpmn:extensionElements>
+        <camunda:formData />
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_14ntckn</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1ocvrux</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="EndEvent_Request_Declined01" name="Request declined">
+      <bpmn:incoming>SequenceFlow_1ocvrux</bpmn:incoming>
+      <bpmn:terminateEventDefinition />
+    </bpmn:endEvent>
+    <bpmn:userTask id="Task_Refine_Publish" name="Refine_Publish" camunda:assignee="andrea">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="FormField_Salary" label="salary" type="string" />
+          <camunda:formField id="FormField_Contact" label="contact" type="string" />
+          <camunda:formField id="FormField_JobPlattforms" label="JobPlattforms" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_01zf9tw</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_19skycd</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="EndEvent_JobPublished" name="Job published">
+      <bpmn:incoming>SequenceFlow_19skycd</bpmn:incoming>
+      <bpmn:terminateEventDefinition />
+    </bpmn:endEvent>
+    <bpmn:userTask id="CallActivity_PrepareRequest" name="Prepare Request" camunda:assignee="anna">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="FormField_Name" label="Name" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_00pwyhf</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1fblppn</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="hrprocess01">
+      <bpmndi:BPMNShape id="Participant_1kz3qgl_di" bpmnElement="AdvertisingJobs">
+        <dc:Bounds x="-364" y="-40" width="905" height="451" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_01zf9tw_di" bpmnElement="SequenceFlow_01zf9tw">
+        <di:waypoint xsi:type="dc:Point" x="200" y="201" />
+        <di:waypoint xsi:type="dc:Point" x="200" y="336" />
+        <di:waypoint xsi:type="dc:Point" x="291" y="336" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="171" y="230.5263157894737" width="18" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Lane_0ecfxed_di" bpmnElement="Lane_0ecfxed">
+        <dc:Bounds x="-334" y="253" width="875" height="158" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0m74jh8_di" bpmnElement="Lane_0m74jh8">
+        <dc:Bounds x="-334" y="81" width="875" height="172" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1l81lgb_di" bpmnElement="SequenceFlow_1l81lgb">
+        <di:waypoint xsi:type="dc:Point" x="-189" y="176" />
+        <di:waypoint xsi:type="dc:Point" x="-159" y="176" />
+        <di:waypoint xsi:type="dc:Point" x="-159" y="176" />
+        <di:waypoint xsi:type="dc:Point" x="-130" y="176" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-189" y="169.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_0n6ilrt_di" bpmnElement="EndEvent_JobPublished">
+        <dc:Bounds x="449" y="318" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="435" y="370" width="68" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_11frnh4_di" bpmnElement="Task_Refine_Publish">
+        <dc:Bounds x="291" y="296" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_19skycd_di" bpmnElement="SequenceFlow_19skycd">
+        <di:waypoint xsi:type="dc:Point" x="391" y="336" />
+        <di:waypoint xsi:type="dc:Point" x="449" y="336" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="375" y="314.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_154fq8x_di" bpmnElement="ExclusiveGateway_154fq8x" isMarkerVisible="true">
+        <dc:Bounds x="175" y="151" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="137" y="109" width="54" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_04y4ng0_di" bpmnElement="SequenceFlow_04y4ng0">
+        <di:waypoint xsi:type="dc:Point" x="121" y="7" />
+        <di:waypoint xsi:type="dc:Point" x="200" y="7" />
+        <di:waypoint xsi:type="dc:Point" x="200" y="151" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="115.5" y="-14.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Lane_0hhjkux_di" bpmnElement="Lane_0hhjkux">
+        <dc:Bounds x="-334" y="-40" width="875" height="121" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_1dyzevq_di" bpmnElement="Task_Check-Budget">
+        <dc:Bounds x="21" y="-17" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_14ntckn_di" bpmnElement="SequenceFlow_14ntckn">
+        <di:waypoint xsi:type="dc:Point" x="225" y="176" />
+        <di:waypoint xsi:type="dc:Point" x="291" y="176" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="226.27630114566304" y="147" width="15" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0voipy9_di" bpmnElement="Task_Delete_Request">
+        <dc:Bounds x="291" y="136" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1ocvrux_di" bpmnElement="SequenceFlow_1ocvrux">
+        <di:waypoint xsi:type="dc:Point" x="391" y="176" />
+        <di:waypoint xsi:type="dc:Point" x="449" y="176" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="375" y="154.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_0hitmzz_di" bpmnElement="EndEvent_Request_Declined01">
+        <dc:Bounds x="449" y="158" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="436" y="205" width="85" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1o3c845_di" bpmnElement="StartEvent_HR01">
+        <dc:Bounds x="-225" y="158" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-251" y="207" width="88" height="25" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_00pwyhf_di" bpmnElement="SequenceFlow_00pwyhf">
+        <di:waypoint xsi:type="dc:Point" x="-30" y="176" />
+        <di:waypoint xsi:type="dc:Point" x="21" y="176" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-49.5" y="155" width="90" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_0lgfo40_di" bpmnElement="TaskInitializeRequest">
+        <dc:Bounds x="-130" y="136" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1fblppn_di" bpmnElement="SequenceFlow_1fblppn">
+        <di:waypoint xsi:type="dc:Point" x="71" y="136" />
+        <di:waypoint xsi:type="dc:Point" x="71" y="63" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="41" y="93" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0gt1ylz_di" bpmnElement="CallActivity_PrepareRequest">
+        <dc:Bounds x="21" y="136" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
