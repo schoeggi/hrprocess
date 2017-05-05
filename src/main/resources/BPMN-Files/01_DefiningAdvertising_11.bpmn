@@ -14,8 +14,8 @@
         <bpmn:flowNodeRef>Task_Delete_Request</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>StartEvent_HR01</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_154fq8x</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>EndEvent_Request_Declined01</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>CallActivity_PrepareRequest</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Request_Declined01</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0hhjkux" name="COO">
         <bpmn:flowNodeRef>Task_Check-Budget</bpmn:flowNodeRef>
@@ -40,7 +40,7 @@
       <bpmn:incoming>SequenceFlow_1l81lgb</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_00pwyhf</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:userTask id="Task_Check-Budget" name="Check_Budget" camunda:assignee="hans">
+    <bpmn:userTask id="Task_Check-Budget" name="Check Budget" camunda:assignee="hans">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_BudgetApprovedX" label="BudgetAvailable" type="boolean" />
@@ -54,18 +54,16 @@
       <bpmn:outgoing>SequenceFlow_01zf9tw</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_14ntckn</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="Task_Delete_Request" name="Delete_Request" camunda:assignee="anna">
+    <bpmn:userTask id="Task_Delete_Request" name="Delete Request" camunda:assignee="anna">
       <bpmn:extensionElements>
-        <camunda:formData />
+        <camunda:formData>
+          <camunda:formField id="FormField_02turkl" label="Name and Date" type="string" />
+        </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_14ntckn</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1ocvrux</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:endEvent id="EndEvent_Request_Declined01" name="Request declined">
-      <bpmn:incoming>SequenceFlow_1ocvrux</bpmn:incoming>
-      <bpmn:terminateEventDefinition />
-    </bpmn:endEvent>
-    <bpmn:userTask id="Task_Refine_Publish" name="Refine_Publish" camunda:assignee="andrea">
+    <bpmn:userTask id="Task_Refine_Publish" name="Refine Publish" camunda:assignee="andrea">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_Salary" label="salary" type="string" />
@@ -76,19 +74,19 @@
       <bpmn:incoming>SequenceFlow_01zf9tw</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_19skycd</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:endEvent id="EndEvent_JobPublished" name="Job published">
-      <bpmn:incoming>SequenceFlow_19skycd</bpmn:incoming>
-      <bpmn:terminateEventDefinition />
-    </bpmn:endEvent>
-    <bpmn:userTask id="CallActivity_PrepareRequest" name="Prepare Request" camunda:assignee="anna">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="FormField_Name" label="Name" type="string" />
-        </camunda:formData>
-      </bpmn:extensionElements>
+    <bpmn:callActivity id="CallActivity_PrepareRequest" name="Prepare Request" camunda:caseRef="Case_PrepareRequest">
       <bpmn:incoming>SequenceFlow_00pwyhf</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1fblppn</bpmn:outgoing>
-    </bpmn:userTask>
+    </bpmn:callActivity>
+    <bpmn:endEvent id="EndEvent_Request_Declined01" name="Request declined">
+      <bpmn:extensionElements>
+        <camunda:executionListener expression="${EndEvent_Request_Declined01 == true}" event="end" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1ocvrux</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="EndEvent_JobPublished" name="Job published">
+      <bpmn:incoming>SequenceFlow_19skycd</bpmn:incoming>
+    </bpmn:endEvent>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="hrprocess01">
@@ -118,12 +116,6 @@
           <dc:Bounds x="-189" y="169.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="EndEvent_0n6ilrt_di" bpmnElement="EndEvent_JobPublished">
-        <dc:Bounds x="449" y="318" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="435" y="370" width="68" height="13" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_11frnh4_di" bpmnElement="Task_Refine_Publish">
         <dc:Bounds x="291" y="296" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -171,12 +163,6 @@
           <dc:Bounds x="375" y="154.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="EndEvent_0hitmzz_di" bpmnElement="EndEvent_Request_Declined01">
-        <dc:Bounds x="449" y="158" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="436" y="205" width="85" height="13" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="StartEvent_1o3c845_di" bpmnElement="StartEvent_HR01">
         <dc:Bounds x="-225" y="158" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -200,8 +186,20 @@
           <dc:Bounds x="41" y="93" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="UserTask_0gt1ylz_di" bpmnElement="CallActivity_PrepareRequest">
+      <bpmndi:BPMNShape id="CallActivity_0yzwq39_di" bpmnElement="CallActivity_PrepareRequest">
         <dc:Bounds x="21" y="136" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_13meikk_di" bpmnElement="EndEvent_Request_Declined01">
+        <dc:Bounds x="449" y="158" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="436" y="205" width="85" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_060e0sb_di" bpmnElement="EndEvent_JobPublished">
+        <dc:Bounds x="449" y="318" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="435" y="370" width="68" height="13" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
