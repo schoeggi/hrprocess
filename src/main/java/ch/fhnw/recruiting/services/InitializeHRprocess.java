@@ -6,8 +6,6 @@ import java.util.logging.Logger;
 import javax.inject.Named;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 
 
 /**
@@ -20,8 +18,6 @@ public class InitializeHRprocess implements JavaDelegate {
 
     private final static Logger LOGGER = Logger.getLogger(InitializeHRprocess.class.getName());
     
-    @Autowired
-    JdbcTemplate jdbcTemplate;
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
@@ -29,10 +25,6 @@ public class InitializeHRprocess implements JavaDelegate {
         LOGGER.info("InitializeHRprocess called!!!");
 
         execution.setVariable("hrprocess_start_date", new Date());
-        
-        LOGGER.info("Start: Dropping table applicant");
-        jdbcTemplate.execute("INSERT INTO APPLICANT (ID,FIRSTNAME,LASTNAME,AGE,STATUS,ADDRESS,TRAVEL,SKILLS,GENDER,SALARY) VALUES (5,'Georg','Buzzi',32,'open','Turmstrasse',true,'Java','m', 100000)");
-        LOGGER.info("End: Dropping table applicant");
 
     }
 }
