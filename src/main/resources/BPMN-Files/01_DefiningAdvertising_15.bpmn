@@ -75,16 +75,12 @@
           <camunda:formField id="FormField_Salary" label="salary" type="string" />
           <camunda:formField id="FormField_Contact" label="contact" type="string" />
           <camunda:formField id="FormField_JobPlattforms" label="JobPlattforms" type="string" />
-          <camunda:formField id="FormField_Tweet" label="Tweet" type="string" />
+          <camunda:formField id="FormField_Tweet" label="tweet" type="string" defaultValue="New position available. Please see: URL" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_01zf9tw</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_19skycd</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="Task_Publish" name="Publish" camunda:delegateExpression="#{publishTweetService}">
-      <bpmn:incoming>SequenceFlow_19skycd</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1j1qtn5</bpmn:outgoing>
-    </bpmn:serviceTask>
     <bpmn:startEvent id="StartEvent_HR01" name="Need for new position appeared">
       <bpmn:outgoing>SequenceFlow_1l81lgb</bpmn:outgoing>
     </bpmn:startEvent>
@@ -97,6 +93,10 @@
       <bpmn:incoming>SequenceFlow_1l81lgb</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_01c9gcj</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:userTask id="Task_Publish" name="Publish" camunda:assignee="andrea">
+      <bpmn:incoming>SequenceFlow_19skycd</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1j1qtn5</bpmn:outgoing>
+    </bpmn:userTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="hrprocess01">
@@ -212,12 +212,9 @@
         <di:waypoint xsi:type="dc:Point" x="391" y="336" />
         <di:waypoint xsi:type="dc:Point" x="449" y="336" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="420" y="314.5" width="0" height="13" />
+          <dc:Bounds x="375" y="314.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ServiceTask_0a6pbfh_di" bpmnElement="Task_Publish">
-        <dc:Bounds x="291" y="296" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_01c9gcj_di" bpmnElement="SequenceFlow_01c9gcj">
         <di:waypoint xsi:type="dc:Point" x="-142" y="176" />
         <di:waypoint xsi:type="dc:Point" x="-111" y="176" />
@@ -227,6 +224,9 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_0qk3wao_di" bpmnElement="Task_Test_DB_Read">
         <dc:Bounds x="-242" y="136" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_0bxqzxz_di" bpmnElement="Task_Publish">
+        <dc:Bounds x="291" y="296" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

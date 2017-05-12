@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <title>Pure CSS demo</title>
+      <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">    
+      <link rel = "stylesheet"
+            type = "text/css"
+            href = "myStyle.css" />
+	</head>   
+    <body>
+		<form class="pure-form pure-form-aligned">
+		    <fieldset>
+		    	<div class="pure-control-group">
+		        	<label for="candidateJob">Application for</label>
+		        	<select cam-variable-name="JobName" cam-variable-type="String" name="JobName">
+		            	<option>Business Analyst</option>
+		            	<option>Senior Software Engineer</option>
+		            	<option>Lead Software Engineer</option>    
+		        	</select>
+		    	</div>
+		    	<div class="pure-control-group">
+		        	<label for="candidateLastName">Firstname</label>
+		        	<input class="form-control" cam-variable-type="String" type="text" cam-variable-name="firstname" name="firstname" placeholder="Firstname"/>
+		    	</div>
+		    	<div class="pure-control-group">
+		        	<label for="candidateLastName">Lastname</label>
+		        	<input class="form-control" cam-variable-type="String" type="text" cam-variable-name="lastname" name="lastname" placeholder="Lastname"/>
+		    	</div>
+		    	<div class="pure-control-group">
+		        	<label for="candidateLastName">Years of Experience</label>
+		        	<input class="form-control" cam-variable-type="String" type="number" min="1" max="99" cam-variable-name="yearsOfExperience" name="yearsOfExperience" placeholder="Years"/>
+		    	</div>
+		    	<div class="pure-control-group">
+		        	<label for="candidateLastName">Willingness to travel</label>
+		        	<input class="form-control" cam-variable-type="String" type="checkbox" cam-variable-name="travel" name="travel" placeholder="Willingness to travel"/>
+		    	</div>
+		    	<div class="pure-control-group">
+		        	<label for="candidateFirstName">Skills</label>
+		        	<textarea class="form-control" cam-variable-type="String" cam-variable-name="skills" name="skills" placeholder="Skills"></textarea>
+		    	</div>
+		    		    	
+		    </fieldset>
+		</form>
+	</body>
+</html>
+
