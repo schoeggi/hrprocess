@@ -9,6 +9,7 @@ camunda.bpm:
 ### GMAIL DB
 #spring:
 # datasource:
+#   spring.datasource.maxActive=5
 #   url: jdbc:postgresql://ec2-54-228-235-185.eu-west-1.compute.amazonaws.com:5432/dfctorsvrv2umi?sslmode=require&user=pdcjcbflfnylof&password=884b4ff9c43fa92f73aebdf150a74740c4892ed2ea8f695bf4eca9914b19bf1b
 #   username: pdcjcbflfnylof
 #   password: 884b4ff9c43fa92f73aebdf150a74740c4892ed2ea8f695bf4eca9914b19bf1b
@@ -25,6 +26,7 @@ camunda.bpm:
 ### GMX DB
 spring:
   datasource:
+    maxActive=5
     url: jdbc:postgresql://ec2-54-75-249-162.eu-west-1.compute.amazonaws.com:5432/dea2li9qvvs6e4?sslmode=require&user=ucxhvwaujfziup&password=23f43414d44152563df28db7b1787b2556c4b353780152fb6ff1eae536fe9dc2
     username: ucxhvwaujfziup
     password: 23f43414d44152563df28db7b1787b2556c4b353780152fb6ff1eae536fe9dc2
