@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+
 import static org.camunda.bpm.engine.authorization.Authorization.AUTH_TYPE_GRANT;
 import static org.camunda.bpm.engine.authorization.Permissions.ACCESS;
 import static org.camunda.bpm.engine.authorization.Permissions.READ;
@@ -25,6 +26,7 @@ import static org.camunda.bpm.engine.authorization.Resources.FILTER;
 @Component
 public class CamundaInitialDataGenerator {
 
+	/**
     private static final String ADMIN_USER = "admin";
 
     private static final Logger LOGGER = Logger.getLogger(CamundaInitialDataGenerator.class.getName());
@@ -148,5 +150,8 @@ public class CamundaInitialDataGenerator {
             authorizationService().saveAuthorization(globalGroupFilterRead);
         }
     }
+*/
+	
+
 
 }
