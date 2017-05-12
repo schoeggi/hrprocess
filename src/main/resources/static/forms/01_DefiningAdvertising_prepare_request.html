@@ -3,7 +3,7 @@
    <head>
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-      <title>Pure CSS demo</title>
+      <title>Request for Job Form</title>
       <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">    
       <link rel = "stylesheet"
             type = "text/css"
@@ -13,25 +13,39 @@
 		<form class="pure-form pure-form-aligned">
 		    <fieldset>
 		    	<div class="pure-control-group">
-		        	<label for="candidateJob">Job we are offering</label>
-		        	<select cam-variable-name="JobName" cam-variable-type="String" name="JobName">
+		        	<label for="candidateJob">Job Title</label>
+		        	<select cam-variable-name="JobTitle" cam-variable-type="String" name="JobTitle">
 		            	<option>Business Analyst</option>
-		            	<option>Senior Software Engineer</option>
-		            	<option>Lead Software Engineer</option>    
+		            	<option>Software Engineer</option>
+		            	<option> System Engineer</option> 
+		            	<option>Consultant</option>   
 		        	</select>
 		    	</div>
-		
 		    	<div class="pure-control-group">
-		        	<label for="candidateLastName">Job ID</label>
-		        	<input class="form-control" cam-variable-type="String" type="text" cam-variable-name="JobID" name="JobId" placeholder="Job ID"/>
+		        	<label for="candidateJob">Maturity</label>
+		        	<select cam-variable-name="Maturity" cam-variable-type="String" name="Maturity">
+		            	<option>Junior</option>
+		            	<option>Professional</option>
+		            	<option> Senior</option> 
+		            	<option>Expert</option>   
+		        	</select>
 		    	</div>
-		    	
 		    	<div class="pure-control-group">
-		        	<label for="candidateFirstName">Comment</label>
-		        	<textarea class="form-control" cam-variable-type="String" cam-variable-name="Comment" name="Comment" placeholder="Type your comment here..."></textarea>
+		        	<label for="candidateLastName">Workload Percentage</label>
+		        	<input class="form-control mytext" cam-variable-type="number" type="number" min="10" max="100" step="10" maccam-variable-name="workload" name="workload" placeholder="Workload Percentage: between 10 and 100%"/>
+		    	</div>
+		    	<div class="pure-control-group">
+		        	<label for="candidateLastName">Max Salary</label>
+		        	<input class="form-control mytext" cam-variable-type="number" type="number" min="80000" max="200000" step="1000" maccam-variable-name="maxSalary" name="maxSalary" placeholder="max Salary: between 80'000 and 200'000 CHF"/>
+		    	</div>
+		    	<div class="pure-control-group">
+		        	<label for="candidateFirstName">Comment for Budget Approval</label>
+		        	<textarea class="form-control mytext" cam-variable-type="String" cam-variable-name="Comment" name="Comment" placeholder="Type your comment here..."></textarea>
 		    	</div>
 		    </fieldset>
 		</form>
 	</body>
 </html>
+
+<!--style="width: 350px;"-->
 

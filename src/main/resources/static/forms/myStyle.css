@@ -11,6 +11,10 @@
             text-align: center;
          }
 
+	.mytext {
+	    width: 400px;
+	}
+
          li.pure-menu-selected
          {
             display: inline;
@@ -42,7 +46,7 @@
             -webkit-box-shadow: 0.4em 0.4em 0.2em #5C5B5B;
             box-shadow: 0.4em 0.4em 0.2em #5C5B5B;
          }
-
+         
          .small-box
          {
             background-color: #cdcdcd;
@@ -61,7 +65,7 @@
             -webkit-box-sizing: border-box;
             -moz-box-sizing: border-box;
             box-sizing: border-box;
-         }
+        }
          
          .pure-form label {
             color: #000000;
