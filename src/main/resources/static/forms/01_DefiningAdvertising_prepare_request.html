@@ -11,41 +11,99 @@
 	</head>   
     <body>
 		<form class="pure-form pure-form-aligned">
+		<h1>Request for Job Form</h1>
 		    <fieldset>
 		    	<div class="pure-control-group">
 		        	<label for="candidateJob">Job Title</label>
-		        	<select cam-variable-name="JobTitle" cam-variable-type="String" name="JobTitle">
+		        	<select cam-variable-name="jobTitle" cam-variable-type="String" name="JobTitle">
 		            	<option>Business Analyst</option>
-		            	<option>Software Engineer</option>
-		            	<option> System Engineer</option> 
+						<option>Software Engineer</option>
+		            	<option>System Engineer</option> 
 		            	<option>Consultant</option>   
 		        	</select>
 		    	</div>
 		    	<div class="pure-control-group">
 		        	<label for="candidateJob">Maturity</label>
-		        	<select cam-variable-name="Maturity" cam-variable-type="String" name="Maturity">
+		        	<select cam-variable-name="maturity" cam-variable-type="String" name="Maturity">
 		            	<option>Junior</option>
 		            	<option>Professional</option>
-		            	<option> Senior</option> 
+		            	<option>Senior</option> 
 		            	<option>Expert</option>   
 		        	</select>
 		    	</div>
+				<div class="pure-control-group">
+		        	<label for="candidateJob">Min Education</label>
+		        	<select cam-variable-name="education" cam-variable-type="String" name="Education">
+		            	<option>BSc</option>
+		            	<option>MSc</option>
+		            	<option>Dr</option> 
+		            	<option>other</option>   
+		        	</select>
+		    	</div>
 		    	<div class="pure-control-group">
-		        	<label for="candidateLastName">Workload Percentage</label>
-		        	<input class="form-control mytext" cam-variable-type="number" type="number" min="10" max="100" step="10" maccam-variable-name="workload" name="workload" placeholder="Workload Percentage: between 10 and 100%"/>
+					<table>
+						<tr>
+							<td><label for="candidateLastName">Industry experience</label></td>
+							<td><input class="form-control" cam-variable-type="Boolean" type="checkbox" cam-variable-name="experienceBanking" name="experienceBanking" placeholder="Experience in Banking"/></td>
+							<td class="tabledata">&nbsp;Banking</td>
+						</tr>
+						<tr>
+							<td><label>&nbsp;</label></td>
+							<td><input class="form-control" cam-variable-type="Boolean" type="checkbox" cam-variable-name="experienceInsurance" name="experienceInsurance" placeholder="Experience in Insurance"/></td>
+							<td class="tabledata">&nbsp;Insurance</td>
+
+						</tr>
+						<tr>
+							<td><label>&nbsp;</label></td>
+							<td><input class="form-control" cam-variable-type="Boolean" type="checkbox" cam-variable-name="experienceTransportation" name="experienceTransportation" placeholder="Experience in Transportation"/></td>
+							<td class="tabledata">&nbsp;Transportation</td>
+						</tr>
+					</table>
+					<table>
+						<tr>
+							<td><label for="candidateLastName">Knowlegdge</label></td>
+							<td><input class="form-control" cam-variable-type="Boolean" type="checkbox" cam-variable-name="knowledgeAgile" name="knowledgeAgile" placeholder="Agile"/></td>
+							<td class="tabledata">&nbsp;Agile</td>
+						</tr>
+						<tr>
+							<td><label>&nbsp;</label></td>
+							<td><input class="form-control" cam-variable-type="Boolean" type="checkbox" cam-variable-name="knowledgeWaterfall" name="knowledgeWaterfall" placeholder="Waterfall"/></td>
+							<td class="tabledata">&nbsp;Waterfall</td>
+
+						</tr>
+						<tr>
+							<td><label>&nbsp;</label></td>
+							<td><input class="form-control" cam-variable-type="Boolean" type="checkbox" cam-variable-name="knowledgeBananas" name="knowledgeBananas" placeholder="Picking Bananas"/></td>
+							<td class="tabledata">&nbsp;Picking Bananas</td>
+						</tr>
+					</table>
+
+				</div>
+		    	<div class="pure-control-group">
+		        	<label for="candidateLastName">Min Workload %</label>
+		        	<input class="form-control mytext" cam-variable-type="number" type="number" min="10" max="100" step="10" maccam-variable-name="minWorkload" name="minWorkload" placeholder="Between 10 and 100%"/>
+		    	</div>		    	<div class="pure-control-group">
+		        	<label for="candidateLastName">Max Workload %</label>
+		        	<input class="form-control mytext" cam-variable-type="number" type="number" min="10" max="100" step="10" maccam-variable-name="minWorkload" name="minWorkload" placeholder="Between 10 and 100%"/>
 		    	</div>
 		    	<div class="pure-control-group">
 		        	<label for="candidateLastName">Max Salary</label>
-		        	<input class="form-control mytext" cam-variable-type="number" type="number" min="80000" max="200000" step="1000" maccam-variable-name="maxSalary" name="maxSalary" placeholder="max Salary: between 80'000 and 200'000 CHF"/>
+		        	<input class="form-control mytext" cam-variable-type="number" type="number" min="80000" max="200000" step="1000" maccam-variable-name="maxSalary" name="maxSalary" placeholder="Between 80'000 and 200'000 CHF"/>
+		    	</div>
+				<div class="pure-control-group">
+		        	<label for="candidateLastName">Willingness to travel</label>
+		        	<input class="form-control" cam-variable-type="Boolean" type="checkbox" cam-variable-name="travel" name="travel" placeholder="Willingness to travel"/>
 		    	</div>
 		    	<div class="pure-control-group">
-		        	<label for="candidateFirstName">Comment for Budget Approval</label>
-		        	<textarea class="form-control mytext" cam-variable-type="String" cam-variable-name="Comment" name="Comment" placeholder="Type your comment here..."></textarea>
+		        	<label for="candidateFirstName">Comment</label>
+		        	<textarea class="form-control mytext" cam-variable-type="String" cam-variable-name="Comment" name="Comment" placeholder="Type your comment for budget approval here..."></textarea>
 		    	</div>
+
 		    </fieldset>
 		</form>
 	</body>
 </html>
 
 <!--style="width: 350px;"-->
+
 
