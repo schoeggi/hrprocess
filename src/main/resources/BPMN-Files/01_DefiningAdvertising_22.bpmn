@@ -13,14 +13,13 @@
         <bpmn:flowNodeRef>EndEvent_JobPublished</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0m74jh8" name="Line">
-        <bpmn:flowNodeRef>StartEvent_HR01</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>CallActivity_PrepareRequest</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_Delete_Request</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_154fq8x</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Delete_Request</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_Request_Declined01</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_Initialize_Request</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_Test_DB_Read</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_03jr5eq</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Initialize_Request</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_HR01</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0hhjkux" name="COO">
         <bpmn:flowNodeRef>Task_Check-Budget</bpmn:flowNodeRef>
@@ -35,15 +34,12 @@
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{!FormField_BudgetApprovedX}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1ocvrux" sourceRef="Task_Delete_Request" targetRef="EndEvent_Request_Declined01" />
-    <bpmn:startEvent id="StartEvent_HR01" name="Need for new position appeared">
-      <bpmn:outgoing>SequenceFlow_14d3328</bpmn:outgoing>
-    </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_0zk6pyy" sourceRef="Task_Refine_Publish" targetRef="Task_14ako83" />
     <bpmn:sequenceFlow id="SequenceFlow_1msg8gy" sourceRef="Task_14ako83" targetRef="Task_0rbaow0" />
     <bpmn:sequenceFlow id="SequenceFlow_0qvdalf" sourceRef="Task_0rbaow0" targetRef="ServiceTask_0ra2zdf" />
     <bpmn:sequenceFlow id="SequenceFlow_12rh44t" sourceRef="ServiceTask_0ra2zdf" targetRef="EndEvent_JobPublished" />
     <bpmn:callActivity id="CallActivity_PrepareRequest" name="Prepare Request" camunda:caseRef="Case_PrepareRequest">
-      <bpmn:incoming>SequenceFlow_0llxlq9</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1lvbski</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1fblppn</bpmn:outgoing>
     </bpmn:callActivity>
     <bpmn:userTask id="Task_Check-Budget" name="Check Budget" camunda:assignee="hans">
@@ -127,27 +123,25 @@ JSON.stringify(out);]]></camunda:script>
     <bpmn:endEvent id="EndEvent_JobPublished" name="Job published">
       <bpmn:incoming>SequenceFlow_12rh44t</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:serviceTask id="Task_Initialize_Request" name="Initialize Request (just for testing)" camunda:delegateExpression="#{initializeHRprocess}">
-      <bpmn:incoming>SequenceFlow_14d3328</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0wi0jgy</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Task_Test_DB_Read" name="Test DB Read" camunda:delegateExpression="#{listApplicantsFromDB}">
-      <bpmn:incoming>SequenceFlow_1lvbski</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0llxlq9</bpmn:outgoing>
-    </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_14d3328" sourceRef="StartEvent_HR01" targetRef="Task_Initialize_Request" />
     <bpmn:sequenceFlow id="SequenceFlow_0wi0jgy" sourceRef="Task_Initialize_Request" targetRef="Task_03jr5eq" />
-    <bpmn:sequenceFlow id="SequenceFlow_1lvbski" sourceRef="Task_03jr5eq" targetRef="Task_Test_DB_Read" />
-    <bpmn:sequenceFlow id="SequenceFlow_0llxlq9" sourceRef="Task_Test_DB_Read" targetRef="CallActivity_PrepareRequest" />
-    <bpmn:userTask id="Task_03jr5eq" name="Need for Job (HTML Form)" camunda:formKey="embedded:app:forms/01_DefiningAdvertising_prepare_request.html" camunda:assignee="anna">
+    <bpmn:sequenceFlow id="SequenceFlow_1lvbski" sourceRef="Task_03jr5eq" targetRef="CallActivity_PrepareRequest" />
+    <bpmn:userTask id="Task_03jr5eq" name="Need for Job Form" camunda:formKey="embedded:app:forms/01_DefiningAdvertising_prepare_request.html" camunda:assignee="anna">
       <bpmn:incoming>SequenceFlow_0wi0jgy</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1lvbski</bpmn:outgoing>
     </bpmn:userTask>
+    <bpmn:serviceTask id="Task_Initialize_Request" name="Initialize Job Request" camunda:delegateExpression="#{initializeHRprocess}">
+      <bpmn:incoming>SequenceFlow_14d3328</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0wi0jgy</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:startEvent id="StartEvent_HR01" name="Need for new position appeared">
+      <bpmn:outgoing>SequenceFlow_14d3328</bpmn:outgoing>
+    </bpmn:startEvent>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="hrprocess01">
       <bpmndi:BPMNShape id="Participant_1kz3qgl_di" bpmnElement="AdvertisingJobs">
-        <dc:Bounds x="-887" y="-61" width="1390" height="471" />
+        <dc:Bounds x="-709" y="-61" width="1212" height="470" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_01zf9tw_di" bpmnElement="SequenceFlow_01zf9tw">
         <di:waypoint xsi:type="dc:Point" x="-95" y="201" />
@@ -157,10 +151,10 @@ JSON.stringify(out);]]></camunda:script>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Lane_0ecfxed_di" bpmnElement="Lane_0ecfxed">
-        <dc:Bounds x="-857" y="253" width="1360" height="157" />
+        <dc:Bounds x="-679" y="253" width="1182" height="156" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0m74jh8_di" bpmnElement="Lane_0m74jh8">
-        <dc:Bounds x="-857" y="81" width="1360" height="172" />
+        <dc:Bounds x="-679" y="81" width="1182" height="172" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_11frnh4_di" bpmnElement="Task_Refine_Publish">
         <dc:Bounds x="-145" y="293" width="100" height="80" />
@@ -180,7 +174,7 @@ JSON.stringify(out);]]></camunda:script>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Lane_0hhjkux_di" bpmnElement="Lane_0hhjkux">
-        <dc:Bounds x="-857" y="-61" width="1360" height="142" />
+        <dc:Bounds x="-679" y="-61" width="1182" height="142" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_1dyzevq_di" bpmnElement="Task_Check-Budget">
         <dc:Bounds x="-277" y="-31" width="100" height="80" />
@@ -205,13 +199,13 @@ JSON.stringify(out);]]></camunda:script>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="StartEvent_1o3c845_di" bpmnElement="StartEvent_HR01">
-        <dc:Bounds x="-802" y="158" width="36" height="36" />
+        <dc:Bounds x="-633" y="158" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-828" y="207" width="88" height="25" />
+          <dc:Bounds x="-659" y="207" width="88" height="25" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_0lgfo40_di" bpmnElement="Task_Initialize_Request">
-        <dc:Bounds x="-726" y="136" width="100" height="80" />
+        <dc:Bounds x="-553" y="136" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1fblppn_di" bpmnElement="SequenceFlow_1fblppn">
         <di:waypoint xsi:type="dc:Point" x="-227" y="136" />
@@ -237,14 +231,11 @@ JSON.stringify(out);]]></camunda:script>
           <dc:Bounds x="414" y="367" width="68" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ServiceTask_0qk3wao_di" bpmnElement="Task_Test_DB_Read">
-        <dc:Bounds x="-445" y="136" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_0ra2zdf_di" bpmnElement="ServiceTask_0ra2zdf">
         <dc:Bounds x="291" y="293" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_0gpwii2_di" bpmnElement="Task_03jr5eq">
-        <dc:Bounds x="-585" y="136" width="100" height="80" />
+        <dc:Bounds x="-422" y="136" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_0y8vl5n_di" bpmnElement="Task_14ako83">
         <dc:Bounds x="5" y="293" width="100" height="80" />
@@ -281,31 +272,24 @@ JSON.stringify(out);]]></camunda:script>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_14d3328_di" bpmnElement="SequenceFlow_14d3328">
-        <di:waypoint xsi:type="dc:Point" x="-766" y="176" />
-        <di:waypoint xsi:type="dc:Point" x="-726" y="176" />
+        <di:waypoint xsi:type="dc:Point" x="-597" y="176" />
+        <di:waypoint xsi:type="dc:Point" x="-553" y="176" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-746" y="154" width="0" height="13" />
+          <dc:Bounds x="-620" y="154.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0wi0jgy_di" bpmnElement="SequenceFlow_0wi0jgy">
-        <di:waypoint xsi:type="dc:Point" x="-626" y="176" />
-        <di:waypoint xsi:type="dc:Point" x="-585" y="176" />
+        <di:waypoint xsi:type="dc:Point" x="-453" y="176" />
+        <di:waypoint xsi:type="dc:Point" x="-422" y="176" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-605.5" y="154.5" width="0" height="13" />
+          <dc:Bounds x="-482.5" y="154.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1lvbski_di" bpmnElement="SequenceFlow_1lvbski">
-        <di:waypoint xsi:type="dc:Point" x="-485" y="176" />
-        <di:waypoint xsi:type="dc:Point" x="-445" y="176" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="-465" y="154.5" width="0" height="13" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_0llxlq9_di" bpmnElement="SequenceFlow_0llxlq9">
-        <di:waypoint xsi:type="dc:Point" x="-345" y="176" />
+        <di:waypoint xsi:type="dc:Point" x="-322" y="176" />
         <di:waypoint xsi:type="dc:Point" x="-277" y="176" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-311" y="154" width="0" height="13" />
+          <dc:Bounds x="-344.5" y="154.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
