@@ -85,6 +85,12 @@
             <groupId>org.camunda.bpm</groupId>
             <artifactId>camunda-engine-plugin-spin</artifactId>
         </dependency>
+  
+        <!-- Camunda external task form -->
+         <dependency>
+            <groupId>org.camunda.bpm</groupId>
+            <artifactId>camunda-engine-cdi</artifactId>
+        </dependency>
         
         <dependency>
             <groupId>org.camunda.spin</groupId>
