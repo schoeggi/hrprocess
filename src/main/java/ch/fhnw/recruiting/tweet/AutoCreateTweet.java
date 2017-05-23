@@ -38,10 +38,11 @@ public class AutoCreateTweet implements JavaDelegate {
         c[0]          = Character.toLowerCase(c[0]);
         String maturityLowerCase = new String(c);
         String newline = System.getProperty("line.separator");
+        String jobTitleWeb = jobTitle.replace(" ", "%20");
 
         int jobrefid = (int) execution.getVariable("jobrefid");
         
-        String jobURL = "https://sheltered-citadel-37599.herokuapp.com/jobadd.php?job=Consultant&maturity=Senior&jobrefid=" + jobrefid;
+        String jobURL = "https://sheltered-citadel-37599.herokuapp.com/jobadd.php?job=" + jobTitleWeb + "&maturity=" + maturity + "&jobrefid=" + jobrefid;
     	String tweetBase = "FiusableLtd is hiring! We're looking for a genuine ";
         String tweetDraft = tweetBase + maturityLowerCase + " " + jobTitle + "... " + newline + "Apply here: " + jobURL;
 

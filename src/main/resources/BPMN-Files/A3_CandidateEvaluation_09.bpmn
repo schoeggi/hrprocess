@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.7.1">
+  <bpmn:collaboration id="hrprocess4">
+    <bpmn:participant id="CandidateEvaluation" name="Company" processRef="CandidateEvaluation1" />
+    <bpmn:textAnnotation id="TextAnnotation_0zjd3kp">    <bpmn:text><![CDATA[Candidate evaluation and selection. 
+
+]]></bpmn:text>
+</bpmn:textAnnotation>
+  </bpmn:collaboration>
+  <bpmn:process id="CandidateEvaluation1" name="CandidateEvaluation" isExecutable="true">
+    <bpmn:laneSet>
+      <bpmn:lane id="Lane_Line" name="Line">
+        <bpmn:flowNodeRef>StartEvent_1ibuabq</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Select_Prioritize</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_07wunz7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_0tr6to5</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:sequenceFlow id="SequenceFlow_0ij4bmz" sourceRef="StartEvent_1ibuabq" targetRef="Task_Select_Prioritize" />
+    <bpmn:sequenceFlow id="SequenceFlow_0k97bpu" sourceRef="Task_Select_Prioritize" targetRef="Task_07wunz7" />
+    <bpmn:startEvent id="StartEvent_1ibuabq" name="Interview process finished">
+      <bpmn:outgoing>SequenceFlow_0ij4bmz</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Task_Select_Prioritize" name="Prioritize Candidates" camunda:assignee="anna">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="FormField_FinalChoice" label="Name Final Choice" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0ij4bmz</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0k97bpu</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Task_07wunz7" name="Flag Priorities in DB" camunda:class="DummyService.java">
+      <bpmn:incoming>SequenceFlow_0k97bpu</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0me7yne</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_074cjie">
+        <bpmn:targetRef>DataStoreReference_0p5n73y</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:dataStoreReference id="DataStoreReference_0p5n73y" name="Cloud IO" />
+    <bpmn:endEvent id="EndEvent_0tr6to5" name="Candidates prioritized">
+      <bpmn:incoming>SequenceFlow_0me7yne</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0me7yne" sourceRef="Task_07wunz7" targetRef="EndEvent_0tr6to5" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="hrprocess4">
+      <bpmndi:BPMNShape id="Participant_0nrlx0q_di" bpmnElement="CandidateEvaluation">
+        <dc:Bounds x="9" y="355" width="595" height="237" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0zjd3kp_di" bpmnElement="TextAnnotation_0zjd3kp">
+        <dc:Bounds x="3" y="-86" width="280" height="30" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_06vo2g9_di" bpmnElement="Lane_Line">
+        <dc:Bounds x="39" y="355" width="565" height="237" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0ij4bmz_di" bpmnElement="SequenceFlow_0ij4bmz">
+        <di:waypoint xsi:type="dc:Point" x="163" y="420" />
+        <di:waypoint xsi:type="dc:Point" x="215" y="420" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="144" y="398.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_09k2mon_di" bpmnElement="Task_Select_Prioritize">
+        <dc:Bounds x="215" y="380" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1jeeoaj_di" bpmnElement="StartEvent_1ibuabq">
+        <dc:Bounds x="127" y="402" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="102" y="447" width="86" height="25" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0tr6to5_di" bpmnElement="EndEvent_0tr6to5">
+        <dc:Bounds x="538" y="402" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="529" y="441" width="56" height="25" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0k97bpu_di" bpmnElement="SequenceFlow_0k97bpu">
+        <di:waypoint xsi:type="dc:Point" x="315" y="420" />
+        <di:waypoint xsi:type="dc:Point" x="378" y="420" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="301.5" y="398.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="DataStoreReference_0p5n73y_di" bpmnElement="DataStoreReference_0p5n73y">
+        <dc:Bounds x="364" y="506" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="367" y="559" width="44" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_0ufxa4c_di" bpmnElement="Task_07wunz7">
+        <dc:Bounds x="378" y="380" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_074cjie_di" bpmnElement="DataOutputAssociation_074cjie">
+        <di:waypoint xsi:type="dc:Point" x="388" y="460" />
+        <di:waypoint xsi:type="dc:Point" x="388" y="506" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0me7yne_di" bpmnElement="SequenceFlow_0me7yne">
+        <di:waypoint xsi:type="dc:Point" x="478" y="420" />
+        <di:waypoint xsi:type="dc:Point" x="538" y="420" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="508" y="398" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
