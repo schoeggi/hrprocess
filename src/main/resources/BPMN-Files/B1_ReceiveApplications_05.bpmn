@@ -46,11 +46,11 @@
               </camunda:map>
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">
-              <camunda:script scriptFormat="JavaScript"><![CDATA[var data = execution.getVariable("mailreceiver");
-var applicabilityResult= execution.getVariable("applicabilityResult");
+              <camunda:script scriptFormat="JavaScript"><![CDATA[var applicabilityResult= execution.getVariable("applicabilityResult");
+var applicantMailAddress= execution.getVariable("applicantMailAddress");
 var mailContentBase = "applicabilityResult: ";
 var mailContentFull = mailContentBase.concat(applicabilityResult);
-var out = {"mail_receiver":"joelenrico.lehner@students.fhnw.ch","mail_subject":"Information about your job application","mail_content":mailContentFull};
+var out = {"mail_receiver":applicantMailAddress,"mail_subject":"Information about your job application","mail_content":mailContentFull};
 JSON.stringify(out);]]></camunda:script>
             </camunda:inputParameter>
           </camunda:inputOutput>

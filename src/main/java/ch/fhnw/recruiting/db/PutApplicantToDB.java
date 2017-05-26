@@ -29,6 +29,7 @@ public class PutApplicantToDB implements JavaDelegate {
     	int last_candidate_id = 0;
     	boolean travel = false;
     	int salary = 0;
+    	String applicantMailAddress = "";
 
         LOGGER.info("InitializeHRprocess called!!!");
 
@@ -65,11 +66,25 @@ public class PutApplicantToDB implements JavaDelegate {
         }    
         execution.setVariable("salary", salary);
         
-        LOGGER.info("Start: Insert applicant to DB");
+        String sql_mail = "SELECT EMAIL FROM APPLICANT WHERE ID=" +last_candidate_id;
+        SqlRowSet rowSet_mail = jdbcTemplate.queryForRowSet(sql_mail);  
+        while(rowSet_mail.next())
+        {
+          applicantMailAddress = rowSet_mail.getString("email");
+          LOGGER.info("applicantMailAddress: " + applicantMailAddress);
+        }    
+        execution.setVariable("applicantMailAddress", applicantMailAddress);
+        
+        
+        
+        
+ 
+         /*LOGGER.info("Start: Insert applicant to DB");*/
+         
         //jdbcTemplate.execute("INSERT INTO APPLICANT (ID,FIRSTNAME,LASTNAME,EMAIL,SALARY) VALUES (" +applicantid +",'Georg','Buzzi','joelenrico.lehner@students.fhnw.ch',100000)");
       //jdbcTemplate.execute("SELECT TRAVEL FROM APPLICANT");
-      LOGGER.info("End: Insert applicant to DB");
-
+      //LOGGER.info("End: Insert applicant to DB");
+      //
     }
 }
 
