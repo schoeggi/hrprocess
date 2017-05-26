@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.7.1">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.7.1">
   <bpmn:process id="ApplicationOverallProcess" isExecutable="true">
     <bpmn:sequenceFlow id="SequenceFlow_1q148cj" sourceRef="Task_02p195z" targetRef="EndEvent_0clglog" />
     <bpmn:sequenceFlow id="SequenceFlow_02kaxj7" sourceRef="StartEvent_1" targetRef="Task_0xvl0f5" />
@@ -7,10 +7,18 @@
       <bpmn:incoming>SequenceFlow_1q148cj</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:callActivity id="Task_02p195z" name="Conduct Interview" calledElement="ParticipantInterview1">
+      <bpmn:extensionElements>
+        <camunda:in variables="all" />
+        <camunda:out variables="all" />
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0pqr1ps</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1q148cj</bpmn:outgoing>
     </bpmn:callActivity>
     <bpmn:callActivity id="Task_0xvl0f5" name="Receive Applications" calledElement="ParticipantApplication1">
+      <bpmn:extensionElements>
+        <camunda:in variables="all" />
+        <camunda:out variables="all" />
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_02kaxj7</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1vfa0bi</bpmn:outgoing>
     </bpmn:callActivity>
