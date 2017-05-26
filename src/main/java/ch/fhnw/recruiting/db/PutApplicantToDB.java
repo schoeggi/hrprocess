@@ -7,6 +7,7 @@ import javax.inject.Named;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -25,13 +26,33 @@ public class PutApplicantToDB implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
-
+    	int lastapplicantid = 0;
+    	int applicantid = 0;
         LOGGER.info("InitializeHRprocess called!!!");
 
        /** execution.setVariable("hrprocess_start_date", new Date()); */
         
+        String sql = "SELECT MAX(jobrefid) as jobrefid FROM applicant";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
+         
+        while(rowSet.next())
+        {
+        lastapplicantid = rowSet.getInt("jobrefid");
+          if (lastapplicantid < 1){
+        	  lastapplicantid = 100;
+          }
+        	  
+          /*String lastName = rowSet.getString("lastname");*/
+          applicantid = lastapplicantid + 1;
+          LOGGER.info("Last lastapplicantid: " + lastapplicantid);
+          LOGGER.info("New applicantid: " + applicantid);
+        }
+        
+       
+        execution.setVariable("jobrefid", applicantid);
+        
         LOGGER.info("Start: Insert applicant to DB");
-        jdbcTemplate.execute("INSERT INTO APPLICANT (ID,FIRSTNAME,LASTNAME,AGE,STATUS,ADDRESS,TRAVEL,SKILLS,GENDER,SALARY) VALUES (5,'Georg','Buzzi',32,'open','Turmstrasse',true,'Java','m', 100000)");
+        jdbcTemplate.execute("INSERT INTO APPLICANT (ID,FIRSTNAME,LASTNAME,AGE,STATUS,ADDRESS,TRAVEL,SKILLS,GENDER,SALARY) VALUES (" +applicantid +",'Georg','Buzzi',32,'open','Turmstrasse',true,'Java','m', 100000)");
         LOGGER.info("End: Insert applicant to DB");
 
     }
