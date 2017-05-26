@@ -52,7 +52,7 @@ public class PutApplicantToDB implements JavaDelegate {
         execution.setVariable("jobrefid", applicantid);
         
         LOGGER.info("Start: Insert applicant to DB");
-        jdbcTemplate.execute("INSERT INTO APPLICANT (ID,FIRSTNAME,LASTNAME,AGE,STATUS,ADDRESS,TRAVEL,SKILLS,GENDER,SALARY) VALUES (" +applicantid +",'Georg','Buzzi',32,'open','Turmstrasse',true,'Java','m', 100000)");
+        jdbcTemplate.execute("INSERT INTO APPLICANT (ID,FIRSTNAME,LASTNAME,EMAIL,SALARY) VALUES (" +applicantid +",'Georg','Buzzi','joelenrico.lehner@students.fhnw.ch',100000)");
         LOGGER.info("End: Insert applicant to DB");
 
     }
