@@ -47,7 +47,10 @@
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">
               <camunda:script scriptFormat="JavaScript"><![CDATA[var data = execution.getVariable("mailreceiver");
-var out = {"mail_receiver":"joelenrico.lehner@students.fhnw.ch","mail_subject":"Aceppted Application....","mail_content":"Zapiertest"};
+var applicabilityResult= execution.getVariable("applicabilityResult");
+var mailContentBase = "applicabilityResult: ";
+var mailContentFull = mailContentBase.concat(applicabilityResult);
+var out = {"mail_receiver":"joelenrico.lehner@students.fhnw.ch","mail_subject":"Information about your job application","mail_content":mailContentFull};
 JSON.stringify(out);]]></camunda:script>
             </camunda:inputParameter>
           </camunda:inputOutput>
