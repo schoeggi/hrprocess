@@ -38,7 +38,7 @@
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
-            <camunda:inputParameter name="url">https://hooks.zapier.com/hooks/catch/2143974/962rte/</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hooks.zapier.com/hooks/catch/2143974/91z3rj/</camunda:inputParameter>
             <camunda:inputParameter name="method">POST</camunda:inputParameter>
             <camunda:inputParameter name="headers">
               <camunda:map>
