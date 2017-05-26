@@ -17,7 +17,7 @@
 </inputExpression>
       </input>
       <input id="InputClause_1j3ypce" label="Experience" camunda:inputVariable="">
-        <inputExpression id="LiteralExpression_1xzo826" typeRef="integer">        <text>salary</text>
+        <inputExpression id="LiteralExpression_1xzo826" typeRef="integer">        <text>jobexperience</text>
 </inputExpression>
       </input>
       <output id="output_1" label="Decision" name="applicabilityResult" typeRef="string" />
