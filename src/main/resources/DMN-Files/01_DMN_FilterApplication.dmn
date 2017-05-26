@@ -13,11 +13,11 @@
     </informationRequirement>
     <decisionTable>
       <input id="InputClause_0gh23ul" label="Travel" camunda:inputVariable="">
-        <inputExpression id="LiteralExpression_1wqo988" typeRef="boolean">        <text>FormFieldTravel1</text>
+        <inputExpression id="LiteralExpression_1wqo988" typeRef="boolean">        <text>travel</text>
 </inputExpression>
       </input>
       <input id="InputClause_1j3ypce" label="Experience" camunda:inputVariable="">
-        <inputExpression id="LiteralExpression_1xzo826" typeRef="integer">        <text>FormFieldTestExperience</text>
+        <inputExpression id="LiteralExpression_1xzo826" typeRef="integer">        <text>salary</text>
 </inputExpression>
       </input>
       <output id="output_1" label="Decision" name="applicabilityResult" typeRef="string" />

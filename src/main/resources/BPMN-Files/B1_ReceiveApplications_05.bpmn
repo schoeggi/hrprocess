@@ -12,6 +12,9 @@
     <bpmn:businessRuleTask id="Task_0gq1rtg" name="Pre-Filter application" camunda:resultVariable="applicabilityResult" camunda:decisionRef="FilterApplication" camunda:mapDecisionResult="singleEntry">
       <bpmn:incoming>SequenceFlow_1yuggx0</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0rt51t6</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_149u3yi">
+        <bpmn:targetRef>DataStoreReference_1gy3l7x</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
     </bpmn:businessRuleTask>
     <bpmn:serviceTask id="Task_1x8acvs" name="Store application data (received from webform)" camunda:delegateExpression="#{putApplicantToDB}">
       <bpmn:incoming>SequenceFlow_1tlee6h</bpmn:incoming>
@@ -139,6 +142,10 @@ JSON.stringify(out);]]></camunda:script>
         <bpmndi:BPMNLabel>
           <dc:Bounds x="427" y="148" width="0" height="13" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_149u3yi_di" bpmnElement="DataOutputAssociation_149u3yi">
+        <di:waypoint xsi:type="dc:Point" x="303" y="134" />
+        <di:waypoint xsi:type="dc:Point" x="242" y="85" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
