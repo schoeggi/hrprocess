@@ -28,7 +28,7 @@ public class PutApplicantToDB implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
     	int last_candidate_id = 0;
     	boolean travel = false;
-    	int salary = 0;
+    	int jobexperience = 0;
     	String applicantMailAddress = "";
 
         LOGGER.info("InitializeHRprocess called!!!");
@@ -57,14 +57,14 @@ public class PutApplicantToDB implements JavaDelegate {
         }    
         execution.setVariable("travel", travel);
         
-        String sql_salary = "SELECT SALARY FROM APPLICANT WHERE ID=" +last_candidate_id;
-        SqlRowSet rowSet_salary = jdbcTemplate.queryForRowSet(sql_salary);  
-        while(rowSet_salary.next())
+        String sql_jobexperience = "SELECT JOBEXPERIENCE FROM APPLICANT WHERE ID=" +last_candidate_id;
+        SqlRowSet rowSet_jobexperience = jdbcTemplate.queryForRowSet(sql_jobexperience);  
+        while(rowSet_jobexperience.next())
         {
-        salary = rowSet_salary.getInt("salary");
-          LOGGER.info("salary: " + salary);
+        jobexperience = rowSet_jobexperience.getInt("jobexperience");
+          LOGGER.info("jobexperience: " + jobexperience);
         }    
-        execution.setVariable("salary", salary);
+        execution.setVariable("jobexperience", jobexperience);
         
         String sql_mail = "SELECT EMAIL FROM APPLICANT WHERE ID=" +last_candidate_id;
         SqlRowSet rowSet_mail = jdbcTemplate.queryForRowSet(sql_mail);  
