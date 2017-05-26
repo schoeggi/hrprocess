@@ -54,7 +54,7 @@
     <bpmn:endEvent id="EndEvent_06lwkcc" name="Candidate hired">
       <bpmn:incoming>SequenceFlow_1f1jtqv</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:serviceTask id="Task_1hvfhvf" name="Modify Priority in Database for candidate" camunda:class="DummyService.java">
+    <bpmn:serviceTask id="Task_1hvfhvf" name="Modify Priority in Database for candidate" camunda:delegateExpression="#{dummyService}">
       <bpmn:incoming>SequenceFlow_1bv2d7j</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_18qh5bl</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1a9l9pb">
@@ -62,7 +62,7 @@
       </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_1kpzmlp" name="No" sourceRef="ExclusiveGateway_024tisg" targetRef="Task_RejectCandidate" />
-    <bpmn:serviceTask id="Task_CreateOffer" name="Retrieve candidate with highest priority" camunda:class="DummyService.java">
+    <bpmn:serviceTask id="Task_CreateOffer" name="Retrieve candidate with highest priority" camunda:delegateExpression="#{dummyService}">
       <bpmn:incoming>SequenceFlow_155v148</bpmn:incoming>
       <bpmn:incoming>SequenceFlow_18qh5bl</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0c09rka</bpmn:outgoing>
@@ -83,7 +83,7 @@
       <bpmn:incoming>SequenceFlow_0difkdw</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1f1jtqv</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="Task_0pqxpgx" name="Flag in Database" camunda:class="DummyService.java">
+    <bpmn:serviceTask id="Task_0pqxpgx" name="Flag in Database" camunda:delegateExpression="#{dummyService}">
       <bpmn:incoming>SequenceFlow_1e3i3yj</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0difkdw</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_057pgeo">

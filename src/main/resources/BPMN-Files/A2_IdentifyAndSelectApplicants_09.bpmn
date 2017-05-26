@@ -61,7 +61,7 @@
       </bpmn:dataInputAssociation>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_0983ezm" sourceRef="Task_1tkt6yt" targetRef="Task_CheckFeedback" />
-    <bpmn:serviceTask id="Task_1tkt6yt" name="Flag Interview Candidates in Database" camunda:class="DummyService.java">
+    <bpmn:serviceTask id="Task_1tkt6yt" name="Flag Interview Candidates in Database" camunda:delegateExpression="#{dummyService}">
       <bpmn:incoming>SequenceFlow_17wqvua</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0983ezm</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1g8vb93">
@@ -69,11 +69,11 @@
       </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_11qjvfe" sourceRef="Task_1fq2gcn" targetRef="EndEvent_07kv1rz" />
-    <bpmn:serviceTask id="Task_1fq2gcn" name="Inform rejected candidates" camunda:class="DummyService.java">
+    <bpmn:serviceTask id="Task_1fq2gcn" name="Inform rejected candidates" camunda:delegateExpression="#{dummyService}">
       <bpmn:incoming>SequenceFlow_0jx334f</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_11qjvfe</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Task_CheckFeedback" name="Invite candidates for Interview" camunda:class="DummyService.java">
+    <bpmn:serviceTask id="Task_CheckFeedback" name="Invite candidates for Interview" camunda:delegateExpression="#{dummyService}">
       <bpmn:incoming>SequenceFlow_0983ezm</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0jx334f</bpmn:outgoing>
       <bpmn:property name="__targetRef_placeholder" />
@@ -191,7 +191,6 @@
         <di:waypoint xsi:type="dc:Point" x="346" y="295" />
         <di:waypoint xsi:type="dc:Point" x="438" y="295" />
       </bpmndi:BPMNEdge>
-
       <bpmndi:BPMNEdge id="DataInputAssociation_0w1i889_di" bpmnElement="DataInputAssociation_0w1i889">
         <di:waypoint xsi:type="dc:Point" x="373" y="151" />
         <di:waypoint xsi:type="dc:Point" x="633" y="274" />

@@ -25,7 +25,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_0pxns2c" sourceRef="Task_Interview1" targetRef="Task_InviteInterview2" />
     <bpmn:sequenceFlow id="SequenceFlow_1dh5zo8" sourceRef="CallActivity_PrepareInterview" targetRef="IntermediateThrowEvent_1g1bv2c" />
     <bpmn:sequenceFlow id="SequenceFlow_0twaxa4" sourceRef="IntermediateThrowEvent_0az8a5q" targetRef="Task_Interview2" />
-    <bpmn:callActivity id="CallActivity_PrepareInterview" name="Prepare Interviews" camunda:caseRef="Case_PrepareInterview">
+    <bpmn:callActivity id="CallActivity_PrepareInterview" name="Prepare Interviews (CMMN)" camunda:caseRef="Case_PrepareInterview">
       <bpmn:incoming>SequenceFlow_17ykyn1</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1dh5zo8</bpmn:outgoing>
       <bpmn:property name="__targetRef_placeholder" />
@@ -67,7 +67,7 @@
       <bpmn:incoming>SequenceFlow_0twaxa4</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_18hq03h</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="Task_InviteInterview2" name="Flag Impression in Database" camunda:class="DummyService.java">
+    <bpmn:serviceTask id="Task_InviteInterview2" name="Flag Impression in Database" camunda:delegateExpression="#{dummyService}">
       <bpmn:incoming>SequenceFlow_0pxns2c</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0drgw66</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_0rv8x0z">
@@ -79,7 +79,7 @@
       <bpmn:incoming>SequenceFlow_1neaife</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="SequenceFlow_1neaife" sourceRef="Task_0jno1jv" targetRef="EndEvent_0swmmxp" />
-    <bpmn:serviceTask id="Task_0jno1jv" name="Flag Line Feedback" camunda:class="DummyService.java">
+    <bpmn:serviceTask id="Task_0jno1jv" name="Flag Line Feedback" camunda:delegateExpression="#{dummyService}">
       <bpmn:incoming>SequenceFlow_18hq03h</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1neaife</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_0z8v1qr">
@@ -91,7 +91,7 @@
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_0m86ybe" sourceRef="StartEvent_HR3" targetRef="Task_0iozok7" />
     <bpmn:sequenceFlow id="SequenceFlow_17ykyn1" sourceRef="Task_0iozok7" targetRef="CallActivity_PrepareInterview" />
-    <bpmn:serviceTask id="Task_0iozok7" name="Check if candidate was selected for interview" camunda:class="DummyService.java">
+    <bpmn:serviceTask id="Task_0iozok7" name="Check if candidate was selected for interview" camunda:delegateExpression="#{dummyService}">
       <bpmn:incoming>SequenceFlow_0m86ybe</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_17ykyn1</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1nrublw">
