@@ -1,4 +1,4 @@
-package ch.fhnw.recruiting.services;
+package ch.fhnw.recruiting.db;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,9 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 
 @Named
-public class PutApplicantsToDB implements JavaDelegate {
+public class PutApplicantToDB implements JavaDelegate {
 
-    private final static Logger LOGGER = Logger.getLogger(PutApplicantsToDB.class.getName());
+    private final static Logger LOGGER = Logger.getLogger(PutApplicantToDB.class.getName());
     
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -30,9 +30,9 @@ public class PutApplicantsToDB implements JavaDelegate {
 
        /** execution.setVariable("hrprocess_start_date", new Date()); */
         
-        LOGGER.info("Start: Dropping table applicant");
+        LOGGER.info("Start: Insert applicant to DB");
         jdbcTemplate.execute("INSERT INTO APPLICANT (ID,FIRSTNAME,LASTNAME,AGE,STATUS,ADDRESS,TRAVEL,SKILLS,GENDER,SALARY) VALUES (5,'Georg','Buzzi',32,'open','Turmstrasse',true,'Java','m', 100000)");
-        LOGGER.info("End: Dropping table applicant");
+        LOGGER.info("End: Insert applicant to DB");
 
     }
 }

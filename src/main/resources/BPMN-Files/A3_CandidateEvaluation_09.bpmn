@@ -30,7 +30,7 @@
       <bpmn:incoming>SequenceFlow_0ij4bmz</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0k97bpu</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="Task_07wunz7" name="Flag Priorities in DB" camunda:class="DummyService.java">
+    <bpmn:serviceTask id="Task_07wunz7" name="Flag Priorities in DB" camunda:delegateExpression="#{dummyService}">
       <bpmn:incoming>SequenceFlow_0k97bpu</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0me7yne</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_074cjie">
