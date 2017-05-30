@@ -29,15 +29,20 @@ public class FlagApplicant1Round implements JavaDelegate {
         LOGGER.info("Start: FlagApplicant1Round called!!!");
         String mailSubjectAfterDMN = "";
         String mailBodyAfterDMN = "";
-
-        int candidate_id = (int) execution.getVariable("candidate_id");
-        boolean applicabilityResult = (boolean) execution.getVariable("applicabilityResult");
+        boolean passed1dmn = false;
         
-        if (applicabilityResult == true){
+        String firstname = (String) execution.getVariable("firstname");
+        String lastname = (String) execution.getVariable("lastname");
+        int candidate_id = (int) execution.getVariable("candidate_id");
+        String applicabilityResult = (String) execution.getVariable("applicabilityResult");
+        
+        if (applicabilityResult == "A"){
+        	passed1dmn = true;
         	mailSubjectAfterDMN = "Your Application at Fiusable Ltd";
-        	mailBodyAfterDMN = "Thanks for your application at Fiusable Ltd. Congratulation, you passed the first round (DMN) of candidate evaluation.";
+        	mailBodyAfterDMN = "Hi " +firstname +"\n\n" +"Thanks for your application at Fiusable Ltd. Congratulation, you passed the first round (DMN) of candidate evaluation.";
         }
         else{
+        	passed1dmn = false;
         	mailSubjectAfterDMN = "Your Application at Fiusable Ltd";
         	mailBodyAfterDMN = "Thanks for your application at Fiusable Ltd. Unfortunately you're application dropped out in our first round (DMN).";
         }
@@ -45,7 +50,7 @@ public class FlagApplicant1Round implements JavaDelegate {
         execution.setVariable("mailBodyAfterDMN", mailBodyAfterDMN);
 
             
-        String sql_recommendation = "UPDATE applicant SET PASSED1DMN =" +applicabilityResult +" WHERE id = " +candidate_id;
+        String sql_recommendation = "UPDATE applicant SET PASSED1DMN =" +passed1dmn +" WHERE id = " +candidate_id;
         jdbcTemplate.execute(sql_recommendation);     
         LOGGER.info("executed SQL Statement:" +sql_recommendation);
         LOGGER.info("End: FlagApplicant1Round");

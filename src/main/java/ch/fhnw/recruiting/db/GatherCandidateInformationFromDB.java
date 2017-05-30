@@ -30,6 +30,8 @@ public class GatherCandidateInformationFromDB implements JavaDelegate {
     	boolean travel = false;
     	int jobexperience = 0;
     	String applicantMailAddress = "";
+    	String firstname = "";
+    	String lastname = "";
 
         LOGGER.info("Start: GatherCandidateInformationFromDB called!!!");
 
@@ -56,6 +58,24 @@ public class GatherCandidateInformationFromDB implements JavaDelegate {
           LOGGER.info("travel: " + travel);
         }    
         execution.setVariable("travel", travel);
+        
+        String sql_firstname = "SELECT firstname FROM APPLICANT WHERE ID=" +candidate_id;
+        SqlRowSet rowSet_firstname = jdbcTemplate.queryForRowSet(sql_firstname);  
+        while(rowSet_firstname.next())
+        {
+        firstname = rowSet_firstname.getString("firstname");  
+          LOGGER.info("firstname: " + firstname);
+        }    
+        execution.setVariable("firstname", firstname);
+        
+        String sql_lastname = "SELECT lastname FROM APPLICANT WHERE ID=" +candidate_id;
+        SqlRowSet rowSet_lastname = jdbcTemplate.queryForRowSet(sql_lastname);  
+        while(rowSet_lastname.next())
+        {
+        firstname = rowSet_firstname.getString("lastname");  
+          LOGGER.info("lastname: " + lastname);
+        }    
+        execution.setVariable("firstname", lastname);
         
         
         String sql_jobexperience = "SELECT JOBEXPERIENCE FROM APPLICANT WHERE ID=" +candidate_id;
