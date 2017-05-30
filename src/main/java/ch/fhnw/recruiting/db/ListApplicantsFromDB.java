@@ -1,4 +1,4 @@
-package ch.fhnw.recruiting.services;
+package ch.fhnw.recruiting.db;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

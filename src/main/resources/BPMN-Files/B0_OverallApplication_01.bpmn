@@ -14,7 +14,7 @@
       <bpmn:incoming>SequenceFlow_0pqr1ps</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1q148cj</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:callActivity id="Task_0xvl0f5" name="Receive Applications" calledElement="ParticipantApplication1">
+    <bpmn:callActivity id="Task_0xvl0f5" name="Receive Applications &#38; first round scan" calledElement="ParticipantApplication1">
       <bpmn:extensionElements>
         <camunda:in variables="all" />
         <camunda:out variables="all" />

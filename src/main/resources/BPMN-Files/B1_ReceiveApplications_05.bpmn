@@ -12,17 +12,7 @@
     <bpmn:businessRuleTask id="Task_0gq1rtg" name="Pre-Filter application" camunda:resultVariable="applicabilityResult" camunda:decisionRef="FilterApplication" camunda:mapDecisionResult="singleEntry">
       <bpmn:incoming>SequenceFlow_1yuggx0</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0rt51t6</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_149u3yi">
-        <bpmn:targetRef>DataStoreReference_1gy3l7x</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
     </bpmn:businessRuleTask>
-    <bpmn:serviceTask id="Task_1x8acvs" name="Store application data (received from webform)" camunda:delegateExpression="#{putApplicantToDB}">
-      <bpmn:incoming>SequenceFlow_1tlee6h</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1yuggx0</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_0f49ttp">
-        <bpmn:targetRef>DataStoreReference_1gy3l7x</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:serviceTask>
     <bpmn:startEvent id="StartEvent_1" name="Application reveived">
       <bpmn:outgoing>SequenceFlow_1tlee6h</bpmn:outgoing>
     </bpmn:startEvent>
@@ -34,7 +24,7 @@
       </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_0rt51t6" sourceRef="Task_0gq1rtg" targetRef="Task_1r2vb81" />
-    <bpmn:serviceTask id="ServiceTask_1ahsrlt" name="Notify applicant">
+    <bpmn:serviceTask id="ServiceTask_1ahsrlt" name="Notify applicant by mail">
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
@@ -48,9 +38,9 @@
             <camunda:inputParameter name="payload">
               <camunda:script scriptFormat="JavaScript"><![CDATA[var applicabilityResult= execution.getVariable("applicabilityResult");
 var applicantMailAddress= execution.getVariable("applicantMailAddress");
-var mailContentBase = "applicabilityResult: ";
-var mailContentFull = mailContentBase.concat(applicabilityResult);
-var out = {"mail_receiver":applicantMailAddress,"mail_subject":"Information about your job application","mail_content":mailContentFull};
+var mailSubjectAfterDMN= execution.getVariable("mailSubjectAfterDMN");
+var mailBodyAfterDMN= execution.getVariable("mailBodyAfterDMN");
+var out = {"mail_receiver":applicantMailAddress,"mail_subject":mailSubjectAfterDMN,"mail_content":mailBodyAfterDMN};
 JSON.stringify(out);]]></camunda:script>
             </camunda:inputParameter>
           </camunda:inputOutput>
@@ -66,6 +56,15 @@ JSON.stringify(out);]]></camunda:script>
     <bpmn:endEvent id="EndEvent_0hjze2k" name="Candidate flagged">
       <bpmn:incoming>SequenceFlow_1gpsnqy</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:serviceTask id="Task_1x8acvs" name="Gather application data (stored by webform)" camunda:delegateExpression="#{gatherCandidateInformationFromDB}">
+      <bpmn:incoming>SequenceFlow_1tlee6h</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1yuggx0</bpmn:outgoing>
+      <bpmn:property id="Property_0iispg9" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0dl964n">
+        <bpmn:sourceRef>DataStoreReference_1gy3l7x</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0iispg9</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_19rsnpz">
@@ -88,23 +87,23 @@ JSON.stringify(out);]]></camunda:script>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_0p4j8no_di" bpmnElement="Task_1x8acvs">
-        <dc:Bounds x="161" y="130" width="100" height="80" />
+        <dc:Bounds x="167" y="130" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BusinessRuleTask_05bkjc0_di" bpmnElement="Task_0gq1rtg">
         <dc:Bounds x="297" y="130" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1tlee6h_di" bpmnElement="SequenceFlow_1tlee6h">
         <di:waypoint xsi:type="dc:Point" x="119" y="170" />
-        <di:waypoint xsi:type="dc:Point" x="161" y="170" />
+        <di:waypoint xsi:type="dc:Point" x="167" y="170" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="95" y="149" width="90" height="13" />
+          <dc:Bounds x="98" y="148.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1yuggx0_di" bpmnElement="SequenceFlow_1yuggx0">
-        <di:waypoint xsi:type="dc:Point" x="261" y="170" />
+        <di:waypoint xsi:type="dc:Point" x="267" y="170" />
         <di:waypoint xsi:type="dc:Point" x="297" y="170" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="234" y="149" width="90" height="13" />
+          <dc:Bounds x="237" y="148.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="DataStoreReference_1gy3l7x_di" bpmnElement="DataStoreReference_1gy3l7x">
@@ -119,10 +118,6 @@ JSON.stringify(out);]]></camunda:script>
         <bpmndi:BPMNLabel>
           <dc:Bounds x="540.5" y="148.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_0f49ttp_di" bpmnElement="DataOutputAssociation_0f49ttp">
-        <di:waypoint xsi:type="dc:Point" x="211" y="130" />
-        <di:waypoint xsi:type="dc:Point" x="211" y="96" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_06r84et_di" bpmnElement="DataOutputAssociation_06r84et">
         <di:waypoint xsi:type="dc:Point" x="507" y="130" />
@@ -146,9 +141,9 @@ JSON.stringify(out);]]></camunda:script>
           <dc:Bounds x="427" y="148" width="0" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_149u3yi_di" bpmnElement="DataOutputAssociation_149u3yi">
-        <di:waypoint xsi:type="dc:Point" x="303" y="134" />
-        <di:waypoint xsi:type="dc:Point" x="242" y="85" />
+      <bpmndi:BPMNEdge id="DataInputAssociation_0dl964n_di" bpmnElement="DataInputAssociation_0dl964n">
+        <di:waypoint xsi:type="dc:Point" x="217" y="96" />
+        <di:waypoint xsi:type="dc:Point" x="217" y="124" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
