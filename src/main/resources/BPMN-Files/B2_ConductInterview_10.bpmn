@@ -6,13 +6,14 @@
   <bpmn:process id="ParticipantInterview1" name="ParticipantInterview" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_HR" name="HR">
-        <bpmn:flowNodeRef>CallActivity_PrepareInterview</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_Interview1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_InviteInterview2</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>IntermediateThrowEvent_1g1bv2c</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_0mhmc2z</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>StartEvent_HR3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_1f04jlf</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Interview1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_HR3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IntermediateThrowEvent_1g1bv2c</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>CallActivity_PrepareInterview</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_05lmgir</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1fs56b4" name="Line">
         <bpmn:flowNodeRef>Task_Interview2</bpmn:flowNodeRef>
@@ -42,29 +43,42 @@
         <bpmn:targetRef>DataStoreReference_13yxsiw</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="SequenceFlow_0m86ybe" sourceRef="StartEvent_HR3" targetRef="CallActivity_PrepareInterview" />
+    <bpmn:sequenceFlow id="SequenceFlow_0m86ybe" sourceRef="StartEvent_HR3" targetRef="Task_05lmgir" />
     <bpmn:sequenceFlow id="SequenceFlow_0ntlaek" name="no" sourceRef="ExclusiveGateway_0mhmc2z" targetRef="EndEvent_1f04jlf">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{FormField_okHR2Interview==false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1ua08b1" name="yes" sourceRef="ExclusiveGateway_0mhmc2z" targetRef="IntermediateThrowEvent_0az8a5q">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{FormField_okHR2Interview==true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:callActivity id="CallActivity_PrepareInterview" name="Prepare Interviews (CMMN)" camunda:caseRef="Case_PrepareInterview">
-      <bpmn:incoming>SequenceFlow_0m86ybe</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1dh5zo8</bpmn:outgoing>
-      <bpmn:property id="Property_1q409oi" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_1azbxef">
-        <bpmn:sourceRef>DataStoreReference_13yxsiw</bpmn:sourceRef>
-        <bpmn:targetRef>Property_1q409oi</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-    </bpmn:callActivity>
-    <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_1g1bv2c" name="Date 1. interview arrived">
-      <bpmn:incoming>SequenceFlow_1dh5zo8</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0v53yxb</bpmn:outgoing>
+    <bpmn:sequenceFlow id="SequenceFlow_1dh5zo8" sourceRef="CallActivity_PrepareInterview" targetRef="IntermediateThrowEvent_1g1bv2c" />
+    <bpmn:sequenceFlow id="SequenceFlow_0v53yxb" sourceRef="IntermediateThrowEvent_1g1bv2c" targetRef="Task_Interview1" />
+    <bpmn:sequenceFlow id="SequenceFlow_0pxns2c" sourceRef="Task_Interview1" targetRef="Task_InviteInterview2" />
+    <bpmn:exclusiveGateway id="ExclusiveGateway_0mhmc2z" name="Candidate passed">
+      <bpmn:incoming>SequenceFlow_0drgw66</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0ntlaek</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1ua08b1</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_0az8a5q" name="Date 2. Interview arrived">
+      <bpmn:incoming>SequenceFlow_1ua08b1</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0twaxa4</bpmn:outgoing>
       <bpmn:timerEventDefinition>
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P10S</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT7S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
+    <bpmn:dataStoreReference id="DataStoreReference_13yxsiw" name="Cloud IO" />
+    <bpmn:endEvent id="EndEvent_1f04jlf" name="Candidate dropped out">
+      <bpmn:incoming>SequenceFlow_0ntlaek</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Task_InviteInterview2" name="Write HR recomendation to database" camunda:delegateExpression="#{dummyService}">
+      <bpmn:incoming>SequenceFlow_0pxns2c</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0drgw66</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0rv8x0z">
+        <bpmn:targetRef>DataStoreReference_13yxsiw</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="EndEvent_0swmmxp" name="Interviews finished">
+      <bpmn:incoming>SequenceFlow_1neaife</bpmn:incoming>
+    </bpmn:endEvent>
     <bpmn:userTask id="Task_Interview1" name="Conduct 1. Interview" camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
@@ -79,38 +93,58 @@
       <bpmn:incoming>SequenceFlow_0v53yxb</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0pxns2c</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="SequenceFlow_1dh5zo8" sourceRef="CallActivity_PrepareInterview" targetRef="IntermediateThrowEvent_1g1bv2c" />
-    <bpmn:sequenceFlow id="SequenceFlow_0v53yxb" sourceRef="IntermediateThrowEvent_1g1bv2c" targetRef="Task_Interview1" />
-    <bpmn:sequenceFlow id="SequenceFlow_0pxns2c" sourceRef="Task_Interview1" targetRef="Task_InviteInterview2" />
-    <bpmn:exclusiveGateway id="ExclusiveGateway_0mhmc2z" name="Candidate passed">
-      <bpmn:incoming>SequenceFlow_0drgw66</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0ntlaek</bpmn:outgoing>
-      <bpmn:outgoing>SequenceFlow_1ua08b1</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_0az8a5q" name="Date 2. Interview arrived">
-      <bpmn:incoming>SequenceFlow_1ua08b1</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0twaxa4</bpmn:outgoing>
-      <bpmn:timerEventDefinition>
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P10S</bpmn:timeDuration>
-      </bpmn:timerEventDefinition>
-    </bpmn:intermediateCatchEvent>
-    <bpmn:dataStoreReference id="DataStoreReference_13yxsiw" name="Cloud IO" />
+    <bpmn:sequenceFlow id="SequenceFlow_1kbtvv4" sourceRef="Task_05lmgir" targetRef="CallActivity_PrepareInterview" />
     <bpmn:startEvent id="StartEvent_HR3" name="Candidate flagged as applicable">
       <bpmn:outgoing>SequenceFlow_0m86ybe</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:endEvent id="EndEvent_1f04jlf" name="Candidate dropped out">
-      <bpmn:incoming>SequenceFlow_0ntlaek</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:serviceTask id="Task_InviteInterview2" name="Write HR recomendation to database" camunda:delegateExpression="#{dummyService}">
-      <bpmn:incoming>SequenceFlow_0pxns2c</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0drgw66</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_0rv8x0z">
-        <bpmn:targetRef>DataStoreReference_13yxsiw</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:serviceTask>
-    <bpmn:endEvent id="EndEvent_0swmmxp" name="Interviews finished">
-      <bpmn:incoming>SequenceFlow_1neaife</bpmn:incoming>
-    </bpmn:endEvent>
+    <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_1g1bv2c" name="Date 1. interview arrived">
+      <bpmn:incoming>SequenceFlow_1dh5zo8</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0v53yxb</bpmn:outgoing>
+      <bpmn:timerEventDefinition>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT3S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:callActivity id="CallActivity_PrepareInterview" name="Prepare Interviews (CMMN)" camunda:caseRef="Case_PrepareInterview">
+      <bpmn:extensionElements>
+        <camunda:in variables="all" />
+        <camunda:out variables="all" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1kbtvv4</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1dh5zo8</bpmn:outgoing>
+      <bpmn:property id="Property_1q409oi" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1azbxef">
+        <bpmn:sourceRef>DataStoreReference_13yxsiw</bpmn:sourceRef>
+        <bpmn:targetRef>Property_1q409oi</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:callActivity>
+    <bpmn:userTask id="Task_05lmgir" name="Provide candidate information" camunda:assignee="anna">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="firstname" label="Firstname" type="string" defaultValue="${firstname}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="lastname" label="Lastname" type="string" defaultValue="${lastname}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="further_information" label="https://sheltered-citadel-37599.herokuapp.com/list_applicant.php?id=${candidate_id}" type="string">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0m86ybe</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1kbtvv4</bpmn:outgoing>
+      <bpmn:property id="Property_10zw47x" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1jcqc2r">
+        <bpmn:sourceRef>DataStoreReference_13yxsiw</bpmn:sourceRef>
+        <bpmn:targetRef>Property_10zw47x</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:userTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="hrprocess03">
@@ -138,19 +172,19 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="StartEvent_0k7ngh6_di" bpmnElement="StartEvent_HR3">
-        <dc:Bounds x="48" y="291" width="36" height="36" />
+        <dc:Bounds x="-42" y="291" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="21" y="351" width="90" height="25" />
+          <dc:Bounds x="-69" y="351" width="90" height="25" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="CallActivity_04gpeom_di" bpmnElement="CallActivity_PrepareInterview">
-        <dc:Bounds x="137" y="269" width="100" height="80" />
+        <dc:Bounds x="155" y="269" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1dh5zo8_di" bpmnElement="SequenceFlow_1dh5zo8">
-        <di:waypoint xsi:type="dc:Point" x="237" y="309" />
-        <di:waypoint xsi:type="dc:Point" x="275" y="309" />
+        <di:waypoint xsi:type="dc:Point" x="255" y="309" />
+        <di:waypoint xsi:type="dc:Point" x="286" y="309" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="211" y="288" width="90" height="13" />
+          <dc:Bounds x="225.5" y="287.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Lane_1fs56b4_di" bpmnElement="Lane_1fs56b4">
@@ -176,16 +210,16 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0v53yxb_di" bpmnElement="SequenceFlow_0v53yxb">
-        <di:waypoint xsi:type="dc:Point" x="311" y="309" />
-        <di:waypoint xsi:type="dc:Point" x="350" y="309" />
+        <di:waypoint xsi:type="dc:Point" x="322" y="309" />
+        <di:waypoint xsi:type="dc:Point" x="354" y="309" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="286" y="288" width="90" height="13" />
+          <dc:Bounds x="293" y="287.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="IntermediateCatchEvent_11nf2ph_di" bpmnElement="IntermediateThrowEvent_1g1bv2c">
-        <dc:Bounds x="275" y="291" width="36" height="36" />
+        <dc:Bounds x="286" y="291" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="252" y="330" width="82" height="25" />
+          <dc:Bounds x="263" y="330" width="82" height="25" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_0pzyckf_di" bpmnElement="Task_InviteInterview2">
@@ -208,20 +242,20 @@
         <dc:Bounds x="829" y="141" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0m86ybe_di" bpmnElement="SequenceFlow_0m86ybe">
-        <di:waypoint xsi:type="dc:Point" x="84" y="309" />
-        <di:waypoint xsi:type="dc:Point" x="137" y="309" />
+        <di:waypoint xsi:type="dc:Point" x="-6" y="309" />
+        <di:waypoint xsi:type="dc:Point" x="28" y="309" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="65.5" y="287.5" width="90" height="13" />
+          <dc:Bounds x="-34" y="287.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_0ybhag5_di" bpmnElement="Task_Interview1">
-        <dc:Bounds x="350" y="269" width="100" height="80" />
+        <dc:Bounds x="354" y="269" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0pxns2c_di" bpmnElement="SequenceFlow_0pxns2c">
-        <di:waypoint xsi:type="dc:Point" x="450" y="309" />
+        <di:waypoint xsi:type="dc:Point" x="454" y="309" />
         <di:waypoint xsi:type="dc:Point" x="479" y="309" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="419.5" y="287.5" width="90" height="13" />
+          <dc:Bounds x="421.5" y="287.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ExclusiveGateway_0mhmc2z_di" bpmnElement="ExclusiveGateway_0mhmc2z" isMarkerVisible="true">
@@ -254,8 +288,8 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1azbxef_di" bpmnElement="DataInputAssociation_1azbxef">
         <di:waypoint xsi:type="dc:Point" x="317" y="181" />
-        <di:waypoint xsi:type="dc:Point" x="193" y="181" />
-        <di:waypoint xsi:type="dc:Point" x="193" y="269" />
+        <di:waypoint xsi:type="dc:Point" x="211" y="181" />
+        <di:waypoint xsi:type="dc:Point" x="211" y="269" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_0rv8x0z_di" bpmnElement="DataOutputAssociation_0rv8x0z">
         <di:waypoint xsi:type="dc:Point" x="499" y="269" />
@@ -267,6 +301,21 @@
         <di:waypoint xsi:type="dc:Point" x="879" y="127" />
         <di:waypoint xsi:type="dc:Point" x="335" y="127" />
         <di:waypoint xsi:type="dc:Point" x="335" y="156" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1kbtvv4_di" bpmnElement="SequenceFlow_1kbtvv4">
+        <di:waypoint xsi:type="dc:Point" x="128" y="309" />
+        <di:waypoint xsi:type="dc:Point" x="155" y="309" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="141.5" y="287.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_1p65xzc_di" bpmnElement="Task_05lmgir">
+        <dc:Bounds x="28" y="269" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1jcqc2r_di" bpmnElement="DataInputAssociation_1jcqc2r">
+        <di:waypoint xsi:type="dc:Point" x="316" y="169" />
+        <di:waypoint xsi:type="dc:Point" x="79" y="169" />
+        <di:waypoint xsi:type="dc:Point" x="79" y="269" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
