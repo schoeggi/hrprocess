@@ -37,12 +37,12 @@ public class FlagApplicant1Round implements JavaDelegate {
         if (applicabilityResult.equals("A")){
         	passed1dmn = true;
         	mailSubjectAfterDMN = "Your Application at Fiusable Ltd";
-        	mailBodyAfterDMN = "Hi " +firstname +"\n\n" +"Thanks for your application at Fiusable Ltd. Congratulation, you passed the first round (DMN) of candidate evaluation." +"\n" +"All the best in your futher career," +"\n\n" +"best wishes, your Fiusable Ltd Team";
+        	mailBodyAfterDMN = "Hi " +firstname +"\n\n" +"Thanks for your application at Fiusable Ltd. Congratulation, you passed the first round (DMN) of candidate evaluation." +"\n" +"Good luck for the next application steps," +"\n\n" +"best wishes, your Fiusable Ltd Team";
         }
         else{
         	passed1dmn = false;
         	mailSubjectAfterDMN = "Your Application at Fiusable Ltd";
-        	mailBodyAfterDMN = "Hi " +firstname +"\n\n" +"Thanks for your application at Fiusable Ltd. Unfortunately you're application dropped out in our first round (DMN)." +"\n" +"Good luck for the next application steps," +"\n\n" +"best wishes, your Fiusable Ltd Team";
+        	mailBodyAfterDMN = "Hi " +firstname +"\n\n" +"Thanks for your application at Fiusable Ltd. Unfortunately you're application dropped out in our first round (DMN)." +"\n" +"All the best in your futher career," +"\n\n" +"best wishes, your Fiusable Ltd Team";
         }
         execution.setVariable("mailSubjectAfterDMN", mailSubjectAfterDMN);
         execution.setVariable("mailBodyAfterDMN", mailBodyAfterDMN);

@@ -130,7 +130,7 @@
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="further_information" label="https://sheltered-citadel-37599.herokuapp.com/list_applicant.php?id=${candidate_id}" type="string">
+          <camunda:formField id="further_information" label="Further candidate information" type="string" defaultValue="https://sheltered-citadel-37599.herokuapp.com/list_applicant.php?id=${candidate_id}">
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
