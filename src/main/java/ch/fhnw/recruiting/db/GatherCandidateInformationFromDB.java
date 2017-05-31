@@ -10,9 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 /**
- *
  * @author Joel Lehner / 16.04.2017
  */
 
@@ -59,7 +57,7 @@ public class GatherCandidateInformationFromDB implements JavaDelegate {
         }    
         execution.setVariable("travel", travel);
         
-        String sql_firstname = "SELECT firstname FROM APPLICANT WHERE ID=" +candidate_id;
+        String sql_firstname = "SELECT FIRSTNAME FROM APPLICANT WHERE ID=" +candidate_id;
         SqlRowSet rowSet_firstname = jdbcTemplate.queryForRowSet(sql_firstname);  
         while(rowSet_firstname.next())
         {
@@ -68,14 +66,14 @@ public class GatherCandidateInformationFromDB implements JavaDelegate {
         }    
         execution.setVariable("firstname", firstname);
         
-        String sql_lastname = "SELECT lastname FROM APPLICANT WHERE ID=" +candidate_id;
+        String sql_lastname = "SELECT LASTNAME FROM APPLICANT WHERE ID=" +candidate_id;
         SqlRowSet rowSet_lastname = jdbcTemplate.queryForRowSet(sql_lastname);  
         while(rowSet_lastname.next())
         {
-        firstname = rowSet_firstname.getString("lastname");  
+        lastname = rowSet_lastname.getString("lastname");  
           LOGGER.info("lastname: " + lastname);
         }    
-        execution.setVariable("firstname", lastname);
+        execution.setVariable("lastname", lastname);
         
         
         String sql_jobexperience = "SELECT JOBEXPERIENCE FROM APPLICANT WHERE ID=" +candidate_id;
@@ -96,9 +94,10 @@ public class GatherCandidateInformationFromDB implements JavaDelegate {
         }    
         execution.setVariable("applicantMailAddress", applicantMailAddress);
         
+       
+        
         LOGGER.info("End: GatherCandidateInformationFromDB called!!!");
 
- 
         /*LOGGER.info("Start: Insert applicant to DB");*/
          
         //jdbcTemplate.execute("INSERT INTO APPLICANT (ID,FIRSTNAME,LASTNAME,EMAIL,SALARY) VALUES (" +applicantid +",'Georg','Buzzi','joelenrico.lehner@students.fhnw.ch',100000)");

@@ -48,7 +48,7 @@ public class WriteRecomendationToDB implements JavaDelegate {
           LOGGER.info("Last last_candidate_id: " + last_candidate_id);
         }
           
-        String sql_recommendation = "INSERT INTO APPLICANT (HRRECOMENDATION) VALUES (+hrrecommendation) where ID=last_candidate_id";
+       // String sql_recommendation = "INSERT INTO APPLICANT (HRRECOMENDATION) VALUES (+hrrecommendation) where ID=last_candidate_id";
         SqlRowSet rowSet_recommendation = jdbcTemplate.queryForRowSet(sql_id);     
         while(rowSet_recommendation.next())
         {
