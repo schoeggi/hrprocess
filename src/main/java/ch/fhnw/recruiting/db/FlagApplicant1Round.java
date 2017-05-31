@@ -33,8 +33,8 @@ public class FlagApplicant1Round implements JavaDelegate {
         String lastname = (String) execution.getVariable("lastname");
         int candidate_id = (int) execution.getVariable("candidate_id");
         String applicabilityResult = (String) execution.getVariable("applicabilityResult");
-        
-        if (applicabilityResult == "A"){
+
+        if (applicabilityResult.equals("A")){
         	passed1dmn = true;
         	mailSubjectAfterDMN = "Your Application at Fiusable Ltd";
         	mailBodyAfterDMN = "Hi " +firstname +"\n\n" +"Thanks for your application at Fiusable Ltd. Congratulation, you passed the first round (DMN) of candidate evaluation.";
@@ -42,7 +42,7 @@ public class FlagApplicant1Round implements JavaDelegate {
         else{
         	passed1dmn = false;
         	mailSubjectAfterDMN = "Your Application at Fiusable Ltd";
-        	mailBodyAfterDMN = "Thanks for your application at Fiusable Ltd. Unfortunately you're application dropped out in our first round (DMN).";
+        	mailBodyAfterDMN = "Hi " +firstname +"\n\n" +"Thanks for your application at Fiusable Ltd. Unfortunately you're application dropped out in our first round (DMN).";
         }
         execution.setVariable("mailSubjectAfterDMN", mailSubjectAfterDMN);
         execution.setVariable("mailBodyAfterDMN", mailBodyAfterDMN);
