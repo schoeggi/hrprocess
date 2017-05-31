@@ -94,7 +94,8 @@ public class GatherCandidateInformationFromDB implements JavaDelegate {
         }    
         execution.setVariable("applicantMailAddress", applicantMailAddress);
         
-       
+      
+        
         
         LOGGER.info("End: GatherCandidateInformationFromDB called!!!");
 
