@@ -62,7 +62,7 @@
     <bpmn:startEvent id="StartEvent_1" name="2 weeks before job start">
       <bpmn:outgoing>SequenceFlow_06y1rh0</bpmn:outgoing>
       <bpmn:timerEventDefinition>
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT29S</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:startEvent>
     <bpmn:userTask id="Task_UpdateEmployeeInfo" name="Review and Update employee information" camunda:assignee="andrea">
@@ -87,7 +87,7 @@
       <bpmn:incoming>SequenceFlow_03626o3</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1tcrbp3</bpmn:outgoing>
       <bpmn:timerEventDefinition>
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT5S</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
   </bpmn:process>
