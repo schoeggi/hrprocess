@@ -50,7 +50,7 @@
     <bpmn:endEvent id="EndEvent_1f04jlf" name="Candidate dropped out">
       <bpmn:incoming>SequenceFlow_0ntlaek</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:serviceTask id="Task_write1RecommendationToDB1" name="Write HR recomendation to database" camunda:delegateExpression="#{write1RecomendationToDB}">
+    <bpmn:serviceTask id="Task_write1RecommendationToDB1" name="Write HR recommendation to database" camunda:delegateExpression="#{write1RecommendationToDB}">
       <bpmn:incoming>SequenceFlow_0pxns2c</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0drgw66</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_0rv8x0z">
@@ -131,10 +131,10 @@
     <bpmn:userTask id="Task_Interview2" name="Conduct 2nd Interview" camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
-        	<camunda:formField id="Candidate_Name2" label="Candidate: " type="string" defaultValue="${firstname} ${lastname}">
-          	<camunda:validation>
-            	<camunda:constraint name="readonly" />
-          	</camunda:validation>
+          <camunda:formField id="Candidate_Name2" label="Candidate: " type="string" defaultValue="${firstname} ${lastname}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
           </camunda:formField>
           <camunda:formField id="recommendation2Interview" label="Recommendation 2nd interview" type="string" />
           <camunda:formField id="outcome2Interview" label="Put candidate on shortlist" type="boolean" />
@@ -143,7 +143,7 @@
       <bpmn:incoming>SequenceFlow_0twaxa4</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_18hq03h</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="Task_write2RecommendationToDB1" name="Write line reccomendation to database" camunda:delegateExpression="#{write2RecomendationToDB}">
+    <bpmn:serviceTask id="Task_write2RecommendationToDB1" name="Write line reccommendation to database" camunda:delegateExpression="#{write2RecommendationToDB}">
       <bpmn:incoming>SequenceFlow_18hq03h</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1neaife</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_0z8v1qr">

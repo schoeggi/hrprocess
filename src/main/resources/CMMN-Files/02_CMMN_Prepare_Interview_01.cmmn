@@ -27,7 +27,7 @@
         <cmmn:discretionaryItem id="PlanItem_1xzknb5" definitionRef="Task_1gv85cr" />
         <cmmn:discretionaryItem id="PlanItem_01r87ur" definitionRef="Task_0go541w" />
       </cmmn:planningTable>
-      <cmmn:humanTask id="HumanTask_0hql98y" name="Gather Information" camunda:assignee="anna">
+      <cmmn:humanTask id="HumanTask_0hql98y" name="Gather Information" camunda:formKey="${firstname} ${lastname}" camunda:assignee="anna">
         <cmmn:defaultControl id="PlanItemControl_15zt9je">
           <cmmn:manualActivationRule id="ManualActivationRule_1rc90jm">
             <cmmn:condition id="Expression_1k5ihny">${false}</cmmn:condition>
