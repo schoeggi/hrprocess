@@ -53,7 +53,7 @@ public class UpdateCandidateStatusPrepMail implements JavaDelegate {
         execution.setVariable("mailBodyAfterDMN", mailBodyAfterDMN);
 
             
-        String sql_recommendation = "UPDATE applicant SET PASSED1DMN =" +passed1dmn +" WHERE id = " +candidate_id;
+        String sql_recommendation = "UPDATE applicant SET PASSED1DMN ="+passed1dmn +" WHERE id="+candidate_id;
         jdbcTemplate.execute(sql_recommendation);     
         LOGGER.info("executed SQL Statement:" +sql_recommendation);
         LOGGER.info("End: FlagApplicant1Round");

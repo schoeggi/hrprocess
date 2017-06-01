@@ -31,7 +31,7 @@ public class Write1RecomendationToDB implements JavaDelegate {
         int candidate_id = (int) execution.getVariable("candidate_id");
         String recommendation1Interview = (String) execution.getVariable("recommendation1Interview");
         boolean outcome1Interview = (boolean) execution.getVariable("outcome1Interview");
-        String sql_recommendation = "UPDATE applicant SET HRRECOMENDATION =" +recommendation1Interview +" , PASSED1INTERVIEW =" +outcome1Interview +" WHERE id = " +candidate_id;
+        String sql_recommendation = "UPDATE applicant SET HRRECOMENDATION ="+recommendation1Interview +" , PASSED1INTERVIEW=" +outcome1Interview +" WHERE id = " +candidate_id;
   	  
         jdbcTemplate.execute(sql_recommendation);           
         LOGGER.info("executed SQL Statement:" +sql_recommendation);
