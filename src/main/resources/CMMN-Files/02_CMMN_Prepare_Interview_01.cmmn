@@ -23,6 +23,10 @@
           <cmmn:condition id="Expression_1wryy1x">${true}</cmmn:condition>
         </cmmn:ifPart>
       </cmmn:sentry>
+      <cmmn:planningTable id="PlanningTable_0xjh4tp">
+        <cmmn:discretionaryItem id="PlanItem_1xzknb5" definitionRef="Task_1gv85cr" />
+        <cmmn:discretionaryItem id="PlanItem_01r87ur" definitionRef="Task_0go541w" />
+      </cmmn:planningTable>
       <cmmn:humanTask id="HumanTask_0hql98y" name="Gather Information" camunda:assignee="anna">
         <cmmn:defaultControl id="PlanItemControl_15zt9je">
           <cmmn:manualActivationRule id="ManualActivationRule_1rc90jm">
@@ -38,6 +42,8 @@
         </cmmn:defaultControl>
       </cmmn:humanTask>
       <cmmn:milestone id="Milestone_1hj0y1j" name="Request Prepared" />
+      <cmmn:task id="Task_1gv85cr" name="Find suitable appointment for 1. interview" />
+      <cmmn:task id="Task_0go541w" name="Call former boss for references" />
     </cmmn:casePlanModel>
   </cmmn:case>
   <cmmndi:CMMNDI>
@@ -48,7 +54,7 @@
         <cmmndi:CMMNLabel />
       </cmmndi:CMMNShape>
       <cmmndi:CMMNShape id="PlanItem_159b89g_di" cmmnElementRef="PlanItem_1">
-        <dc:Bounds x="150" y="96" width="100" height="80" />
+        <dc:Bounds x="142" y="96" width="100" height="80" />
         <cmmndi:CMMNLabel />
       </cmmndi:CMMNShape>
       <cmmndi:CMMNShape id="EntryCriterion_02nbpzo_di" cmmnElementRef="EntryCriterion_02nbpzo">
@@ -56,8 +62,8 @@
         <cmmndi:CMMNLabel />
       </cmmndi:CMMNShape>
       <cmmndi:CMMNEdge id="PlanItemOnPart_0bdypet_di" cmmnElementRef="PlanItemOnPart_0bdypet" targetCMMNElementRef="EntryCriterion_02nbpzo" isStandardEventVisible="true">
-        <di:waypoint xsi:type="dc:Point" x="171" y="176" />
-        <di:waypoint xsi:type="dc:Point" x="171" y="324" />
+        <di:waypoint xsi:type="dc:Point" x="163" y="176" />
+        <di:waypoint xsi:type="dc:Point" x="163" y="324" />
         <di:waypoint xsi:type="dc:Point" x="204" y="324" />
         <cmmndi:CMMNLabel>
           <dc:Bounds x="270" y="221" width="51" height="13" />
@@ -84,6 +90,14 @@
           <dc:Bounds x="464" y="313.5" width="51" height="13" />
         </cmmndi:CMMNLabel>
       </cmmndi:CMMNEdge>
+      <cmmndi:CMMNShape id="DiscretionaryItem_1ppto9a_di" cmmnElementRef="PlanItem_1xzknb5">
+        <dc:Bounds x="281" y="96" width="100" height="80" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="DiscretionaryItem_0o06fz7_di" cmmnElementRef="PlanItem_01r87ur">
+        <dc:Bounds x="408" y="96" width="100" height="80" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
     </cmmndi:CMMNDiagram>
   </cmmndi:CMMNDI>
 </cmmn:definitions>

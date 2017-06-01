@@ -6,9 +6,9 @@
   <bpmn:process id="ParticipantInterview1" name="ParticipantInterview" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_HR" name="HR">
-        <bpmn:flowNodeRef>Task_InviteInterview2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_0mhmc2z</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_1f04jlf</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_InviteInterview2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_Interview1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>StartEvent_HR3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateThrowEvent_1g1bv2c</bpmn:flowNodeRef>
@@ -16,39 +16,20 @@
         <bpmn:flowNodeRef>Task_05lmgir</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1fs56b4" name="Line">
+        <bpmn:flowNodeRef>IntermediateThrowEvent_0az8a5q</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_Interview2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_0jno1jv</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>IntermediateThrowEvent_0az8a5q</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_0swmmxp</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_0drgw66" sourceRef="Task_InviteInterview2" targetRef="ExclusiveGateway_0mhmc2z" />
-    <bpmn:sequenceFlow id="SequenceFlow_18hq03h" sourceRef="Task_Interview2" targetRef="Task_0jno1jv" />
     <bpmn:sequenceFlow id="SequenceFlow_0twaxa4" sourceRef="IntermediateThrowEvent_0az8a5q" targetRef="Task_Interview2" />
-    <bpmn:userTask id="Task_Interview2" name="Conduct 2nd Interview" camunda:assignee="anna">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="FormField_recommendation2Interview" label="Recommendation 2. interview" type="string" />
-          <camunda:formField id="FormField_okLine2Interview" label="Invite for second interview" type="boolean" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_0twaxa4</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_18hq03h</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:sequenceFlow id="SequenceFlow_1neaife" sourceRef="Task_0jno1jv" targetRef="EndEvent_0swmmxp" />
-    <bpmn:serviceTask id="Task_0jno1jv" name="Write line reccomendation to database" camunda:delegateExpression="#{dummyService}">
-      <bpmn:incoming>SequenceFlow_18hq03h</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1neaife</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_0z8v1qr">
-        <bpmn:targetRef>DataStoreReference_13yxsiw</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_0m86ybe" sourceRef="StartEvent_HR3" targetRef="Task_05lmgir" />
     <bpmn:sequenceFlow id="SequenceFlow_0ntlaek" name="no" sourceRef="ExclusiveGateway_0mhmc2z" targetRef="EndEvent_1f04jlf">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{FormField_okHR2Interview==false}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{outcome1Interview==false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1ua08b1" name="yes" sourceRef="ExclusiveGateway_0mhmc2z" targetRef="IntermediateThrowEvent_0az8a5q">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{FormField_okHR2Interview==true}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{outcome1Interview==true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1dh5zo8" sourceRef="CallActivity_PrepareInterview" targetRef="IntermediateThrowEvent_1g1bv2c" />
     <bpmn:sequenceFlow id="SequenceFlow_0v53yxb" sourceRef="IntermediateThrowEvent_1g1bv2c" targetRef="Task_Interview1" />
@@ -69,21 +50,18 @@
     <bpmn:endEvent id="EndEvent_1f04jlf" name="Candidate dropped out">
       <bpmn:incoming>SequenceFlow_0ntlaek</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:serviceTask id="Task_InviteInterview2" name="Write HR recomendation to database" camunda:delegateExpression="#{dummyService}">
+    <bpmn:serviceTask id="Task_InviteInterview2" name="Write HR recomendation to database" camunda:delegateExpression="#{write1RecomendationToDB}">
       <bpmn:incoming>SequenceFlow_0pxns2c</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0drgw66</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_0rv8x0z">
         <bpmn:targetRef>DataStoreReference_13yxsiw</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
-    <bpmn:endEvent id="EndEvent_0swmmxp" name="Interviews finished">
-      <bpmn:incoming>SequenceFlow_1neaife</bpmn:incoming>
-    </bpmn:endEvent>
     <bpmn:userTask id="Task_Interview1" name="Conduct 1. Interview" camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="FormField_recommendation1Interview" label="Recommendation 1. interview" type="string" />
-          <camunda:formField id="FormField_okHR2Interview" label="Invite for second interview" type="boolean">
+          <camunda:formField id="recommendation1Interview" label="Recommendation 1. interview" type="string" />
+          <camunda:formField id="outcome1Interview" label="Invite for second interview" type="boolean">
             <camunda:properties>
               <camunda:property id="Property_0shuj0u" />
             </camunda:properties>
@@ -145,14 +123,36 @@
         <bpmn:targetRef>Property_10zw47x</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:userTask>
+    <bpmn:userTask id="Task_Interview2" name="Conduct 2nd Interview" camunda:assignee="anna">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="recommendation2Interview" label="Recommendation 2. interview" type="string" />
+          <camunda:formField id="outcome2Interview" label="Put candidate on shortlist" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0twaxa4</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_18hq03h</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Task_0jno1jv" name="Write line reccomendation to database" camunda:delegateExpression="#{write2RecomendationToDB}">
+      <bpmn:incoming>SequenceFlow_18hq03h</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1neaife</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0z8v1qr">
+        <bpmn:targetRef>DataStoreReference_13yxsiw</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="EndEvent_0swmmxp" name="Interviews finished">
+      <bpmn:incoming>SequenceFlow_1neaife</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_18hq03h" sourceRef="Task_Interview2" targetRef="Task_0jno1jv" />
+    <bpmn:sequenceFlow id="SequenceFlow_1neaife" sourceRef="Task_0jno1jv" targetRef="EndEvent_0swmmxp" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="hrprocess03">
       <bpmndi:BPMNShape id="Participant_119jxwv_di" bpmnElement="ParticipantInterview">
-        <dc:Bounds x="-79" y="118" width="1247" height="289" />
+        <dc:Bounds x="-79" y="118" width="1343" height="289" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0m7krhd_di" bpmnElement="Lane_HR">
-        <dc:Bounds x="-49" y="238" width="1217" height="169" />
+        <dc:Bounds x="-49" y="238" width="1313" height="169" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0drgw66_di" bpmnElement="SequenceFlow_0drgw66">
         <di:waypoint xsi:type="dc:Point" x="579" y="309" />
@@ -162,13 +162,13 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_1ftwu9w_di" bpmnElement="Task_Interview2">
-        <dc:Bounds x="684" y="141" width="100" height="80" />
+        <dc:Bounds x="829" y="141" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_18hq03h_di" bpmnElement="SequenceFlow_18hq03h">
-        <di:waypoint xsi:type="dc:Point" x="784" y="181" />
-        <di:waypoint xsi:type="dc:Point" x="829" y="181" />
+        <di:waypoint xsi:type="dc:Point" x="929" y="181" />
+        <di:waypoint xsi:type="dc:Point" x="974" y="181" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="761.5" y="159.5" width="90" height="13" />
+          <dc:Bounds x="907" y="160" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="StartEvent_0k7ngh6_di" bpmnElement="StartEvent_HR3">
@@ -188,13 +188,13 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Lane_1fs56b4_di" bpmnElement="Lane_1fs56b4">
-        <dc:Bounds x="-49" y="118" width="1217" height="120" />
+        <dc:Bounds x="-49" y="118" width="1313" height="120" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0twaxa4_di" bpmnElement="SequenceFlow_0twaxa4">
         <di:waypoint xsi:type="dc:Point" x="658" y="181" />
-        <di:waypoint xsi:type="dc:Point" x="684" y="181" />
+        <di:waypoint xsi:type="dc:Point" x="829" y="181" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="626" y="159.5" width="90" height="13" />
+          <dc:Bounds x="698.5" y="159.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="IntermediateCatchEvent_0j8v7jx_di" bpmnElement="IntermediateThrowEvent_0az8a5q">
@@ -204,9 +204,9 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_1qwon1t_di" bpmnElement="EndEvent_0swmmxp">
-        <dc:Bounds x="983" y="163" width="36" height="36" />
+        <dc:Bounds x="1128" y="163" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="975" y="202" width="50" height="25" />
+          <dc:Bounds x="1120" y="202" width="50" height="25" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0v53yxb_di" bpmnElement="SequenceFlow_0v53yxb">
@@ -232,14 +232,14 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1neaife_di" bpmnElement="SequenceFlow_1neaife">
-        <di:waypoint xsi:type="dc:Point" x="929" y="181" />
-        <di:waypoint xsi:type="dc:Point" x="983" y="181" />
+        <di:waypoint xsi:type="dc:Point" x="1074" y="181" />
+        <di:waypoint xsi:type="dc:Point" x="1128" y="181" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="911" y="159.5" width="90" height="13" />
+          <dc:Bounds x="1056" y="160" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_172nmfi_di" bpmnElement="Task_0jno1jv">
-        <dc:Bounds x="829" y="141" width="100" height="80" />
+        <dc:Bounds x="974" y="141" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0m86ybe_di" bpmnElement="SequenceFlow_0m86ybe">
         <di:waypoint xsi:type="dc:Point" x="-6" y="309" />
@@ -297,8 +297,8 @@
         <di:waypoint xsi:type="dc:Point" x="367" y="195" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_0z8v1qr_di" bpmnElement="DataOutputAssociation_0z8v1qr">
-        <di:waypoint xsi:type="dc:Point" x="879" y="141" />
-        <di:waypoint xsi:type="dc:Point" x="879" y="127" />
+        <di:waypoint xsi:type="dc:Point" x="1024" y="141" />
+        <di:waypoint xsi:type="dc:Point" x="1024" y="127" />
         <di:waypoint xsi:type="dc:Point" x="335" y="127" />
         <di:waypoint xsi:type="dc:Point" x="335" y="156" />
       </bpmndi:BPMNEdge>

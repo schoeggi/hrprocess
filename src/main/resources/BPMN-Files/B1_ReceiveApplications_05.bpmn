@@ -16,7 +16,7 @@
     <bpmn:startEvent id="StartEvent_1" name="Application reveived">
       <bpmn:outgoing>SequenceFlow_1tlee6h</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:serviceTask id="Task_1r2vb81" name="Flag candidate in DB if applicable or not" camunda:delegateExpression="#{flagApplicant1Round}">
+    <bpmn:serviceTask id="Task_1r2vb81" name="Update candidate status and prepare mail" camunda:delegateExpression="#{updateCandidateStatusPrepMail}">
       <bpmn:incoming>SequenceFlow_0rt51t6</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_05efvk7</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_06r84et">
@@ -24,7 +24,7 @@
       </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_0rt51t6" sourceRef="Task_0gq1rtg" targetRef="Task_1r2vb81" />
-    <bpmn:serviceTask id="ServiceTask_1ahsrlt" name="Notify applicant by mail">
+    <bpmn:serviceTask id="ServiceTask_1ahsrlt" name="Notify candidate by mail">
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>

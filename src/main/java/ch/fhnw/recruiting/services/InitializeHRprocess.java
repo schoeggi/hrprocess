@@ -45,9 +45,10 @@ public class InitializeHRprocess implements JavaDelegate {
           LOGGER.info("Last jobrefid: " + lastjobrefid);
           LOGGER.info("New jobrefid: " + jobrefid);
         }
-        
-       
+          
         execution.setVariable("jobrefid", jobrefid);
+        	
+        /** execution.setVariable("hrprocess_start_date", new Date()); */
 
     }
 }
