@@ -27,7 +27,6 @@
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="FormField_maxSalary" label="Max Salary" type="long" defaultValue="${maxSalary}" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1fblppn</bpmn:incoming>
@@ -42,6 +41,9 @@
       <bpmn:outgoing>SequenceFlow_14d3328</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:userTask id="Task_03jr5eq" name="Publish Internal Job Request &#38; store details" camunda:formKey="embedded:app:forms/01_DefiningAdvertising_prepare_request.html" camunda:assignee="anna">
+      <bpmn:extensionElements>
+        <camunda:formData />
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_03rswzf</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1fblppn</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_11qkxi5">
