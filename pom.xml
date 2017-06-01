@@ -26,7 +26,6 @@
         <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
     </properties>
     
-    
         <dependencyManagement>
         <dependencies>
             <dependency>
