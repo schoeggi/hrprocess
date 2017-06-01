@@ -8,7 +8,7 @@
       <bpmn:lane id="Lane_HR" name="HR">
         <bpmn:flowNodeRef>ExclusiveGateway_0mhmc2z</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_1f04jlf</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_InviteInterview2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_write1RecommendationToDB1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_Interview1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>StartEvent_HR3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateThrowEvent_1g1bv2c</bpmn:flowNodeRef>
@@ -18,11 +18,11 @@
       <bpmn:lane id="Lane_1fs56b4" name="Line">
         <bpmn:flowNodeRef>IntermediateThrowEvent_0az8a5q</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_Interview2</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_0jno1jv</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_write2RecommendationToDB1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_0swmmxp</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:sequenceFlow id="SequenceFlow_0drgw66" sourceRef="Task_InviteInterview2" targetRef="ExclusiveGateway_0mhmc2z" />
+    <bpmn:sequenceFlow id="SequenceFlow_0drgw66" sourceRef="Task_write1RecommendationToDB1" targetRef="ExclusiveGateway_0mhmc2z" />
     <bpmn:sequenceFlow id="SequenceFlow_0twaxa4" sourceRef="IntermediateThrowEvent_0az8a5q" targetRef="Task_Interview2" />
     <bpmn:sequenceFlow id="SequenceFlow_0m86ybe" sourceRef="StartEvent_HR3" targetRef="Task_05lmgir" />
     <bpmn:sequenceFlow id="SequenceFlow_0ntlaek" name="no" sourceRef="ExclusiveGateway_0mhmc2z" targetRef="EndEvent_1f04jlf">
@@ -33,7 +33,7 @@
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1dh5zo8" sourceRef="CallActivity_PrepareInterview" targetRef="IntermediateThrowEvent_1g1bv2c" />
     <bpmn:sequenceFlow id="SequenceFlow_0v53yxb" sourceRef="IntermediateThrowEvent_1g1bv2c" targetRef="Task_Interview1" />
-    <bpmn:sequenceFlow id="SequenceFlow_0pxns2c" sourceRef="Task_Interview1" targetRef="Task_InviteInterview2" />
+    <bpmn:sequenceFlow id="SequenceFlow_0pxns2c" sourceRef="Task_Interview1" targetRef="Task_write1RecommendationToDB1" />
     <bpmn:exclusiveGateway id="ExclusiveGateway_0mhmc2z" name="Candidate passed">
       <bpmn:incoming>SequenceFlow_0drgw66</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0ntlaek</bpmn:outgoing>
@@ -43,29 +43,30 @@
       <bpmn:incoming>SequenceFlow_1ua08b1</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0twaxa4</bpmn:outgoing>
       <bpmn:timerEventDefinition>
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT7S</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
     <bpmn:dataStoreReference id="DataStoreReference_13yxsiw" name="Cloud IO" />
     <bpmn:endEvent id="EndEvent_1f04jlf" name="Candidate dropped out">
       <bpmn:incoming>SequenceFlow_0ntlaek</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:serviceTask id="Task_InviteInterview2" name="Write HR recomendation to database" camunda:delegateExpression="#{write1RecomendationToDB}">
+    <bpmn:serviceTask id="Task_write1RecommendationToDB1" name="Write HR recomendation to database" camunda:delegateExpression="#{write1RecomendationToDB}">
       <bpmn:incoming>SequenceFlow_0pxns2c</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0drgw66</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_0rv8x0z">
         <bpmn:targetRef>DataStoreReference_13yxsiw</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
-    <bpmn:userTask id="Task_Interview1" name="Conduct 1. Interview" camunda:assignee="anna">
+    <bpmn:userTask id="Task_Interview1" name="Conduct 1st interview" camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="recommendation1Interview" label="Recommendation 1. interview" type="string" />
+          <camunda:formField id="recommendation1Interview" label="Recommendation 1st interview" type="string" />
           <camunda:formField id="outcome1Interview" label="Invite for second interview" type="boolean">
             <camunda:properties>
               <camunda:property id="Property_0shuj0u" />
             </camunda:properties>
           </camunda:formField>
+          <camunda:formField id="Candidate_Name1" label="Candidate: " type="string" defaultValue="${firstname} ${lastname}" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0v53yxb</bpmn:incoming>
@@ -79,7 +80,7 @@
       <bpmn:incoming>SequenceFlow_1dh5zo8</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0v53yxb</bpmn:outgoing>
       <bpmn:timerEventDefinition>
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT3S</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
     <bpmn:callActivity id="CallActivity_PrepareInterview" name="Prepare Interviews (CMMN)" camunda:caseRef="Case_PrepareInterview">
@@ -126,14 +127,15 @@
     <bpmn:userTask id="Task_Interview2" name="Conduct 2nd Interview" camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="recommendation2Interview" label="Recommendation 2. interview" type="string" />
+          <camunda:formField id="recommendation2Interview" label="Recommendation 2nd interview" type="string" />
           <camunda:formField id="outcome2Interview" label="Put candidate on shortlist" type="boolean" />
+          <camunda:formField id="Candidate_Name2" type="string" defaultValue="${firstname} ${lastname}" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0twaxa4</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_18hq03h</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="Task_0jno1jv" name="Write line reccomendation to database" camunda:delegateExpression="#{write2RecomendationToDB}">
+    <bpmn:serviceTask id="Task_write2RecommendationToDB1" name="Write line reccomendation to database" camunda:delegateExpression="#{write2RecomendationToDB}">
       <bpmn:incoming>SequenceFlow_18hq03h</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1neaife</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_0z8v1qr">
@@ -143,8 +145,8 @@
     <bpmn:endEvent id="EndEvent_0swmmxp" name="Interviews finished">
       <bpmn:incoming>SequenceFlow_1neaife</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="SequenceFlow_18hq03h" sourceRef="Task_Interview2" targetRef="Task_0jno1jv" />
-    <bpmn:sequenceFlow id="SequenceFlow_1neaife" sourceRef="Task_0jno1jv" targetRef="EndEvent_0swmmxp" />
+    <bpmn:sequenceFlow id="SequenceFlow_18hq03h" sourceRef="Task_Interview2" targetRef="Task_write2RecommendationToDB1" />
+    <bpmn:sequenceFlow id="SequenceFlow_1neaife" sourceRef="Task_write2RecommendationToDB1" targetRef="EndEvent_0swmmxp" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="hrprocess03">
@@ -222,7 +224,7 @@
           <dc:Bounds x="263" y="330" width="82" height="25" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ServiceTask_0pzyckf_di" bpmnElement="Task_InviteInterview2">
+      <bpmndi:BPMNShape id="ServiceTask_0pzyckf_di" bpmnElement="Task_write1RecommendationToDB1">
         <dc:Bounds x="479" y="269" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="DataStoreReference_13yxsiw_di" bpmnElement="DataStoreReference_13yxsiw">
@@ -238,7 +240,7 @@
           <dc:Bounds x="1056" y="160" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ServiceTask_172nmfi_di" bpmnElement="Task_0jno1jv">
+      <bpmndi:BPMNShape id="ServiceTask_172nmfi_di" bpmnElement="Task_write2RecommendationToDB1">
         <dc:Bounds x="974" y="141" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0m86ybe_di" bpmnElement="SequenceFlow_0m86ybe">
