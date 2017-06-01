@@ -22,6 +22,16 @@
         <camunda:formData>
           <camunda:formField id="FormField_BudgetApprovedX" label="BudgetAvailable" type="boolean" />
           <camunda:formField id="FormField_ReasonIfRejected" label="Reason if rejected" type="string" />
+          <camunda:formField id="FormField_JobTitle" label="Job Title" type="string" defaultValue="${JobTitle}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="FormField_maxSalary" label="Max Salary" type="long" defaultValue="${maxSalary}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1fblppn</bpmn:incoming>
