@@ -22,7 +22,7 @@
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="tweet" label="Tweet" type="string" defaultValue="${tweetDraft}" />
-          <camunda:formField id="approved" label="Approve" type="boolean" defaultValue="false" />
+          <camunda:formField id="approved" label="Approve" type="boolean" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1xurwk0</bpmn:incoming>
