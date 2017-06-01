@@ -40,9 +40,10 @@ public class UpdateCandidateStatusPrepMail implements JavaDelegate {
         	mailBodyAfterDMN = "Hi " +firstname +"\n\n" 
         						+"Thanks for your application at Fiusable Ltd. Congratulation, you passed the first round (DMN) of candidate evaluation." +"\n" 
         						+"Please get in contact with our HR department to find a suitable appointment for your 1. interview." +"\n" 
-        						+"Tel: 044 / 321 20 20 or email: hr@fiusable.com" +"\n" 
-        						+"Good luck for the next application steps," +"\n\n" 
-        						+"best wishes, your Fiusable Ltd Team";
+        						+"Phone: 044 / 321 20 20" +"\n" 
+        						+"Email: hr@fiusable.com" +"\n\n" 
+        						+"Good luck for the next application steps!" +"\n\n" 
+        						+"Best wishes, your Fiusable Ltd Team";
         }
         else{
         	passed1dmn = false;
