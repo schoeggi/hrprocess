@@ -82,15 +82,15 @@
 				</div>
 		    	<div class="pure-control-group">
 		        	<label for="candidateLastName">Min Workload %</label>
-		        	<input class="form-control mytext" cam-variable-type="number" type="number" min="10" max="100" step="10" cam-variable-name="minWorkload" name="minWorkload" placeholder="Between 10 and 100%"/>
+		        	<input class="form-control mytext" cam-variable-type="Double" required type="number" min="10" max="100" step="10" cam-variable-name="minWorkload" name="minWorkload" placeholder="Between 10 and 100%"/>
 		    	</div>		    	
 				<div class="pure-control-group">
 		        	<label for="candidateLastName">Max Workload %</label>
-		        	<input class="form-control mytext" cam-variable-type="number" type="number" min="10" max="100" step="10" cam-variable-name="maxWorkload" name="maxWorkload" placeholder="Between 10 and 100%"/>
+		        	<input class="form-control mytext" cam-variable-type="Double" required type="number" min="10" max="100" step="10" cam-variable-name="maxWorkload" name="maxWorkload" placeholder="Between 10 and 100%"/>
 		    	</div>
 		    	<div class="pure-control-group">
 		        	<label for="candidateLastName">Max Salary</label>
-		        	<input class="form-control mytext" cam-variable-type="number" type="number" min="50000" max="300000" cam-variable-name="maxSalary" name="maxSalary" placeholder="Between 50'000 and 300'000 CHF"/>
+		        	<input class="form-control mytext" cam-variable-type="Double" required type="number" min="50000" max="300000" cam-variable-name="maxSalary" name="maxSalary" placeholder="Between 50'000 and 300'000 CHF"/>
 		    	</div>
 				<div class="pure-control-group">
 		        	<label for="candidateLastName">Willingness to travel</label>
@@ -98,7 +98,7 @@
 		    	</div>
 		    	<div class="pure-control-group">
 		        	<label for="candidateFirstName">Comment for COO approval</label>
-		        	<textarea class="form-control mytext" cam-variable-type="String" cam-variable-name="Comment" name="Comment" placeholder="Type your comment for budget approval here..."></textarea>
+		        	<textarea class="form-control mytext" cam-variable-type="String" required cam-variable-name="Comment" name="Comment" placeholder="Type your comment for budget approval here..."></textarea>
 		    	</div>
 		    </fieldset>
 		</form>
