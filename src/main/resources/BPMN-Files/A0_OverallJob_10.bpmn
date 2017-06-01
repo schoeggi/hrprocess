@@ -63,7 +63,7 @@
       <bpmn:outgoing>SequenceFlow_0a1ztok</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_1su37yd" sourceRef="Task_1e9igr0" targetRef="EndEvent_0a8zam0" />
-    <bpmn:callActivity id="Task_0hhcnr2" name="Generate Tweet" calledElement="GenerateTweet1">
+    <bpmn:callActivity id="Task_0hhcnr2" name="Generate Tweet" calledElement="GenerateTweet4JobAdd1">
       <bpmn:extensionElements>
         <camunda:in variables="all" />
         <camunda:out variables="all" />

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.7.1">
   <bpmn:collaboration id="Collaboration_11ojtxl">
-    <bpmn:participant id="Participant_1ajqrt5" name="Company" processRef="GenerateTweet1" />
+    <bpmn:participant id="Participant_1ajqrt5" name="Company" processRef="GenerateTweet4JobAdd1" />
   </bpmn:collaboration>
-  <bpmn:process id="GenerateTweet1" name="GenerateTweet" isExecutable="true">
+  <bpmn:process id="GenerateTweet4JobAdd1" name="GenerateTweet" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1" name="Budget approved">
       <bpmn:outgoing>SequenceFlow_0bayzxf</bpmn:outgoing>
     </bpmn:startEvent>
