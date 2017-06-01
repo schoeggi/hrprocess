@@ -3,10 +3,10 @@ ch\fhnw\recruiting\services\InitializeHRprocess.class
 ch\fhnw\recruiting\db\CountApplicants.class
 ch\fhnw\recruiting\delegate\SayHelloDelegate.class
 ch\fhnw\recruiting\db\GatherCandidateInformationFromDB.class
-ch\fhnw\recruiting\db\Write2RecomendationToDB.class
 ch\fhnw\recruiting\CamundaInitialDataGenerator.class
 ch\fhnw\recruiting\db\ListApplicantsFromDB.class
 ch\fhnw\recruiting\tweet\AutoCreateTweet.class
+ch\fhnw\recruiting\db\Write2RecommendationToDB.class
 ch\fhnw\recruiting\HRprocessApplication.class
 ch\fhnw\recruiting\services\DummyService.class
-ch\fhnw\recruiting\db\Write1RecomendationToDB.class
+ch\fhnw\recruiting\db\Write1RecommendationToDB.class
