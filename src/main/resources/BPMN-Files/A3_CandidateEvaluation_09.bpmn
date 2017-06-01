@@ -18,7 +18,6 @@
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_0ij4bmz" sourceRef="StartEvent_1ibuabq" targetRef="Task_Select_Prioritize" />
     <bpmn:sequenceFlow id="SequenceFlow_0k97bpu" sourceRef="Task_Select_Prioritize" targetRef="Task_07wunz7" />
-    <bpmn:dataStoreReference id="DataStoreReference_0p5n73y" name="Cloud IO" />
     <bpmn:endEvent id="EndEvent_0tr6to5" name="Candidates prioritized">
       <bpmn:incoming>SequenceFlow_0me7yne</bpmn:incoming>
     </bpmn:endEvent>
@@ -38,16 +37,9 @@
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="FormField_2Prio" label="2nd Prio Canidate ID:" type="long">
-            <camunda:validation>
-              <camunda:constraint />
-            </camunda:validation>
-          </camunda:formField>
+          <camunda:formField id="FormField_2Prio" label="2nd Prio Canidate ID:" type="long" />
           <camunda:formField id="FormField_3Prio" label="3rd Prio Canidate ID:" type="long" />
           <camunda:formField id="FormField_CandidateShortlist" label="Further Information about candidates:" type="string" defaultValue="https://sheltered-citadel-37599.herokuapp.com/applicants_shortlist.php">
-            <camunda:properties>
-              <camunda:property id="Property_396hfep" />
-            </camunda:properties>
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
@@ -60,6 +52,7 @@
     <bpmn:startEvent id="StartEvent_1ibuabq" name="Interview process finished">
       <bpmn:outgoing>SequenceFlow_0ij4bmz</bpmn:outgoing>
     </bpmn:startEvent>
+    <bpmn:dataStoreReference id="DataStoreReference_0p5n73y" name="Cloud IO" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="hrprocess4">
@@ -102,9 +95,9 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="DataStoreReference_0p5n73y_di" bpmnElement="DataStoreReference_0p5n73y">
-        <dc:Bounds x="364" y="506" width="50" height="50" />
+        <dc:Bounds x="364" y="507" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="367" y="559" width="44" height="12" />
+          <dc:Bounds x="367" y="560" width="44" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_0ufxa4c_di" bpmnElement="Task_07wunz7">
@@ -112,7 +105,7 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_074cjie_di" bpmnElement="DataOutputAssociation_074cjie">
         <di:waypoint xsi:type="dc:Point" x="414" y="460" />
-        <di:waypoint xsi:type="dc:Point" x="414" y="506" />
+        <di:waypoint xsi:type="dc:Point" x="414" y="511" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0me7yne_di" bpmnElement="SequenceFlow_0me7yne">
         <di:waypoint xsi:type="dc:Point" x="504" y="420" />
