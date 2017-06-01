@@ -35,7 +35,7 @@
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="FormField_maxSalary" label="Max salary" type="Double" defaultValue="${maxSalary}">
+          <camunda:formField id="FormField_maxSalary" label="Max salary" type="long" defaultValue="${maxSalary}">
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
