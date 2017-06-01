@@ -41,6 +41,7 @@ public class CountApplicants implements JavaDelegate {
         execution.setVariable("applicantCounter", applicantCounter);
         LOGGER.info("End: Count applicants called!!!");
         
+        
     }
 }
 
