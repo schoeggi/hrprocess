@@ -60,13 +60,17 @@
     <bpmn:userTask id="Task_Interview1" name="Conduct 1st interview" camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
+          <camunda:formField id="Candidate_Name1" label="Candidate: " type="string" defaultValue="${firstname} ${lastname}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
           <camunda:formField id="recommendation1Interview" label="Recommendation 1st interview" type="string" />
           <camunda:formField id="outcome1Interview" label="Invite for second interview" type="boolean">
             <camunda:properties>
               <camunda:property id="Property_0shuj0u" />
             </camunda:properties>
           </camunda:formField>
-          <camunda:formField id="Candidate_Name1" label="Candidate: " type="string" defaultValue="${firstname} ${lastname}" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0v53yxb</bpmn:incoming>
@@ -127,9 +131,13 @@
     <bpmn:userTask id="Task_Interview2" name="Conduct 2nd Interview" camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
+        	<camunda:formField id="Candidate_Name2" label="Candidate: " type="string" defaultValue="${firstname} ${lastname}">
+          	<camunda:validation>
+            	<camunda:constraint name="readonly" />
+          	</camunda:validation>
+          </camunda:formField>
           <camunda:formField id="recommendation2Interview" label="Recommendation 2nd interview" type="string" />
           <camunda:formField id="outcome2Interview" label="Put candidate on shortlist" type="boolean" />
-          <camunda:formField id="Candidate_Name2" type="string" defaultValue="${firstname} ${lastname}" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0twaxa4</bpmn:incoming>
