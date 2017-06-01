@@ -20,18 +20,28 @@
     <bpmn:userTask id="Task_Check_Budget" name="Check Budget" camunda:assignee="hans">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="FormField_BudgetApprovedX" label="BudgetAvailable" type="boolean" />
-          <camunda:formField id="FormField_ReasonIfRejected" label="Reason if rejected" type="string" />
-          <camunda:formField id="FormField_jobTitle" label="Job Title" type="string" defaultValue="${jobTitle}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
           <camunda:formField id="FormField_jobrefid" label="Job reference ID" type="string" defaultValue="${jobrefid}">
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
+           <camunda:formField id="FormField_jobTitle" label="Job Title" type="string" defaultValue="${jobTitle}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="FormField_maturity" label="Job maturity" type="string" defaultValue="${maturity}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="FormField_maxSalary" label="Max salary" type="long" defaultValue="${maxSalary}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+            <camunda:formField id="FormField_BudgetApprovedX" label="BudgetAvailable" type="boolean" />
+          <camunda:formField id="FormField_ReasonIfRejected" label="Reason if rejected" type="string" />   
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1fblppn</bpmn:incoming>

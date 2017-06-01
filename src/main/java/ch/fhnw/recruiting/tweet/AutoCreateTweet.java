@@ -1,5 +1,6 @@
 package ch.fhnw.recruiting.tweet;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Logger;
@@ -42,9 +43,13 @@ public class AutoCreateTweet implements JavaDelegate {
 
         int jobrefid = (int) execution.getVariable("jobrefid");
         
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        //System.out.println(dateFormat.format(date));
+        
         String jobURL = "https://sheltered-citadel-37599.herokuapp.com/jobadd.php?job=" + jobTitleWeb + "&maturity=" + maturity + "&jobrefid=" + jobrefid;
     	String tweetBase = "FiusableLtd is hiring! We're looking for a genuine ";
-        String tweetDraft = tweetBase + maturityLowerCase + " " + jobTitle + "... " + newline + "Apply here: " + jobURL;
+        String tweetDraft = tweetBase + maturityLowerCase + " " + jobTitle + "... " + newline + "Apply here: " + jobURL +" " +dateFormat.format(date);
 
         /** Return tweetDraft back to camunda */
         execution.setVariable("tweetDraft", tweetDraft);
