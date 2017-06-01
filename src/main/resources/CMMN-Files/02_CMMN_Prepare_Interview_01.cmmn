@@ -2,7 +2,9 @@
 <cmmn:definitions xmlns:dc="http://www.omg.org/spec/CMMN/20151109/DC" xmlns:di="http://www.omg.org/spec/CMMN/20151109/DI" xmlns:cmmndi="http://www.omg.org/spec/CMMN/20151109/CMMNDI" xmlns:cmmn="http://www.omg.org/spec/CMMN/20151109/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/cmmn" id="Test" targetNamespace="http://bpmn.io/schema/cmmn" exporter="Camunda Modeler" exporterVersion="1.7.1">
   <cmmn:case id="Case_PrepareInterview">
     <cmmn:casePlanModel id="Case_PrepareTelephoneInterview_1" name="Prepare Telephone Interview">
-      <cmmn:planItem id="PlanItem_1" name="Gather Applicants Information" definitionRef="HumanTask_0hql98y" />
+      <cmmn:planItem id="PlanItem_1" name="Gather Applicants Information" definitionRef="HumanTask_0hql98y">
+        <cmmn:documentation id="Documentation_1l1ufg0">${firstname} ${lastname}</cmmn:documentation>
+      </cmmn:planItem>
       <cmmn:planItem id="PlanItem_1vnj4y4" name="Prepare Interview" definitionRef="HumanTask_0fym266">
         <cmmn:entryCriterion id="EntryCriterion_02nbpzo" sentryRef="Sentry_1mph8h9" />
       </cmmn:planItem>
@@ -27,7 +29,7 @@
         <cmmn:discretionaryItem id="PlanItem_1xzknb5" definitionRef="Task_1gv85cr" />
         <cmmn:discretionaryItem id="PlanItem_01r87ur" definitionRef="Task_0go541w" />
       </cmmn:planningTable>
-      <cmmn:humanTask id="HumanTask_0hql98y" name="Gather Information" camunda:formKey="${firstname} ${lastname}" camunda:assignee="anna">
+      <cmmn:humanTask id="HumanTask_0hql98y" name="Gather Information" camunda:assignee="anna">
         <cmmn:defaultControl id="PlanItemControl_15zt9je">
           <cmmn:manualActivationRule id="ManualActivationRule_1rc90jm">
             <cmmn:condition id="Expression_1k5ihny">${false}</cmmn:condition>
