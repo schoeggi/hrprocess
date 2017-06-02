@@ -69,7 +69,7 @@ JSON.stringify(out);]]></camunda:script>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_19rsnpz">
       <bpmndi:BPMNShape id="Participant_1mdlq86_di" bpmnElement="Participant_1mdlq86">
-        <dc:Bounds x="33" y="34" width="876" height="218" />
+        <dc:Bounds x="33" y="34" width="839" height="245" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_1u6hjwu_di" bpmnElement="Task_1r2vb81">
         <dc:Bounds x="457" y="130" width="100" height="80" />

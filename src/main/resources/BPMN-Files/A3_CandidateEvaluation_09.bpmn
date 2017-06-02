@@ -29,7 +29,7 @@
         <bpmn:targetRef>DataStoreReference_0p5n73y</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
-    <bpmn:userTask id="Task_Select_Prioritize" name="Prioritize Candidates" camunda:assignee="anna">
+    <bpmn:userTask id="Task_Select_Prioritize" name="Prioritize Candidates" camunda:assignee="andrea">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_1Prio" label="1st Prio Canidate ID:" type="long">

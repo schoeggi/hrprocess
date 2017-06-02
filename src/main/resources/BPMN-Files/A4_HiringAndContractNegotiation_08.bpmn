@@ -30,7 +30,7 @@
     <bpmn:startEvent id="StartEvent_1ibuabq" name="Candidate selected">
       <bpmn:outgoing>SequenceFlow_155v148</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="Task_0kp9iag" name="Offer job to candidate">
+    <bpmn:userTask id="Task_0kp9iag" name="Offer job to candidate" camunda:assignee="anna">
       <bpmn:incoming>SequenceFlow_0c09rka</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1mh2km2</bpmn:outgoing>
     </bpmn:userTask>
@@ -42,7 +42,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_0difkdw" sourceRef="Task_0pqxpgx" targetRef="Task_Hire" />
     <bpmn:sequenceFlow id="SequenceFlow_1bv2d7j" sourceRef="Task_RejectCandidate" targetRef="Task_1hvfhvf" />
     <bpmn:sequenceFlow id="SequenceFlow_18qh5bl" sourceRef="Task_1hvfhvf" targetRef="Task_CreateOffer" />
-    <bpmn:userTask id="Task_RejectCandidate" name="Update candidates priority" camunda:assignee="andrea">
+    <bpmn:userTask id="Task_RejectCandidate" name="Update candidates priority" camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_RejectionReasion" label="Rejection Reason" type="string" />
@@ -81,7 +81,7 @@
         <bpmn:targetRef>DataStoreReference_18l51l7</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
-    <bpmn:userTask id="Task_Hire" name="Send hired candidate contract and job details" camunda:assignee="andrea">
+    <bpmn:userTask id="Task_Hire" name="Send hired candidate contract and job details" camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_DefineStart" label="Start Date" type="date" />

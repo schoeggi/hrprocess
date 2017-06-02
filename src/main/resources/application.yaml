@@ -4,7 +4,8 @@ camunda.bpm:
   admin-user:
     id: admin
     password: admin
-    
+
+user.timezone: GMT+02:00
 
 ### GMAIL DB
 #spring:
@@ -14,12 +15,6 @@ camunda.bpm:
 #   username: pdcjcbflfnylof
 #   password: 884b4ff9c43fa92f73aebdf150a74740c4892ed2ea8f695bf4eca9914b19bf1b
 #   driverClassName: org.postgresql.Driver
-
-
-
-
-
-
 
 
 
