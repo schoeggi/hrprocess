@@ -86,11 +86,11 @@
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="SequenceFlow_118pksr" name="no" sourceRef="ExclusiveGateway_1s07jty" targetRef="IntermediateThrowEvent_1v1nvkj">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[#{applicantCounter <= 9}]]></bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[#{applicantCounter <= 2}]]></bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1oo5tx8" sourceRef="IntermediateThrowEvent_1v1nvkj" targetRef="Task_0xpw14p" />
     <bpmn:sequenceFlow id="SequenceFlow_0ro8m54" name="yes" sourceRef="ExclusiveGateway_1s07jty" targetRef="Task_0shfua0">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[#{applicantCounter >=10}]]></bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[#{applicantCounter >=3}]]></bpmn:conditionExpression>
     </bpmn:sequenceFlow>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">

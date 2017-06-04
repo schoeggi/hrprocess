@@ -31,7 +31,10 @@ public class CountApplicants implements JavaDelegate {
 
         LOGGER.info("Start: Count applicants called!!!");
         
-        String sql_count = "SELECT COUNT(*) as count FROM APPLICANT";
+        int jobrefid = (int) execution.getVariable("jobrefid");
+
+
+        String sql_count = "SELECT COUNT(*) as count FROM APPLICANT WHERE passed1dmn=true AND passed1interview=true AND passed2interview=true AND jobrefid="+jobrefid;
         SqlRowSet rowSet_count = jdbcTemplate.queryForRowSet(sql_count);     
         while(rowSet_count.next())
         {

@@ -24,13 +24,27 @@
     <bpmn:sequenceFlow id="SequenceFlow_0c09rka" sourceRef="Task_CreateOffer" targetRef="Task_0kp9iag" />
     <bpmn:sequenceFlow id="SequenceFlow_1mh2km2" sourceRef="Task_0kp9iag" targetRef="ExclusiveGateway_024tisg" />
     <bpmn:sequenceFlow id="SequenceFlow_1e3i3yj" name="Yes" sourceRef="ExclusiveGateway_024tisg" targetRef="Task_0pqxpgx">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{FormField_AcceptOffer}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{FormField_offer_accepted}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_155v148" sourceRef="StartEvent_1ibuabq" targetRef="Task_CreateOffer" />
     <bpmn:startEvent id="StartEvent_1ibuabq" name="Candidate selected">
       <bpmn:outgoing>SequenceFlow_155v148</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:userTask id="Task_0kp9iag" name="Offer job to candidate" camunda:assignee="anna">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="FormField_best_candidate" label="Best Candidate" type="string" defaultValue="${best_candidate_firstname} ${best_candidate_lastname}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="FormField_further_information" label="Further information about candidate" type="string" defaultValue="https://sheltered-citadel-37599.herokuapp.com/list_applicant.php?id=${best_candidate_id}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0c09rka</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1mh2km2</bpmn:outgoing>
     </bpmn:userTask>
@@ -54,15 +68,17 @@
     <bpmn:endEvent id="EndEvent_06lwkcc" name="Candidate hired">
       <bpmn:incoming>SequenceFlow_1f1jtqv</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:serviceTask id="Task_1hvfhvf" name="Modify Priority in Database for candidate" camunda:delegateExpression="#{dummyService}">
+    <bpmn:serviceTask id="Task_1hvfhvf" name="Flag candidate as declined in DB" camunda:delegateExpression="#{flagCandidateAfterOffer}">
       <bpmn:incoming>SequenceFlow_1bv2d7j</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_18qh5bl</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1a9l9pb">
         <bpmn:targetRef>DataStoreReference_18l51l7</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="SequenceFlow_1kpzmlp" name="No" sourceRef="ExclusiveGateway_024tisg" targetRef="Task_RejectCandidate" />
-    <bpmn:serviceTask id="Task_CreateOffer" name="Retrieve candidate with highest priority" camunda:delegateExpression="#{dummyService}">
+    <bpmn:sequenceFlow id="SequenceFlow_1kpzmlp" name="No" sourceRef="ExclusiveGateway_024tisg" targetRef="Task_RejectCandidate">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{!FormField_offer_accepted}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Task_CreateOffer" name="Retrieve candidate with highest priority" camunda:delegateExpression="#{retrieveBestRatedCandidate}">
       <bpmn:incoming>SequenceFlow_155v148</bpmn:incoming>
       <bpmn:incoming>SequenceFlow_18qh5bl</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0c09rka</bpmn:outgoing>
@@ -74,7 +90,7 @@
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_1f1jtqv" sourceRef="Task_Hire" targetRef="EndEvent_06lwkcc" />
     <bpmn:dataStoreReference id="DataStoreReference_18l51l7" name="Cloud IO" />
-    <bpmn:serviceTask id="Task_0pqxpgx" name="Flag in Database" camunda:delegateExpression="#{dummyService}">
+    <bpmn:serviceTask id="Task_0pqxpgx" name="Flag candidate as accepted in DB" camunda:delegateExpression="#{flagCandidateAfterOffer}">
       <bpmn:incoming>SequenceFlow_1e3i3yj</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0difkdw</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_057pgeo">

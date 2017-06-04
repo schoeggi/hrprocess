@@ -39,7 +39,7 @@
           </camunda:formField>
           <camunda:formField id="FormField_2Prio" label="2nd Prio Canidate ID:" type="long" />
           <camunda:formField id="FormField_3Prio" label="3rd Prio Canidate ID:" type="long" />
-          <camunda:formField id="FormField_CandidateShortlist" label="Further Information about candidates:" type="string" defaultValue="https://sheltered-citadel-37599.herokuapp.com/applicants_shortlist.php">
+          <camunda:formField id="FormField_CandidateShortlist" label="Further Information about candidates:" type="string" defaultValue="https://sheltered-citadel-37599.herokuapp.com/applicants_shortlist.php?jobrefid=${jobrefid}">
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>

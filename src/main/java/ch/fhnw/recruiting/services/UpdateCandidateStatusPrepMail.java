@@ -1,4 +1,4 @@
-package ch.fhnw.recruiting.db;
+package ch.fhnw.recruiting.services;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,17 +33,20 @@ public class UpdateCandidateStatusPrepMail implements JavaDelegate {
         String lastname = (String) execution.getVariable("lastname");
         int candidate_id = (int) execution.getVariable("candidate_id");
         String applicabilityResult = (String) execution.getVariable("applicabilityResult");
+        int jobrefid = (int) execution.getVariable("jobrefid");
+       	String jobTitle = (String) execution.getVariable("jobTitle");
+    	String maturity = (String) execution.getVariable("maturity");
 
         if (applicabilityResult.equals("A")){
         	passed1dmn = true;
         	mailSubjectAfterDMN = "Your Application at Fiusable Ltd";
         	mailBodyAfterDMN = "Hi " +firstname +"\n\n" 
-        						+"Thanks for your application at Fiusable Ltd. Congratulation, you passed the first round (DMN) of candidate evaluation." +"\n" 
-        						+"Please get in contact with our HR department to find a suitable appointment for your 1. interview." +"\n" 
-        						+"Phone: 044 / 321 20 20" +"\n" 
-        						+"Email: hr@fiusable.com" +"\n\n" 
+        						+"Thank you for your application at Fiusable Ltd. Congratulation, you passed the first round (DMN) for the following position:" +"\n" 
+        						+maturity +" " +jobTitle +"(job reference: " +jobrefid +")" +"\n"
+        						+"Our HR department will get in contact with you very soon to find a suitable appointment for your 1. interview." +"\n\n" 
         						+"Good luck for the next application steps!" +"\n\n" 
         						+"Best wishes, your Fiusable Ltd Team";
+        	
         }
         else{
         	passed1dmn = false;
