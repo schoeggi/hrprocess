@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.7.1">
-  <bpmn:process id="ApplicationProcess" isExecutable="true">
+  <bpmn:process id="ApplicationOverallProcess" isExecutable="true">
     <bpmn:sequenceFlow id="SequenceFlow_1q148cj" sourceRef="Task_02p195z" targetRef="EndEvent_0clglog" />
     <bpmn:sequenceFlow id="SequenceFlow_02kaxj7" sourceRef="StartEvent_1" targetRef="Task_0xvl0f5" />
     <bpmn:endEvent id="EndEvent_0clglog" name="Interviews conducted">
@@ -42,7 +42,7 @@
     </bpmn:sequenceFlow>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="ApplicationProcess">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="ApplicationOverallProcess">
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="179" y="152" width="36" height="36" />
         <bpmndi:BPMNLabel>
