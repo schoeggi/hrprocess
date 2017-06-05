@@ -17,7 +17,6 @@ user.timezone: GMT+02:00
 #   driverClassName: org.postgresql.Driver
 
 
-
 ### GMX DB
 spring:
   datasource:
