@@ -2,26 +2,19 @@
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.7.1">
   <bpmn:collaboration id="hrprocess4">
     <bpmn:participant id="CandidateEvaluation" name="Company" processRef="CandidateEvaluation1" />
-    <bpmn:textAnnotation id="TextAnnotation_0zjd3kp">    <bpmn:text><![CDATA[Candidate evaluation and selection. 
-
-]]></bpmn:text>
-</bpmn:textAnnotation>
   </bpmn:collaboration>
   <bpmn:process id="CandidateEvaluation1" name="CandidateEvaluation" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_Line" name="Line">
-        <bpmn:flowNodeRef>EndEvent_0tr6to5</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_07wunz7</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_Select_Prioritize</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_0tr6to5</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>StartEvent_1ibuabq</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:sequenceFlow id="SequenceFlow_0ij4bmz" sourceRef="StartEvent_1ibuabq" targetRef="Task_Select_Prioritize" />
-    <bpmn:sequenceFlow id="SequenceFlow_0k97bpu" sourceRef="Task_Select_Prioritize" targetRef="Task_07wunz7" />
     <bpmn:endEvent id="EndEvent_0tr6to5" name="Candidates prioritized">
       <bpmn:incoming>SequenceFlow_0me7yne</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="SequenceFlow_0me7yne" sourceRef="Task_07wunz7" targetRef="EndEvent_0tr6to5" />
     <bpmn:serviceTask id="Task_07wunz7" name="Flag Priorities in DB" camunda:delegateExpression="#{writeShortlistToDB2}">
       <bpmn:incoming>SequenceFlow_0k97bpu</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0me7yne</bpmn:outgoing>
@@ -29,7 +22,7 @@
         <bpmn:targetRef>DataStoreReference_0p5n73y</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
-    <bpmn:userTask id="Task_Select_Prioritize" name="Prioritize Candidates" camunda:assignee="andrea">
+    <bpmn:userTask id="Task_Select_Prioritize" name="Prioritize Candidates" camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_1Prio" label="1st Prio Canidate ID:" type="long">
@@ -53,65 +46,65 @@
       <bpmn:outgoing>SequenceFlow_0ij4bmz</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:dataStoreReference id="DataStoreReference_0p5n73y" name="Cloud IO" />
+    <bpmn:sequenceFlow id="SequenceFlow_0me7yne" sourceRef="Task_07wunz7" targetRef="EndEvent_0tr6to5" />
+    <bpmn:sequenceFlow id="SequenceFlow_0k97bpu" sourceRef="Task_Select_Prioritize" targetRef="Task_07wunz7" />
+    <bpmn:sequenceFlow id="SequenceFlow_0ij4bmz" sourceRef="StartEvent_1ibuabq" targetRef="Task_Select_Prioritize" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="hrprocess4">
       <bpmndi:BPMNShape id="Participant_0nrlx0q_di" bpmnElement="CandidateEvaluation">
-        <dc:Bounds x="-20" y="356" width="624" height="236" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_0zjd3kp_di" bpmnElement="TextAnnotation_0zjd3kp">
-        <dc:Bounds x="3" y="-86" width="280" height="30" />
+        <dc:Bounds x="25" y="20" width="532" height="241" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_06vo2g9_di" bpmnElement="Lane_Line">
-        <dc:Bounds x="10" y="356" width="594" height="236" />
+        <dc:Bounds x="55" y="20" width="502" height="241" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0ij4bmz_di" bpmnElement="SequenceFlow_0ij4bmz">
-        <di:waypoint xsi:type="dc:Point" x="195" y="420" />
-        <di:waypoint xsi:type="dc:Point" x="271" y="420" />
+        <di:waypoint xsi:type="dc:Point" x="148" y="88" />
+        <di:waypoint xsi:type="dc:Point" x="224" y="88" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="188" y="398.5" width="90" height="13" />
+          <dc:Bounds x="141" y="67" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_09k2mon_di" bpmnElement="Task_Select_Prioritize">
-        <dc:Bounds x="271" y="380" width="100" height="80" />
+        <dc:Bounds x="224" y="48" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="StartEvent_1jeeoaj_di" bpmnElement="StartEvent_1ibuabq">
-        <dc:Bounds x="159" y="402" width="36" height="36" />
+        <dc:Bounds x="112" y="70" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="134" y="447" width="86" height="25" />
+          <dc:Bounds x="87" y="115" width="86" height="25" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_0tr6to5_di" bpmnElement="EndEvent_0tr6to5">
-        <dc:Bounds x="538" y="402" width="36" height="36" />
+        <dc:Bounds x="491" y="70" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="529" y="441" width="56" height="25" />
+          <dc:Bounds x="482" y="109" width="56" height="25" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0k97bpu_di" bpmnElement="SequenceFlow_0k97bpu">
-        <di:waypoint xsi:type="dc:Point" x="371" y="420" />
-        <di:waypoint xsi:type="dc:Point" x="404" y="420" />
+        <di:waypoint xsi:type="dc:Point" x="324" y="88" />
+        <di:waypoint xsi:type="dc:Point" x="357" y="88" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="342.5" y="398.5" width="90" height="13" />
+          <dc:Bounds x="296" y="67" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="DataStoreReference_0p5n73y_di" bpmnElement="DataStoreReference_0p5n73y">
-        <dc:Bounds x="364" y="507" width="50" height="50" />
+        <dc:Bounds x="382" y="176" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="367" y="560" width="44" height="13" />
+          <dc:Bounds x="385" y="229" width="44" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_0ufxa4c_di" bpmnElement="Task_07wunz7">
-        <dc:Bounds x="404" y="380" width="100" height="80" />
+        <dc:Bounds x="357" y="48" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_074cjie_di" bpmnElement="DataOutputAssociation_074cjie">
-        <di:waypoint xsi:type="dc:Point" x="414" y="460" />
-        <di:waypoint xsi:type="dc:Point" x="414" y="511" />
+        <di:waypoint xsi:type="dc:Point" x="407" y="130" />
+        <di:waypoint xsi:type="dc:Point" x="407" y="174" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0me7yne_di" bpmnElement="SequenceFlow_0me7yne">
-        <di:waypoint xsi:type="dc:Point" x="504" y="420" />
-        <di:waypoint xsi:type="dc:Point" x="538" y="420" />
+        <di:waypoint xsi:type="dc:Point" x="457" y="88" />
+        <di:waypoint xsi:type="dc:Point" x="491" y="88" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="476" y="398.5" width="90" height="13" />
+          <dc:Bounds x="429" y="67" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>

@@ -4,6 +4,16 @@
     <bpmn:participant id="Participant_1mdlq86" name="Company" processRef="ParticipantApplication1" />
   </bpmn:collaboration>
   <bpmn:process id="ParticipantApplication1" name="ParticipantApplication1" isExecutable="true">
+    <bpmn:laneSet>
+      <bpmn:lane id="Lane_0eth9w0" name="HR">
+        <bpmn:flowNodeRef>Task_0gq1rtg</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_1r2vb81</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ServiceTask_1ahsrlt</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_0hjze2k</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_1x8acvs</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_1gpsnqy" sourceRef="ServiceTask_1ahsrlt" targetRef="EndEvent_0hjze2k" />
     <bpmn:sequenceFlow id="SequenceFlow_1yuggx0" sourceRef="Task_1x8acvs" targetRef="Task_0gq1rtg" />
     <bpmn:sequenceFlow id="SequenceFlow_1tlee6h" sourceRef="StartEvent_1" targetRef="Task_1x8acvs" />
@@ -69,7 +79,7 @@ JSON.stringify(out);]]></camunda:script>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_19rsnpz">
       <bpmndi:BPMNShape id="Participant_1mdlq86_di" bpmnElement="Participant_1mdlq86">
-        <dc:Bounds x="33" y="34" width="839" height="245" />
+        <dc:Bounds x="33" y="17" width="840" height="262" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_1u6hjwu_di" bpmnElement="Task_1r2vb81">
         <dc:Bounds x="457" y="130" width="100" height="80" />
@@ -145,6 +155,9 @@ JSON.stringify(out);]]></camunda:script>
         <di:waypoint xsi:type="dc:Point" x="217" y="96" />
         <di:waypoint xsi:type="dc:Point" x="217" y="124" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Lane_0eth9w0_di" bpmnElement="Lane_0eth9w0">
+        <dc:Bounds x="63" y="17" width="810" height="262" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

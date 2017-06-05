@@ -133,8 +133,7 @@
               </camunda:map>
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">
-              <camunda:script scriptFormat="JavaScript"><![CDATA[var applicabilityResult= execution.getVariable("applicabilityResult");
-var applicantMailAddress= execution.getVariable("applicantMailAddress");
+              <camunda:script scriptFormat="JavaScript"><![CDATA[var applicantMailAddress= execution.getVariable("applicantMailAddress");
 var mailSubjectAfterDMN= execution.getVariable("mailSubjectAfterDMN");
 var mailBodyAfterDMN= execution.getVariable("mailBodyAfterDMN");
 var out = {"mail_receiver":applicantMailAddress,"mail_subject":mailSubjectAfterDMN,"mail_content":mailBodyAfterDMN};
@@ -193,8 +192,7 @@ JSON.stringify(out);]]></camunda:script>
               </camunda:map>
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">
-              <camunda:script scriptFormat="JavaScript"><![CDATA[var applicabilityResult= execution.getVariable("applicabilityResult");
-var applicantMailAddress= execution.getVariable("applicantMailAddress");
+              <camunda:script scriptFormat="JavaScript"><![CDATA[var applicantMailAddress= execution.getVariable("applicantMailAddress");
 var mailSubjectAfterDMN= execution.getVariable("mailSubjectAfterDMN");
 var mailBodyAfterDMN= execution.getVariable("mailBodyAfterDMN");
 var out = {"mail_receiver":applicantMailAddress,"mail_subject":mailSubjectAfterDMN,"mail_content":mailBodyAfterDMN};
@@ -359,8 +357,9 @@ JSON.stringify(out);]]></camunda:script>
         <di:waypoint xsi:type="dc:Point" x="342" y="206" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_0z8v1qr_di" bpmnElement="DataOutputAssociation_0z8v1qr">
-        <di:waypoint xsi:type="dc:Point" x="816" y="153" />
-        <di:waypoint xsi:type="dc:Point" x="769" y="41" />
+        <di:waypoint xsi:type="dc:Point" x="815" y="154" />
+        <di:waypoint xsi:type="dc:Point" x="804" y="154" />
+        <di:waypoint xsi:type="dc:Point" x="804" y="41" />
         <di:waypoint xsi:type="dc:Point" x="335" y="41" />
         <di:waypoint xsi:type="dc:Point" x="335" y="156" />
       </bpmndi:BPMNEdge>

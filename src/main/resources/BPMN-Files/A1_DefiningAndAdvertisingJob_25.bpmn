@@ -71,7 +71,7 @@
     </bpmn:callActivity>
     <bpmn:sequenceFlow id="SequenceFlow_1likd03" sourceRef="Task_Initialize_Request" targetRef="CallActivity_PrepareRequest" />
     <bpmn:sequenceFlow id="SequenceFlow_03rswzf" sourceRef="CallActivity_PrepareRequest" targetRef="Task_03jr5eq" />
-    <bpmn:dataStoreReference id="DataStoreReference_0nkuol6" name="Database Management System" />
+    <bpmn:dataStoreReference id="DataStoreReference_0nkuol6" name="Cloud IO" />
     <bpmn:sequenceFlow id="SequenceFlow_14x39jp" sourceRef="Task_Check_Budget" targetRef="EndEvent_JobPublished" />
     <bpmn:endEvent id="EndEvent_JobPublished" name="Decided on budget">
       <bpmn:incoming>SequenceFlow_14x39jp</bpmn:incoming>
@@ -143,7 +143,7 @@
       <bpmndi:BPMNShape id="DataStoreReference_0nkuol6_di" bpmnElement="DataStoreReference_0nkuol6">
         <dc:Bounds x="-107" y="151" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-114" y="204" width="65" height="37" />
+          <dc:Bounds x="-103" y="204" width="44" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_11qkxi5_di" bpmnElement="DataOutputAssociation_11qkxi5">

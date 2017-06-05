@@ -20,16 +20,16 @@
           <cmmn:condition id="Expression_1wryy1x">${true}</cmmn:condition>
         </cmmn:ifPart>
       </cmmn:sentry>
-      <cmmn:planningTable id="PlanningTable_0xjh4tp">
-        <cmmn:discretionaryItem id="PlanItem_1xzknb5" definitionRef="Task_1gv85cr" />
-        <cmmn:discretionaryItem id="PlanItem_01r87ur" definitionRef="Task_0go541w" />
-      </cmmn:planningTable>
       <cmmn:humanTask id="HumanTask_0fym266" name="Prepare Request Case" camunda:assignee="anna">
         <cmmn:defaultControl id="PlanItemControl_19ricut">
           <cmmn:manualActivationRule id="ManualActivationRule_00ngx4i">
             <cmmn:condition id="Expression_1tgjbb0">${false}</cmmn:condition>
           </cmmn:manualActivationRule>
         </cmmn:defaultControl>
+        <cmmn:planningTable id="PlanningTable_0u1hcik">
+          <cmmn:discretionaryItem id="PlanItem_1xzknb5" definitionRef="Task_1gv85cr" />
+          <cmmn:discretionaryItem id="PlanItem_01r87ur" definitionRef="Task_0go541w" />
+        </cmmn:planningTable>
       </cmmn:humanTask>
       <cmmn:milestone id="Milestone_1hj0y1j" name="Request Prepared" />
       <cmmn:task id="Task_1gv85cr" name="Find suitable appointment for interview" />
@@ -63,7 +63,7 @@
         <di:waypoint xsi:type="dc:Point" x="314" y="325" />
         <di:waypoint xsi:type="dc:Point" x="361" y="325" />
         <cmmndi:CMMNLabel>
-          <dc:Bounds x="464" y="313.5" width="51" height="13" />
+          <dc:Bounds x="465" y="284" width="51" height="13" />
         </cmmndi:CMMNLabel>
       </cmmndi:CMMNEdge>
       <cmmndi:CMMNShape id="DiscretionaryItem_1ppto9a_di" cmmnElementRef="PlanItem_1xzknb5">
@@ -74,6 +74,19 @@
         <dc:Bounds x="371" y="140" width="100" height="80" />
         <cmmndi:CMMNLabel />
       </cmmndi:CMMNShape>
+      <cmmndi:CMMNEdge id="CMMNEdge_0pawm61" sourceCMMNElementRef="PlanItem_1vnj4y4" targetCMMNElementRef="PlanItem_1xzknb5">
+        <di:waypoint xsi:type="dc:Point" x="264" y="285" />
+        <di:waypoint xsi:type="dc:Point" x="264" y="220" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNEdge>
+      <cmmndi:CMMNEdge id="CMMNEdge_1a65t8s" sourceCMMNElementRef="PlanItem_1vnj4y4" targetCMMNElementRef="PlanItem_01r87ur">
+        <di:waypoint xsi:type="dc:Point" x="292" y="283" />
+        <di:waypoint xsi:type="dc:Point" x="292" y="255" />
+        <di:waypoint xsi:type="dc:Point" x="343" y="255" />
+        <di:waypoint xsi:type="dc:Point" x="343" y="180" />
+        <di:waypoint xsi:type="dc:Point" x="371" y="180" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNEdge>
     </cmmndi:CMMNDiagram>
   </cmmndi:CMMNDI>
 </cmmn:definitions>
