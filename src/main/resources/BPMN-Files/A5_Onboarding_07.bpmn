@@ -7,9 +7,10 @@
     <bpmn:laneSet>
       <bpmn:lane id="Lane_0n4k3nj" name="HR">
         <bpmn:flowNodeRef>Task_OnboardingHR</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_UpdateEmployeeInfo</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateThrowEvent_05ekt9u</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_UpdateEmployeeInfo</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_1c7n5u4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IntermediateThrowEvent_1nbucif</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0ghf3tc" name="Line">
         <bpmn:flowNodeRef>Task_Order</bpmn:flowNodeRef>
@@ -54,29 +55,6 @@
     <bpmn:endEvent id="EndEvent_049yy2o" name="Onboarding finished">
       <bpmn:incoming>SequenceFlow_03sxjv5</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:startEvent id="StartEvent_1" name="2 weeks before job start">
-      <bpmn:outgoing>SequenceFlow_06y1rh0</bpmn:outgoing>
-      <bpmn:timerEventDefinition>
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1S</bpmn:timeDuration>
-      </bpmn:timerEventDefinition>
-    </bpmn:startEvent>
-    <bpmn:userTask id="Task_UpdateEmployeeInfo" name="Review and Update employee information" camunda:assignee="andrea">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="FormField_PreparationComment" label="Preparation completed" type="boolean" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_06y1rh0</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_14zbqub</bpmn:outgoing>
-      <bpmn:property id="Property_0vfstcx" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_0nk6xw4">
-        <bpmn:sourceRef>DataStoreReference_1adr6f0</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0vfstcx</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_0udpwyy">
-        <bpmn:targetRef>DataStoreReference_1adr6f0</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
-    </bpmn:userTask>
     <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_05ekt9u" name="First office day">
       <bpmn:incoming>SequenceFlow_03626o3</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1tcrbp3</bpmn:outgoing>
@@ -89,26 +67,47 @@
     <bpmn:sequenceFlow id="SequenceFlow_0eu4zwc" sourceRef="Task_OnboardingHR" targetRef="Task_OnboardingTeam" />
     <bpmn:sequenceFlow id="SequenceFlow_03sxjv5" sourceRef="Task_OnboardingTeam" targetRef="EndEvent_049yy2o" />
     <bpmn:sequenceFlow id="SequenceFlow_1tcrbp3" sourceRef="IntermediateThrowEvent_05ekt9u" targetRef="Task_OnboardingHR" />
-    <bpmn:sequenceFlow id="SequenceFlow_06y1rh0" sourceRef="StartEvent_1" targetRef="Task_UpdateEmployeeInfo" />
+    <bpmn:userTask id="Task_UpdateEmployeeInfo" name="Review and Update employee information" camunda:assignee="andrea">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="FormField_PreparationComment" label="Preparation completed" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0pau4o1</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_14zbqub</bpmn:outgoing>
+      <bpmn:property id="Property_0vfstcx" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0nk6xw4">
+        <bpmn:sourceRef>DataStoreReference_1adr6f0</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0vfstcx</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0udpwyy">
+        <bpmn:targetRef>DataStoreReference_1adr6f0</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:userTask>
+    <bpmn:startEvent id="StartEvent_1c7n5u4" name="Candidate hired">
+      <bpmn:outgoing>SequenceFlow_1d7onii</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_1nbucif" name="2 weeks before job start">
+      <bpmn:incoming>SequenceFlow_1d7onii</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0pau4o1</bpmn:outgoing>
+      <bpmn:timerEventDefinition>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0pau4o1" sourceRef="IntermediateThrowEvent_1nbucif" targetRef="Task_UpdateEmployeeInfo" />
+    <bpmn:sequenceFlow id="SequenceFlow_1d7onii" sourceRef="StartEvent_1c7n5u4" targetRef="IntermediateThrowEvent_1nbucif" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="hrprocess05">
       <bpmndi:BPMNShape id="Participant_13qy4ep_di" bpmnElement="ParticipantOnboarding">
-        <dc:Bounds x="15" y="29" width="759" height="336" />
+        <dc:Bounds x="-1" y="26" width="775" height="339" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0n4k3nj_di" bpmnElement="Lane_0n4k3nj">
-        <dc:Bounds x="45" y="29" width="729" height="157" />
+        <dc:Bounds x="29" y="26" width="745" height="160" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0ghf3tc_di" bpmnElement="Lane_0ghf3tc">
-        <dc:Bounds x="45" y="186" width="729" height="179" />
+        <dc:Bounds x="29" y="186" width="745" height="179" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_06y1rh0_di" bpmnElement="SequenceFlow_06y1rh0">
-        <di:waypoint xsi:type="dc:Point" x="159" y="107" />
-        <di:waypoint xsi:type="dc:Point" x="227" y="107" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="148" y="86" width="90" height="13" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_08rw57j_di" bpmnElement="Task_Order">
         <dc:Bounds x="392" y="222" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -175,12 +174,6 @@
           <dc:Bounds x="671" y="283" width="58" height="25" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="StartEvent_0ch954n_di" bpmnElement="StartEvent_1">
-        <dc:Bounds x="123" y="89" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="103" y="133" width="75" height="25" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="IntermediateCatchEvent_1oh90jn_di" bpmnElement="IntermediateThrowEvent_05ekt9u">
         <dc:Bounds x="424" y="89" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -194,6 +187,32 @@
         <di:waypoint xsi:type="dc:Point" x="517" y="107" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="459" y="101" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="StartEvent_1c7n5u4_di" bpmnElement="StartEvent_1c7n5u4">
+        <dc:Bounds x="66" y="89" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="46" y="134" width="78" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_1eziyf1_di" bpmnElement="IntermediateThrowEvent_1nbucif">
+        <dc:Bounds x="149" y="89" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="130" y="128" width="75" height="25" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0pau4o1_di" bpmnElement="SequenceFlow_0pau4o1">
+        <di:waypoint xsi:type="dc:Point" x="185" y="107" />
+        <di:waypoint xsi:type="dc:Point" x="227" y="107" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="206" y="85" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1d7onii_di" bpmnElement="SequenceFlow_1d7onii">
+        <di:waypoint xsi:type="dc:Point" x="102" y="107" />
+        <di:waypoint xsi:type="dc:Point" x="149" y="107" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="125.5" y="85" width="0" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
