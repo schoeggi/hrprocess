@@ -24,7 +24,11 @@
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="tweet" label="Tweet" type="string" defaultValue="${tweetDraft}" />
-          <camunda:formField id="approved" label="Approve" type="boolean" />
+          <camunda:formField id="approved" label="Approve" type="boolean">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1xurwk0</bpmn:incoming>
