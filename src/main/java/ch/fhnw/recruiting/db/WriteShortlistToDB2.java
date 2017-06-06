@@ -1,7 +1,5 @@
 package ch.fhnw.recruiting.db;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Logger;
 import javax.inject.Named;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
@@ -9,6 +7,7 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.beans.factory.annotation.Autowired;
+import static java.lang.Math.toIntExact;
 
 
 /**
@@ -28,10 +27,17 @@ public class WriteShortlistToDB2 implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
  
         LOGGER.info("Start: WriteShortlistToDB2 called!!!");
-        int FormField_1Prio = (int) execution.getVariable("FormField_1Prio");
-        int FormField_2Prio = (int) execution.getVariable("FormField_2Prio");
-        int FormField_3Prio = (int) execution.getVariable("FormField_3Prio");
-        
+        long FormField_1PrioL = (long) execution.getVariable("FormField_1Prio");
+        long FormField_2PrioL = (long) execution.getVariable("FormField_2Prio");
+        long FormField_3PrioL = (long) execution.getVariable("FormField_3Prio");
+        int FormField_1Prio = toIntExact(FormField_1PrioL);
+        int FormField_2Prio = toIntExact(FormField_2PrioL);
+        int FormField_3Prio = toIntExact(FormField_3PrioL);
+        LOGGER.info("Successfully casted longs to ints: "+FormField_1Prio);
+        LOGGER.info("Successfully casted longs to ints: "+FormField_2Prio);
+        LOGGER.info("Successfully casted longs to ints: "+FormField_3Prio);
+
+
         int candidate_maxid = 0;
         int candidate_minid = 0;
         String sql_maxid = "SELECT MAX(id) as id FROM applicant";

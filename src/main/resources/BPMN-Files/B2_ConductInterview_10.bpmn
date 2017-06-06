@@ -35,7 +35,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_0pxns2c" sourceRef="Task_Interview1" targetRef="Task_write1RecommendationToDB1" />
     <bpmn:dataStoreReference id="DataStoreReference_13yxsiw" name="Cloud IO" />
     <bpmn:sequenceFlow id="SequenceFlow_1kbtvv4" sourceRef="Task_05lmgir" targetRef="CallActivity_PrepareInterview" />
-    <bpmn:callActivity id="CallActivity_PrepareInterview" name="Prepare Interviews (CMMN)" camunda:caseRef="Case_PrepareInterview">
+    <bpmn:callActivity id="CallActivity_PrepareInterview" name="Prepare skype Interview (CMMN)" camunda:caseRef="Case_PrepareInterview_Skype">
       <bpmn:extensionElements>
         <camunda:in variables="all" />
         <camunda:out variables="all" />
@@ -154,7 +154,7 @@ JSON.stringify(out);]]></camunda:script>
       <bpmn:outgoing>SequenceFlow_0ntlaek</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_0m0wsve</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:callActivity id="CallActivity_PrepareInterview2" name="Prepare Interviews (CMMN)" camunda:caseRef="Case_PrepareInterview">
+    <bpmn:callActivity id="CallActivity_PrepareInterview2" name="Prepare physical Interview (CMMN)" camunda:caseRef="Case_PrepareInterview_Physical">
       <bpmn:incoming>SequenceFlow_0m0wsve</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1tdl45c</bpmn:outgoing>
     </bpmn:callActivity>

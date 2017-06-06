@@ -25,14 +25,14 @@
     <bpmn:userTask id="Task_Select_Prioritize" name="Prioritize Candidates" camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="FormField_1Prio" label="1st Prio Canidate ID:" type="long">
+          <camunda:formField id="FormField_1Prio" label="1st Prio Canidate ID" type="long">
             <camunda:validation>
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="FormField_2Prio" label="2nd Prio Canidate ID:" type="long" />
-          <camunda:formField id="FormField_3Prio" label="3rd Prio Canidate ID:" type="long" />
-          <camunda:formField id="FormField_CandidateShortlist" label="Further Information about candidates:" type="string" defaultValue="https://sheltered-citadel-37599.herokuapp.com/applicants_shortlist.php?jobrefid=${jobrefid}">
+          <camunda:formField id="FormField_2Prio" label="2nd Prio Canidate ID" type="long" />
+          <camunda:formField id="FormField_3Prio" label="3rd Prio Canidate ID" type="long" />
+          <camunda:formField id="FormField_CandidateShortlist" label="Further information about candidates" type="string" defaultValue="https://sheltered-citadel-37599.herokuapp.com/applicants_shortlist.php?jobrefid=${jobrefid}">
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>

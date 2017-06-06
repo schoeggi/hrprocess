@@ -55,7 +55,7 @@ public class UpdateCandidateStatusPrepMail implements JavaDelegate {
         	mailSubjectAfterDMN = "Your Application at Fiusable Ltd";
         	mailBodyAfterDMN = "Hi " +firstname +"\n\n" +"Thanks for your application at Fiusable Ltd. Unfortunately you're application dropped out in our first round (DMN) for position:" +"\n" 
 								+maturity +" " +jobTitle +"(job reference: " +jobrefid +")" +"\n\n"
-        						+"All the best in your futher career," +"\n\n" 
+        						+"All the best in your further career," +"\n\n" 
         						+"Best wishes, your Fiusable Ltd Team";
         }
         execution.setVariable("mailSubjectAfterDMN", mailSubjectAfterDMN);
