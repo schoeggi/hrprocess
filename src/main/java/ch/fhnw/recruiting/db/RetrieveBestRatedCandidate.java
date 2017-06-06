@@ -30,14 +30,14 @@ public class RetrieveBestRatedCandidate implements JavaDelegate {
         LOGGER.info("Start: RetrieveBestRatedCandidate called!!!");
         
         int best_candidate_id = 0;
+        int jobrefid = (int) execution.getVariable("jobrefid");
         String best_candidate_firstname = "";
         String best_candidate_lastname = "";
         String best_candidate_email = "";
-        String sql_best_candidate = "SELECT hiringprio, ID, firstname, lastname, email FROM applicant where hiringprio <=10 and hiringprio >=1 ORDER BY hiringprio ASC LIMIT 1";
+        String sql_best_candidate = "SELECT hiringprio, ID, firstname, lastname, email FROM applicant where hiringprio <=10 and hiringprio >=1 AND jobrefid="+jobrefid +" ORDER BY hiringprio ASC LIMIT 1";
         SqlRowSet rowSet_sql_best_candidate = jdbcTemplate.queryForRowSet(sql_best_candidate);   
         String mailSubjectAfterDMN = "";
         String mailBodyAfterDMN = "";
-        int jobrefid = (int) execution.getVariable("jobrefid");
        	String jobTitle = (String) execution.getVariable("jobTitle");
     	String maturity = (String) execution.getVariable("maturity");
         

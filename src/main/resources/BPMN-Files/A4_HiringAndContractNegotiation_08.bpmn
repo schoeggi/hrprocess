@@ -31,6 +31,7 @@
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
+          <camunda:formField id="FormField_offer_accepted" label="Offer accepted" type="boolean" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0aepc9m</bpmn:incoming>

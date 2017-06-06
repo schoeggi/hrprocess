@@ -2,7 +2,7 @@
 <cmmn:definitions xmlns:dc="http://www.omg.org/spec/CMMN/20151109/DC" xmlns:di="http://www.omg.org/spec/CMMN/20151109/DI" xmlns:cmmndi="http://www.omg.org/spec/CMMN/20151109/CMMNDI" xmlns:cmmn="http://www.omg.org/spec/CMMN/20151109/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/cmmn" id="Test" targetNamespace="http://bpmn.io/schema/cmmn" exporter="Camunda Modeler" exporterVersion="1.7.1">
   <cmmn:case id="Case_PrepareInterview_Physical">
     <cmmn:casePlanModel id="Case_PrepareTelephoneInterview_1" name="Prepare Physical Interview">
-      <cmmn:planItem id="PlanItem_1vnj4y4" name="Prepare phone Interview" definitionRef="HumanTask_0fym266">
+      <cmmn:planItem id="PlanItem_1vnj4y4" name="Prepare physical Interview" definitionRef="HumanTask_0fym266">
         <cmmn:entryCriterion id="EntryCriterion_02nbpzo" sentryRef="Sentry_1mph8h9" />
       </cmmn:planItem>
       <cmmn:planItem id="PlanItem_0vt0mbl" name="Interview prepared" definitionRef="Milestone_1hj0y1j">
