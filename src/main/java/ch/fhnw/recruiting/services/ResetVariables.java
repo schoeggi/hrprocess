@@ -21,8 +21,12 @@ public class ResetVariables implements JavaDelegate {
    
     int jobrefid;
 	String jobTitle;
+	String FormField_jobTitle;
 	String maturity;
+	String FormField_maturity;
 	int maxsalary;
+	int FormField_maxSalary;
+	String FormField_ReasonIfRejected = "";
     
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -34,10 +38,15 @@ public class ResetVariables implements JavaDelegate {
  
     	
     	
-        execution.setVariable("jobrefid", jobrefid);      
+        //execution.setVariable("jobrefid", jobrefid);      
         execution.setVariable("jobTitle", jobTitle);
-        execution.setVariable("maturity", maturity);
+        execution.setVariable("FormField_jobTitle", FormField_jobTitle);
+        execution.setVariable("maturity", maturity);   
+        execution.setVariable("FormField_maturity", FormField_maturity);
         execution.setVariable("maxsalary", maxsalary);
+        execution.setVariable("FormField_maxSalary", FormField_maxSalary);
+        execution.setVariable("FormField_ReasonIfRejected", FormField_ReasonIfRejected);
+
 
         LOGGER.info("End: ResetVariables");
     }
