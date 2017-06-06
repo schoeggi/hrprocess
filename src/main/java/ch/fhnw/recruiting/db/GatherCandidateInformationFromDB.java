@@ -27,9 +27,12 @@ public class GatherCandidateInformationFromDB implements JavaDelegate {
     	int candidate_id = 0;
     	boolean travel = false;
     	int jobexperience = 0;
+    	int jobrefid = 0;
     	String applicantMailAddress = "";
     	String firstname = "";
-    	String lastname = "";
+    	String lastname = ""; 
+    	String jobTitle = "";
+    	String maturity = "";
 
         LOGGER.info("Start: GatherCandidateInformationFromDB called!!!");
 
@@ -48,56 +51,40 @@ public class GatherCandidateInformationFromDB implements JavaDelegate {
         execution.setVariable("candidate_id", candidate_id);
 
           
-        String sql_travel = "SELECT TRAVEL FROM APPLICANT WHERE ID=" +candidate_id;
-        SqlRowSet rowSet_travel = jdbcTemplate.queryForRowSet(sql_travel);  
-        while(rowSet_travel.next())
+        String sql_candidate_details = "SELECT * FROM APPLICANT WHERE ID=" +candidate_id;
+        SqlRowSet rowSet_candidate_details = jdbcTemplate.queryForRowSet(sql_candidate_details);  
+        while(rowSet_candidate_details.next())
         {
-        travel = rowSet_travel.getBoolean("travel");  
-          LOGGER.info("travel: " + travel);
+	        travel = rowSet_candidate_details.getBoolean("travel");  
+	        firstname = rowSet_candidate_details.getString("firstname");
+	        lastname = rowSet_candidate_details.getString("lastname");  
+	        jobexperience = rowSet_candidate_details.getInt("jobexperience");
+	        applicantMailAddress = rowSet_candidate_details.getString("email");
+	        jobrefid = rowSet_candidate_details.getInt("jobrefid");
+	        jobTitle = rowSet_candidate_details.getString("jobtitle");
+	        maturity = rowSet_candidate_details.getString("maturity");
+	        
+	        LOGGER.info("travel: " + travel);
         }    
         execution.setVariable("travel", travel);
-        
-        String sql_firstname = "SELECT FIRSTNAME FROM APPLICANT WHERE ID=" +candidate_id;
-        SqlRowSet rowSet_firstname = jdbcTemplate.queryForRowSet(sql_firstname);  
-        while(rowSet_firstname.next())
-        {
-        firstname = rowSet_firstname.getString("firstname");  
-          LOGGER.info("firstname: " + firstname);
-        }    
         execution.setVariable("firstname", firstname);
-        
-        String sql_lastname = "SELECT LASTNAME FROM APPLICANT WHERE ID=" +candidate_id;
-        SqlRowSet rowSet_lastname = jdbcTemplate.queryForRowSet(sql_lastname);  
-        while(rowSet_lastname.next())
-        {
-        lastname = rowSet_lastname.getString("lastname");  
-          LOGGER.info("lastname: " + lastname);
-        }    
         execution.setVariable("lastname", lastname);
-        
-        
-        String sql_jobexperience = "SELECT JOBEXPERIENCE FROM APPLICANT WHERE ID=" +candidate_id;
-        SqlRowSet rowSet_jobexperience = jdbcTemplate.queryForRowSet(sql_jobexperience);  
-        while(rowSet_jobexperience.next())
-        {
-        jobexperience = rowSet_jobexperience.getInt("jobexperience");
-          LOGGER.info("jobexperience: " + jobexperience);
-        }    
         execution.setVariable("jobexperience", jobexperience);
-        
-        String sql_mail = "SELECT EMAIL FROM APPLICANT WHERE ID=" +candidate_id;
-        SqlRowSet rowSet_mail = jdbcTemplate.queryForRowSet(sql_mail);  
-        while(rowSet_mail.next())
-        {
-          applicantMailAddress = rowSet_mail.getString("email");
-          LOGGER.info("applicantMailAddress: " + applicantMailAddress);
-        }    
         execution.setVariable("applicantMailAddress", applicantMailAddress);
-        
-      
-        
-        
-        LOGGER.info("End: GatherCandidateInformationFromDB called!!!");
+        execution.setVariable("jobTitle", jobTitle);
+        execution.setVariable("maturity", maturity);
+        execution.setVariable("jobrefid", jobrefid);
+
+
+  
+        LOGGER.info("travel:" + travel);
+        LOGGER.info("firstname:" + firstname);
+        LOGGER.info("lastname:" + lastname);
+        LOGGER.info("jobexperience:" + jobexperience);
+        LOGGER.info("applicantMailAddress:" + applicantMailAddress);
+        LOGGER.info("jobTitle:" + jobTitle);
+        LOGGER.info("maturity:" + maturity);
+        LOGGER.info("jobrefid:" + jobrefid);
 
         /*LOGGER.info("Start: Insert applicant to DB");*/
          
