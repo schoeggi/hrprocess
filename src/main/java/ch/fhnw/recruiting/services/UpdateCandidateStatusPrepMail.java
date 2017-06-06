@@ -44,8 +44,8 @@ public class UpdateCandidateStatusPrepMail implements JavaDelegate {
         	mailSubjectAfterDMN = "Your Application at Fiusable Ltd";
         	mailBodyAfterDMN = "Hi " +firstname +"\n\n" 
         						+"Thank you for your application at Fiusable Ltd. Congratulation, you passed the first round (DMN) for the following position:" +"\n" 
-        						+maturity +" " +jobTitle +"(job reference: " +jobrefid +")" +"\n"
-        						+"Our HR department will get in contact with you very soon to find a suitable appointment for your 1. interview." +"\n\n" 
+        						+maturity +" " +jobTitle +"(job reference: " +jobrefid +")" +"\n\n"
+        						+"Our HR department will get in contact with you very soon to find a suitable appointment for your 1. interview." +"\n" 
         						+"Good luck for the next application steps!" +"\n\n" 
         						+"Best wishes, your Fiusable Ltd Team";	
         }
@@ -53,7 +53,10 @@ public class UpdateCandidateStatusPrepMail implements JavaDelegate {
         	LOGGER.info("entered else");
         	passed1dmn = false;
         	mailSubjectAfterDMN = "Your Application at Fiusable Ltd";
-        	mailBodyAfterDMN = "Hi " +firstname +"\n\n" +"Thanks for your application at Fiusable Ltd. Unfortunately you're application dropped out in our first round (DMN)." +"\n" +"All the best in your futher career," +"\n\n" +"best wishes, your Fiusable Ltd Team";
+        	mailBodyAfterDMN = "Hi " +firstname +"\n\n" +"Thanks for your application at Fiusable Ltd. Unfortunately you're application dropped out in our first round (DMN) for position:" +"\n" 
+								+maturity +" " +jobTitle +"(job reference: " +jobrefid +")" +"\n\n"
+        						+"All the best in your futher career," +"\n\n" 
+        						+"Best wishes, your Fiusable Ltd Team";
         }
         execution.setVariable("mailSubjectAfterDMN", mailSubjectAfterDMN);
         execution.setVariable("mailBodyAfterDMN", mailBodyAfterDMN);

@@ -51,15 +51,16 @@ public class Write2RecommendationAndMail implements JavaDelegate {
         	mailSubjectAfterDMN = "Your Application at Fiusable Ltd";
         	mailBodyAfterDMN = "Hi " +firstname +"\n\n" 
         						+"Congratulation, you passed the second interview for the following position:" +"\n"
-        						+maturity +" " +jobTitle +"(job reference: " +jobrefid +")" +"\n"
-        						+"Our HR department will get in contact with you very soon." +"\n\n" 
+        						+maturity +" " +jobTitle +"(job reference: " +jobrefid +")" +"\n\n"
+        						+"Our HR department will get in contact with you very soon." +"\n" 
         						+"Good luck for the next application steps!" +"\n\n" 
         						+"Best wishes, your Fiusable Ltd Team";
         }
         else{
         	mailSubjectAfterDMN = "Your Application at Fiusable Ltd";
         	mailBodyAfterDMN = "Hi " +firstname +"\n\n" 
-        						+"Unfortunately we have more suitable candidates, so your application won't be considered for the open position." +"\n"
+        						+"Unfortunately we have more suitable candidates, so your application won't be considered for the open position:" +"\n"
+        						+maturity +" " +jobTitle +"(job reference: " +jobrefid +")" +"\n\n"
         						+"All the best in your futher career," +"\n\n" 
         						+"best wishes, your Fiusable Ltd Team";
         }

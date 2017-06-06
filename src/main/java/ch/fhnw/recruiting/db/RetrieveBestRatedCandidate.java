@@ -58,7 +58,7 @@ public class RetrieveBestRatedCandidate implements JavaDelegate {
         mailSubjectAfterDMN = "Your Application at Fiusable Ltd";
         mailBodyAfterDMN = "Hi " +best_candidate_firstname +"\n\n" 
         					+"Congratulation, you've got the job!" +"\n"
-        					+maturity +" " +jobTitle +"(job reference: " +jobrefid +")" +"\n"
+        					+maturity +" " +jobTitle +"(job reference: " +jobrefid +")" +"\n\n"
         					+"Our HR department will get in contact with you very soon to clarify all the details!" +"\n\n" 
         					+"Best wishes and see you soon, your Fiusable Ltd Team";
         
