@@ -15,6 +15,7 @@
         <bpmn:flowNodeRef>Task_Check_Budget</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_122moy2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_JobPublished</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_0k4ubmp</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_1fblppn" sourceRef="Task_03jr5eq" targetRef="Task_Check_Budget" />
@@ -65,12 +66,12 @@
     </bpmn:userTask>
     <bpmn:callActivity id="CallActivity_PrepareRequest" name="Prepare Request (CMMN)" camunda:caseRef="Case_PrepareRequest">
       <bpmn:incoming>SequenceFlow_1likd03</bpmn:incoming>
-      <bpmn:incoming>SequenceFlow_0kbau7w</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_19wfuyj</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_03rswzf</bpmn:outgoing>
     </bpmn:callActivity>
     <bpmn:sequenceFlow id="SequenceFlow_1likd03" sourceRef="Task_Initialize_Request" targetRef="CallActivity_PrepareRequest" />
     <bpmn:sequenceFlow id="SequenceFlow_03rswzf" sourceRef="CallActivity_PrepareRequest" targetRef="Task_03jr5eq" />
-    <bpmn:sequenceFlow id="SequenceFlow_0kbau7w" name="no" sourceRef="ExclusiveGateway_122moy2" targetRef="CallActivity_PrepareRequest">
+    <bpmn:sequenceFlow id="SequenceFlow_0kbau7w" name="no" sourceRef="ExclusiveGateway_122moy2" targetRef="Task_0k4ubmp">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{!FormField_BudgetApprovedX}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0dgrfvm" sourceRef="Task_Check_Budget" targetRef="ExclusiveGateway_122moy2" />
@@ -85,6 +86,11 @@
     <bpmn:endEvent id="EndEvent_JobPublished" name="Decided on job advertising">
       <bpmn:incoming>SequenceFlow_1dh67v8</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:serviceTask id="Task_0k4ubmp" name="Cleanup Request parameters" camunda:delegateExpression="#{resetVariables}">
+      <bpmn:incoming>SequenceFlow_0kbau7w</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_19wfuyj</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_19wfuyj" sourceRef="Task_0k4ubmp" targetRef="CallActivity_PrepareRequest" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="hrprocess01">
@@ -159,7 +165,7 @@
         <di:waypoint xsi:type="dc:Point" x="-106" y="-16" />
         <di:waypoint xsi:type="dc:Point" x="-106" y="-88" />
         <di:waypoint xsi:type="dc:Point" x="-381" y="-88" />
-        <di:waypoint xsi:type="dc:Point" x="-381" y="136" />
+        <di:waypoint xsi:type="dc:Point" x="-381" y="-31" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="-126" y="-48" width="13" height="13" />
         </bpmndi:BPMNLabel>
@@ -176,6 +182,16 @@
         <di:waypoint xsi:type="dc:Point" x="-31" y="9" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="-65" y="-12" width="18" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_1sue86l_di" bpmnElement="Task_0k4ubmp">
+        <dc:Bounds x="-426" y="-31" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_19wfuyj_di" bpmnElement="SequenceFlow_19wfuyj">
+        <di:waypoint xsi:type="dc:Point" x="-376" y="49" />
+        <di:waypoint xsi:type="dc:Point" x="-376" y="136" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-361" y="86" width="0" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
