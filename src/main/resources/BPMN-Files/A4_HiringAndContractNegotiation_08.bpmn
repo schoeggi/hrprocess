@@ -21,16 +21,8 @@
     <bpmn:userTask id="Task_0kp9iag" name="Negotiate contract details with candidate" camunda:assignee="andrea">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="FormField_best_candidate" label="Best Candidate" type="string" defaultValue="${best_candidate_firstname} ${best_candidate_lastname}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="FormField_further_information" label="Further information about candidate" type="string" defaultValue="https://sheltered-citadel-37599.herokuapp.com/list_applicant.php?id=${best_candidate_id}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
+          <camunda:formField id="FormField_best_candidate" label="Best Candidate" type="string" defaultValue="${best_candidate_firstname} ${best_candidate_lastname}" />
+          <camunda:formField id="FormField_further_information" label="Further information about candidate" type="string" defaultValue="https://sheltered-citadel-37599.herokuapp.com/list_applicant.php?id=${best_candidate_id}" />
           <camunda:formField id="FormField_offer_accepted" label="Offer accepted" type="boolean" />
         </camunda:formData>
       </bpmn:extensionElements>
