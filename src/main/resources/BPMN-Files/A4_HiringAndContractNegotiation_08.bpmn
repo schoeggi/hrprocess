@@ -34,7 +34,7 @@
       <bpmn:outgoing>SequenceFlow_1e3i3yj</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1kpzmlp</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="Task_RejectCandidate" name="Update candidates priority" camunda:assignee="andrea">
+    <bpmn:userTask id="Task_RejectCandidate" name="State reason of rejection" camunda:assignee="andrea">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_RejectionReasion" label="Rejection Reason" type="string" />

@@ -20,7 +20,7 @@
           <cmmn:condition id="Expression_1wryy1x">${true}</cmmn:condition>
         </cmmn:ifPart>
       </cmmn:sentry>
-      <cmmn:humanTask id="HumanTask_0fym266" name="Prepare Request Case" camunda:assignee="anna">
+      <cmmn:humanTask id="HumanTask_0fym266" name="Prepare Request Case" camunda:assignee="andrea">
         <cmmn:defaultControl id="PlanItemControl_19ricut">
           <cmmn:manualActivationRule id="ManualActivationRule_00ngx4i">
             <cmmn:condition id="Expression_1tgjbb0">${false}</cmmn:condition>

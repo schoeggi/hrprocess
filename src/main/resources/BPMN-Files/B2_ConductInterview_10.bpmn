@@ -48,7 +48,7 @@
         <bpmn:targetRef>Property_1q409oi</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:callActivity>
-    <bpmn:userTask id="Task_05lmgir" name="Provide candidate information" camunda:assignee="anna">
+    <bpmn:userTask id="Task_05lmgir" name="Provide candidate information" camunda:assignee="andrea">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="firstname" label="Firstname" type="string" defaultValue="${firstname}">
@@ -89,7 +89,7 @@
         <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
-    <bpmn:userTask id="Task_Interview1" name="Conduct skype interview" camunda:assignee="anna">
+    <bpmn:userTask id="Task_Interview1" name="Conduct skype interview" camunda:assignee="andrea">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="Candidate_Name1" label="Candidate: " type="string" defaultValue="${firstname} ${lastname}">
@@ -165,7 +165,7 @@ JSON.stringify(out);]]></camunda:script>
         <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
-    <bpmn:userTask id="Task_Interview2" name="Conduct physical Interview" camunda:assignee="andrea">
+    <bpmn:userTask id="Task_Interview2" name="Conduct physical Interview" camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="Candidate_Name2" label="Candidate: " type="string" defaultValue="${firstname} ${lastname}">

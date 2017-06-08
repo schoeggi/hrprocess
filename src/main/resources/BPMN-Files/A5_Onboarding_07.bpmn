@@ -18,7 +18,7 @@
         <bpmn:flowNodeRef>EndEvent_049yy2o</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:userTask id="Task_Order" name="Order Hardware, Software and accounts" camunda:assignee="andrea">
+    <bpmn:userTask id="Task_Order" name="Order Hardware, Software and accounts" camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_OrderHW" label="Following HW ordered" type="boolean" />
@@ -33,7 +33,7 @@
         <bpmn:targetRef>Property_1t1zfvg</bpmn:targetRef>
       </bpmn:dataInputAssociation>
     </bpmn:userTask>
-    <bpmn:userTask id="Task_OnboardingTeam" name="Onboarding team side" camunda:assignee="andrea">
+    <bpmn:userTask id="Task_OnboardingTeam" name="Onboarding team side" camunda:assignee="anna">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_TeamOnboardingComment" label="Team Onboarding Completed" type="boolean" />
@@ -42,7 +42,7 @@
       <bpmn:incoming>SequenceFlow_0eu4zwc</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_03sxjv5</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Task_OnboardingHR" name="Onboarding administration side" camunda:assignee="anna">
+    <bpmn:userTask id="Task_OnboardingHR" name="Onboarding administration side" camunda:assignee="andrea">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_AdminOnboardingComment" label="Admin Onboarding completed" type="boolean" />
@@ -67,7 +67,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_0eu4zwc" sourceRef="Task_OnboardingHR" targetRef="Task_OnboardingTeam" />
     <bpmn:sequenceFlow id="SequenceFlow_03sxjv5" sourceRef="Task_OnboardingTeam" targetRef="EndEvent_049yy2o" />
     <bpmn:sequenceFlow id="SequenceFlow_1tcrbp3" sourceRef="IntermediateThrowEvent_05ekt9u" targetRef="Task_OnboardingHR" />
-    <bpmn:userTask id="Task_UpdateEmployeeInfo" name="Review and Update employee information" camunda:assignee="anna">
+    <bpmn:userTask id="Task_UpdateEmployeeInfo" name="Review and Update employee information" camunda:assignee="andrea">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_PreparationComment" label="Preparation completed" type="boolean" />
