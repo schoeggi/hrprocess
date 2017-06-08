@@ -25,3 +25,5 @@ spring:
     username: ucxhvwaujfziup
     password: 23f43414d44152563df28db7b1787b2556c4b353780152fb6ff1eae536fe9dc2
     driverClassName: org.postgresql.Driver
+
+    
