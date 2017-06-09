@@ -24,17 +24,17 @@ import static org.camunda.bpm.engine.authorization.Resources.APPLICATION;
 import static org.camunda.bpm.engine.authorization.Resources.FILTER;
 
 @Component
-public class CamundaInitialDataGeneratorUserAlreadyExists {
+public class CamundaInitialDataGeneratorCreatCamundaUsers {
 
-	/**
+
     private static final String ADMIN_USER = "admin";
 
-    private static final Logger LOGGER = Logger.getLogger(CamundaInitialDataGenerator.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(CamundaInitialDataGeneratorCreatCamundaUsers.class.getName());
 
     private final ProcessEngine processEngine;
 
     @Autowired
-    public CamundaInitialDataGenerator(ProcessEngine processEngine) {
+    public CamundaInitialDataGeneratorCreatCamundaUsers(ProcessEngine processEngine) {
         this.processEngine = processEngine;
     }
 
@@ -150,7 +150,7 @@ public class CamundaInitialDataGeneratorUserAlreadyExists {
             authorizationService().saveAuthorization(globalGroupFilterRead);
         }
     }
-*/
+
 	
 
 
