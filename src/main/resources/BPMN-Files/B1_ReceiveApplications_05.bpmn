@@ -29,6 +29,11 @@
     <bpmn:serviceTask id="Task_1r2vb81" name="Update candidate status and prepare mail" camunda:delegateExpression="#{updateCandidateStatusPrepMail}">
       <bpmn:incoming>SequenceFlow_0rt51t6</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_05efvk7</bpmn:outgoing>
+      <bpmn:property id="Property_0nglenn" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0vn7i90">
+        <bpmn:sourceRef>DataStoreReference_1gy3l7x</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0nglenn</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_06r84et">
         <bpmn:targetRef>DataStoreReference_1gy3l7x</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
@@ -130,9 +135,9 @@ JSON.stringify(out);]]></camunda:script>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_06r84et_di" bpmnElement="DataOutputAssociation_06r84et">
-        <di:waypoint xsi:type="dc:Point" x="507" y="130" />
-        <di:waypoint xsi:type="dc:Point" x="507" y="69" />
-        <di:waypoint xsi:type="dc:Point" x="242" y="69" />
+        <di:waypoint xsi:type="dc:Point" x="491" y="124" />
+        <di:waypoint xsi:type="dc:Point" x="491" y="84" />
+        <di:waypoint xsi:type="dc:Point" x="243" y="84" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_1ahsrlt_di" bpmnElement="ServiceTask_1ahsrlt">
         <dc:Bounds x="614" y="130" width="100" height="80" />
@@ -158,6 +163,11 @@ JSON.stringify(out);]]></camunda:script>
       <bpmndi:BPMNShape id="Lane_0eth9w0_di" bpmnElement="Lane_0eth9w0">
         <dc:Bounds x="63" y="17" width="810" height="262" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0vn7i90_di" bpmnElement="DataInputAssociation_0vn7i90">
+        <di:waypoint xsi:type="dc:Point" x="245" y="60" />
+        <di:waypoint xsi:type="dc:Point" x="522" y="60" />
+        <di:waypoint xsi:type="dc:Point" x="522" y="127" />
+      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

@@ -50,7 +50,6 @@
         <bpmn:targetRef>DataStoreReference_18l51l7</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:serviceTask>
-    <bpmn:dataStoreReference id="DataStoreReference_18l51l7" name="Cloud IO" />
     <bpmn:sequenceFlow id="SequenceFlow_155v148" sourceRef="StartEvent_1ibuabq" targetRef="Task_CreateOffer" />
     <bpmn:sequenceFlow id="SequenceFlow_0c09rka" sourceRef="Task_CreateOffer" targetRef="ServiceTask_0c51d3l" />
     <bpmn:sequenceFlow id="SequenceFlow_1mh2km2" sourceRef="Task_0kp9iag" targetRef="ExclusiveGateway_024tisg" />
@@ -126,14 +125,15 @@ JSON.stringify(out);]]></camunda:script>
     <bpmn:endEvent id="EndEvent_06lwkcc" name="Candidate hired">
       <bpmn:incoming>SequenceFlow_1f1jtqv</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:dataStoreReference id="DataStoreReference_18l51l7" name="Cloud IO" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="hrprocess4">
       <bpmndi:BPMNShape id="Participant_0nrlx0q_di" bpmnElement="HiringAndContract">
-        <dc:Bounds x="-37" y="-57" width="1044" height="318" />
+        <dc:Bounds x="-37" y="-57" width="944" height="320" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_14junek_di" bpmnElement="Lane_HR">
-        <dc:Bounds x="-7" y="-57" width="1014" height="318" />
+        <dc:Bounds x="-7" y="-57" width="914" height="320" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_1737xq0_di" bpmnElement="Task_Hire">
         <dc:Bounds x="605" y="138" width="100" height="80" />
@@ -149,7 +149,7 @@ JSON.stringify(out);]]></camunda:script>
         <di:waypoint xsi:type="dc:Point" x="542" y="106" />
         <di:waypoint xsi:type="dc:Point" x="542" y="133" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="549.5001491374965" y="125.32613593038874" width="18" height="13" />
+          <dc:Bounds x="551" y="108" width="18" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_1c426mi_di" bpmnElement="Task_RejectCandidate">
@@ -192,9 +192,9 @@ JSON.stringify(out);]]></camunda:script>
         <dc:Bounds x="374" y="8" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="DataStoreReference_18l51l7_di" bpmnElement="DataStoreReference_18l51l7">
-        <dc:Bounds x="257" y="120" width="50" height="50" />
+        <dc:Bounds x="257" y="153" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="197" y="139" width="44" height="12" />
+          <dc:Bounds x="197" y="172" width="44" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0difkdw_di" bpmnElement="SequenceFlow_0difkdw">
@@ -244,18 +244,18 @@ JSON.stringify(out);]]></camunda:script>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_057pgeo_di" bpmnElement="DataOutputAssociation_057pgeo">
-        <di:waypoint xsi:type="dc:Point" x="469" y="145" />
-        <di:waypoint xsi:type="dc:Point" x="307" y="145" />
+        <di:waypoint xsi:type="dc:Point" x="466" y="178" />
+        <di:waypoint xsi:type="dc:Point" x="307" y="178" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1a9l9pb_di" bpmnElement="DataOutputAssociation_1a9l9pb">
         <di:waypoint xsi:type="dc:Point" x="822" y="88" />
         <di:waypoint xsi:type="dc:Point" x="822" y="244" />
         <di:waypoint xsi:type="dc:Point" x="282" y="244" />
-        <di:waypoint xsi:type="dc:Point" x="282" y="170" />
+        <di:waypoint xsi:type="dc:Point" x="282" y="203" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1rq7s18_di" bpmnElement="DataInputAssociation_1rq7s18">
-        <di:waypoint xsi:type="dc:Point" x="257" y="129" />
-        <di:waypoint xsi:type="dc:Point" x="182" y="79" />
+        <di:waypoint xsi:type="dc:Point" x="257" y="157" />
+        <di:waypoint xsi:type="dc:Point" x="176" y="85" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_0c51d3l_di" bpmnElement="ServiceTask_0c51d3l">
         <dc:Bounds x="232" y="8" width="100" height="80" />
