@@ -29,7 +29,7 @@ public class CamundaInitialDataGenerator {
 	
 	
 	
-	
+	/**
     private static final String ADMIN_USER = "admin";
 
     private static final Logger LOGGER = Logger.getLogger(CamundaInitialDataGenerator.class.getName());
@@ -155,7 +155,7 @@ public class CamundaInitialDataGenerator {
     }
 
 
-
+*/
 
 
 	
